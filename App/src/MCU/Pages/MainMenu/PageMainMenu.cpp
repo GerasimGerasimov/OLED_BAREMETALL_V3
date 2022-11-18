@@ -1,0 +1,54 @@
+#include "PageMainMenu.h"
+#include "Router.h"
+#include <functional>
+
+void TPageMainMenu::view() {
+    MainMenu->view();
+};
+
+void TPageMainMenu::clear() {
+}
+
+bool TPageMainMenu::ProcessMessage(TMessage* m) {
+    switch (m->Event) {
+        case (u32)EventSrc::KEYBOARD: {
+            switch (m->p1) {
+            case (u32)KeyCodes::ESC:
+                TRouter::setTask({ false, "Home", NULL });
+                break;
+            }
+        }
+    }
+
+    for (auto& element : List) {
+        element->ProcessMessage(m);
+    }
+    return false;
+};
+
+TPageMainMenu::TPageMainMenu(std::string Name)
+    :TPage(Name) {
+    TLabelInitStructure LabelInit;
+    LabelInit.style = LabelsStyle::WIDTH_DINAMIC;
+    LabelInit.Rect = { 10, 10, 10, 10 };
+    AddList({
+        MainMenu = new TComponentListVertical({
+            new TLinkLabel("Основные параметры", "Home",LabelInit),
+            new TLinkLabel("Предупреждения", "Home", LabelInit),
+            new TLinkLabel("Аварии", "Home", LabelInit),
+            new TLinkLabel("Основные уставки работы", "Home", LabelInit),
+            new TLinkLabel("Уставки защит", "Home", LabelInit),
+            new TLinkLabel("Уставки режима очистки", "Home", LabelInit),
+            new TLinkLabel("Уставки ручного режима", "Home", LabelInit),
+            new TLinkLabel("Уставки ВАХ", "Home", LabelInit),
+            new TLinkLabel("Данные прямой ВАХ", "Home", LabelInit),
+            new TLinkLabel("Данные обратной ВАХ", "Home", LabelInit),
+            new TLinkLabel("Уставки интерфейсов", "Home", LabelInit),
+            new TLinkLabel("Данные драйвера", "Home", LabelInit),
+            new TLinkLabel("Настройки панели", "Home", LabelInit)
+           })
+    });
+};
+
+TPageMainMenu::~TPageMainMenu() {
+};

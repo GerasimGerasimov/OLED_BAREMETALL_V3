@@ -1,0 +1,50 @@
+*/*/EWARMv6/STM32F407IGT6/
+*/*/EWARMv6/STM32F407IGT6/Exe
+*/*/EWARMv6/STM32F407IGT6/List
+*/*/EWARMv6/settings/EFI.CPU.wsdt
+
+./.svn/**
+.vscode
+.vscode/c_cpp_properties.json
+c_cpp_properties.json
+*.map
+*.hex
+*.html
+*.cspy.*
+*.crun
+*.dbgdt
+*.dnx
+*.dni
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+STM32F4xx_StdPeriph_Driver/Release_Notes.html

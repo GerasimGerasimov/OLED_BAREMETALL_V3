@@ -1,0 +1,31 @@
+{
+  "App": "D:/Project/EFi_Tomsk/FirmWare/OLED.EFI.CPU.v2.0/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
+  "SkipSectors":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
+  "SkipSectors1":[],
+  "COM":{
+    "port":"COM3",
+  "settings": {
+        "baudRate": 115200,
+        "dataBits": 8,
+        "parity": "none",
+        "stopBits": 1,
+        "flowControl": false
+    }
+  },
+  "FirmwareCheckInfo": {
+    "info": "0x08008200",
+    "infoSize": 8,
+    "CheckFrom": "0x08008208",
+    "CheckTo": "0x08019200"
+  },
+  "resources": {
+    "start": "0x08080000",
+    "items": {
+      "ID" : "xxxxxxxx OLED.EFI2 v2.4.0 25.02.2022 www.intmash.ru",
+	  "URL" : "www.intmash.ru",
+	  "INI" : { 
+			"file":"D:/Project/EFi_Tomsk/FirmWare/EFI.CPU.v2.0/Ajuster/00000397 EFI.CPU v2.2.2.ini"
+	  }
+    }
+  }
+}
