@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>107078002</fileChecksum>
+    <fileChecksum>646590485</fileChecksum>
     <configuration>
         <name>STM32F407IGT6</name>
         <outputs>
@@ -192,7 +192,7 @@
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\Router.__cstat.et</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\DevicesValuesHandler.__cstat.et</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\IniResources.xcl</file>
-            <file>$PROJ_DIR$\..\MCU\ini\IniSlotsprops.h</file>
+            <file>$PROJ_DIR$\..\MCU\ini\IniSlotsProps.h</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\Slot.__cstat.et</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\PageEditValue.__cstat.et</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\parameters.__cstat.et</file>
@@ -853,7 +853,7 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 372 231 45 339 385 423 544 352 377 21 36 564 376 330 275 580 298 384 344 86 178 192 602 305 546 319 293 282 1 76 115 208 441 346 577 341 351 328 554 261 581 27 211 579 593 227 149 82 73 80 600 582 604 573 394 422 71 215 31 325 446 8 85 34 91 122 207 247 262 107 389 388 393 426 398 562 603 584 592 284 586 594 575 547 269 235 578 595 348 66 396 252 26 403 429</file>
+                    <file> 372 45 385 423 377 330 275 86 305 282 1 76 115 208 441 351 149 73 394 422 71 215 31 325 446 8 85 34 91 122 207 247 262 107 389 388 393 426 398 66 396 252 26 403 429</file>
                 </tool>
             </inputs>
         </file>
@@ -2712,7 +2712,7 @@
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 223 56 265 136 89 257 50 297 124 138 253 295 38 61 58 264 249 3 428 413 383 440 239 433 52 320 206 74 22 378 277 313 271 43 400 242 404 263 87 438 116 402 12 20 104 445 283 42 431 99 517 589 94 39 250 100 418 241 299 254 270 276 67 68 119 395 408 229 29 37 133 356 274 435 243 205 419 437 113 605 164 373 111 387 209 220 109 221 363 106 420 95 415 343 332 399 436 311 128 0 288 397 118 290 55 255 314 391 126 443 123 583 102 307 9 6 7 2 430 11 5 93 70 88 117 125 64</file>
+                    <file> 223 56 265 136 89 257 50 297 124 138 253 295 38 61 58 264 249 3 428 413 383 440 239 433 52 320 206 74 22 378 277 313 271 43 400 242 404 263 87 438 116 445 283 42 431 402 12 99 70 88 117 125 64</file>
                 </tool>
             </inputs>
         </file>
@@ -2942,6 +2942,10 @@
                 <tool>
                     <name>BICOMP</name>
                     <file> 240</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 157</file>
                 </tool>
             </outputs>
             <inputs>

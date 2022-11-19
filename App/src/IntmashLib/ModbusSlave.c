@@ -140,6 +140,8 @@ tU8 GetModbusMapIndex(ModbusMapType* Map, tU8 SpaceCode){
 /*******************************************************************************
 Функция обработки запроса строки ID (код операции 0x11) ПРОВЕРИТЬ!!!!!!!!!!!!!!!
 *******************************************************************************/
+const char* DID = "1234567890";
+
 tU8 ModbusReportSlaveID(ModbusSlaveType* Slave){  
   tU8 DataLength = 0; //возвращаемая длина отправляемой посылки
   
@@ -147,10 +149,10 @@ tU8 ModbusReportSlaveID(ModbusSlaveType* Slave){
   if(!MB_IS_BROADCAST_MSG) 
   {
     //расчет длины строки
-    while (DeviceID[DataLength++]!=0);    
+    while (DID[DataLength++]!=0);    
     Slave->Buffer[MB_DATA_BYTE_CNT_CMD_11]=DataLength;
     //копирование строки в буфер ответа
-    for(tU8 i=0; i!=DataLength; i++) Slave->Buffer[MB_DATA_SECTION_CMD_11+i]=DeviceID[i];
+    for(tU8 i=0; i!=DataLength; i++) Slave->Buffer[MB_DATA_SECTION_CMD_11+i]=DID[i];
     //расчет размера ответа    
     DataLength += MB_DATA_SECTION_CMD_11;//прибавить длину заголовка   
     DataLength += CRC_SIZE;//прибавить длину crc 

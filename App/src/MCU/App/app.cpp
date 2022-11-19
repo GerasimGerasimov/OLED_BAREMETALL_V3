@@ -14,7 +14,7 @@
 #include "CreateCustomSlot.h"
 
 void App::init(void) {
-    TInternalResources::init();
+    //TInternalResources::init();
     //IniResources::init();
     //IniSlotsProps::init();
     /*TODO для управления от встроенных DIO нужен слот*/

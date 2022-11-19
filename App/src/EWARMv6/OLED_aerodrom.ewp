@@ -449,7 +449,7 @@
                 </option>
                 <option>
                     <name>IccStaticDestr</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IccCppInlineSemantics</name>
@@ -494,11 +494,11 @@
                 </option>
                 <option>
                     <name>IccExceptions2</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IccRTTI2</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>OICompilerExtraOption</name>
@@ -1149,98 +1149,29 @@
         <name>MCU</name>
         <group>
             <name>App</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\App\app.cpp</name>
-            </file>
         </group>
         <group>
             <name>Components</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\common.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\HeaderLabel.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\Label.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\LinkedTagLabel.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\LinkLabel.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\NumericEdit.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\Pages.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\TagLine.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\TComponentListVertical.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\TComponentsContainer.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Components\WrappedText.cpp</name>
-            </file>
         </group>
         <group>
             <name>DevicePollManager</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\DevicePollManager\DevicePollManager.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\DevicePollManager\Slot.cpp</name>
-            </file>
         </group>
         <group>
             <name>DevicesValues</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\DevicesValues\DevicesValuesHandler.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\DevicesValues\HandleSubscribers.cpp</name>
-            </file>
         </group>
         <group>
             <name>Events</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Events\Events.hpp</name>
-            </file>
         </group>
         <group>
             <name>Fonts</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Fonts\MSSansSerifBold14.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Fonts\TMCUFonts.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Fonts\TMCUText.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Fonts\Verdana12.cpp</name>
-            </file>
         </group>
         <group>
             <name>GraphicsFunctions</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\GraphicsFunctions\graphics.cpp</name>
-            </file>
         </group>
         <group>
             <name>Helpers</name>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Helpers\crc16.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Helpers\utils.cpp</name>
             </file>
         </group>
         <group>
@@ -1254,111 +1185,27 @@
         </group>
         <group>
             <name>ini</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\ini\IniResources.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\ini\IniSlotsProps.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\ini\parser.cpp</name>
-            </file>
         </group>
         <group>
             <name>Modbus</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Modbus\AppModbusSlave.cpp</name>
-            </file>
         </group>
         <group>
             <name>Msg</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Msg\msg.cpp</name>
-            </file>
         </group>
         <group>
             <name>Pages</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Pages\Counters\PageCounters.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Pages\EditValue\PageEditValue.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Pages\Help\PageHelp.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Pages\Home\PageHome.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Pages\MainMenu\PageMainMenu.cpp</name>
-            </file>
         </group>
         <group>
             <name>Parameters</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\generalcase.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\inistring.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\parameters.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\ParametersUtils.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\scaleutils.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\signal.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\signalfactory.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\TBit.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\TFloat.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\TS16bit.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\TU16bit.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\TU8BIT.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Parameters\vars.cpp</name>
-            </file>
         </group>
         <group>
             <name>Resources</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Resources\resources.cpp</name>
-            </file>
         </group>
         <group>
             <name>Router</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Router\Router.cpp</name>
-            </file>
         </group>
         <group>
             <name>Slots</name>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Slots\CommonSlotHandler.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Slots\CreateCustomSlot.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\MCU\Slots\CreateSlotsByStart.cpp</name>
-            </file>
         </group>
     </group>
     <group>

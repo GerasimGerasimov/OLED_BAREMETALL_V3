@@ -16,19 +16,16 @@
     "info": "0x08008200",
     "infoSize": 8,
     "CheckFrom": "0x08008208",
-    "CheckTo":   "0x08042000"
+    "CheckTo":   "0x0800A000"
   },
   "resources": {
     "start": "0x08080000",
     "items": {
       "ID" : "12345678 DExS.SMFCB v1.10.3.0 29.11.2021 MVK www.intmash.ru",
 	  "URL" : "www.intmash.ru",
-	  "SOURCES":"DEV1/DEV2/",
+	  "SOURCES":"DEV1/",
       "DEV1" : { 
         "file":"D:/Project/Projects/DelphiProjects/ma010ENG/Devices/DExS.GEN/00000151_Synchrosope.ini"
-      },
-	  "DEV2" : { 
-        "file":"D:/Project/Projects/!SMFCB/DExSys/FW/CM4/DExS-SMFCB/Devices/DExS SMFCB 1_10_2.ini"
       },
 	  "DEVICES":"U1/",
 	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0010,0,/FLASH,0x2000,0x2069,10,/CD,0xC000,0xC011,10,/"

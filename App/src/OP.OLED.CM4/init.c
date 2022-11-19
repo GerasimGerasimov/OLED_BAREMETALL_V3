@@ -243,7 +243,7 @@ void Init (void){
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE); 
   GPIO_Configuration();//конфигурируем порты
 
-  for(u32 InitDelay=1200000; InitDelay>0; InitDelay--) {}
+  for(u32 InitDelay=12000; InitDelay>0; InitDelay--) {}
   
   SPI1_Configuration();
   //ssd1305_init();

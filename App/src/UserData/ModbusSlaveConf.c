@@ -7,6 +7,7 @@
 #include "FlashData.h"
 #include "RAMdata.h"
 #include "ModbusMasterConf.h"
+#include "crc16.h"
 
 //структуры драйверов UART и слейвов
 Intmash_Usart UART1toRS485; // связь по опциональному RS485
@@ -54,7 +55,7 @@ void ModbusClientInit(void) //фукция инициализации структуры, пример
   UsartRecieve (&UART1toRS485, &RS485slave.Buffer[0]);//настроили на прием и ждем  
 }
 
-#include "crc16.h"
+
 //прерывание USART от опционального RS485
 void USART1_IRQHandler(void)
 {
