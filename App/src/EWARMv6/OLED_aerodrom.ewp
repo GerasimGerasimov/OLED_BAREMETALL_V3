@@ -449,7 +449,7 @@
                 </option>
                 <option>
                     <name>IccStaticDestr</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IccCppInlineSemantics</name>
@@ -1200,6 +1200,9 @@
         </group>
         <group>
             <name>Resources</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Resources\resources.cpp</name>
+            </file>
         </group>
         <group>
             <name>Router</name>

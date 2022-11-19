@@ -1523,6 +1523,9 @@
         </group>
         <group>
             <name>Resources</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Resources\resources.cpp</name>
+            </file>
         </group>
         <group>
             <name>Router</name>
