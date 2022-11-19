@@ -18,7 +18,7 @@ int main(void) {
   //App::run();
   //IDinit();
   
-  //ModbusClientInit(); //слейв для проверки
+  ModbusClientInit(); //слейв для проверки
   //ModbusMasterInit(); //мастер  
   
   LED_RUN_ON;
