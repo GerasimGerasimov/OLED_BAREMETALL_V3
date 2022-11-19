@@ -75,7 +75,7 @@ std::string TInternalResources::getID() {
 char * TInternalResources::getPtrID() {
   pItem item = getItemByName((char*)"ID");
   return (item != nullptr)
-    ? (char *)getStringFormResource(item).c_str()
+    ? (char *) unknown//getStringFormResource(item).c_str()
     : (char *) unknown;
 }
 char * TInternalResources::getItemName(u16 idx) {
