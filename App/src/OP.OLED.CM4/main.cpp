@@ -3,6 +3,7 @@
 #include "init.h"
 #include "id.h"
 #include "defines.h"
+#include "os_resources.h"
 
 #include "ModbusMasterConf.h"
 #include "ModbusSlaveConf.h"
@@ -13,6 +14,7 @@
 int main(void) {  
   BootLoadCmdFillZero();  
   Init();
+  OSResources::init();
   //TGrahics::init();
   //App::init();
   //App::run();

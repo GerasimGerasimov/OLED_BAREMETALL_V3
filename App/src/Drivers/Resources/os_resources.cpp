@@ -2,7 +2,7 @@
 #include "crc16.h"
 #include <string.h>
 
-#define RESOURCES_ADDRESS 0x08080000
+static const u32 RESOURCES_ADDRESS = 0x08080000;
 
 u8* OSResources::res = (u8*) RESOURCES_ADDRESS;//NULL;
 
@@ -11,6 +11,7 @@ const u8* OSResources::getRes(void) {
 }
 
 void OSResources::init() {
+  res = (u8*) RESOURCES_ADDRESS;
   /*TODO заполнить OSResources::res указателем на ресурсы*/
   /*TODO если нет ресурсов, вывести предупреждающую надпись и не работать*/
   /*
