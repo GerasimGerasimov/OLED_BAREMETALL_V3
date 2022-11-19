@@ -449,7 +449,7 @@
                 </option>
                 <option>
                     <name>IccStaticDestr</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>IccCppInlineSemantics</name>
@@ -494,11 +494,11 @@
                 </option>
                 <option>
                     <name>IccExceptions2</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>IccRTTI2</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OICompilerExtraOption</name>
