@@ -53,14 +53,14 @@ TItemLimits TInternalResources::getItemLimitsByName(char* Name) {
 
 const char * unknown = "unknown";
 
-/*TODO надо не физический адрес в TResourceProps.Addr помещать, а смешение относительно начала ресурсов
+/*надо не физический адрес в TResourceProps.Addr помещать, а смешение относительно начала ресурсов Root
 это позволит обращатся к ресурсам безопасно под любой ОС*/
 
 std::string TInternalResources::getStringFormResource(pItem item) {
   const u32 Addr = item->BinaryDataAddr;
   const u32 Size = item->BinaryDataSize;
   std::string str;
-  u8* p = (u8*) Root+Addr;
+  u8* p = (u8*) (Root+Addr);
   str.assign((char*) p, Size);
   return str;
 }
@@ -75,7 +75,7 @@ std::string TInternalResources::getID() {
 char * TInternalResources::getPtrID() {
   pItem item = getItemByName((char*)"ID");
   return (item != nullptr)
-    ? (char *) unknown//getStringFormResource(item).c_str()
+    ? (char *) getStringFormResource(item).c_str()
     : (char *) unknown;
 }
 char * TInternalResources::getItemName(u16 idx) {
