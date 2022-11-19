@@ -2,6 +2,7 @@
 #include "resources.h"
 
 char * getIDfromResources(void) {
+  //return TInternalResources::getPtrID();
   //return (char*)TInternalResources::getID().c_str();
-  return NULL;
+  return nullptr;
 }

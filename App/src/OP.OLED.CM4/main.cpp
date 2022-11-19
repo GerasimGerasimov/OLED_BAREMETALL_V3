@@ -15,12 +15,13 @@
 int main(void) {  
   BootLoadCmdFillZero();  
   Init();
+  LED_WRN_ON;
   OSResources::init();
   TInternalResources::init();
   //TGrahics::init();
   //App::init();
   //App::run();
-  //IDinit();
+  IDinit();
   
   ModbusClientInit(); //слейв для проверки
   //ModbusMasterInit(); //мастер  

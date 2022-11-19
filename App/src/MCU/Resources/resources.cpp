@@ -1,13 +1,15 @@
 #include "resources.h"
 #include "crc16.h"
 #include <string>
+#include "RAMdata.h"
 
 //инициализация статического чдена класса
 std::vector<pItem> TInternalResources::ValidItems = std::vector<pItem>();
-pResources TInternalResources::Root = NULL;
+pResources TInternalResources::Root = nullptr;
 
 void TInternalResources::init() {
   Root = (pResources) RESOURCES_DATA;
+  RAM_DATA.var1 = (u32) Root;
   u16 i = 0;
   while (i < Root->NumberOfItems) {
     pItem p = &Root->Items[i++];
@@ -18,6 +20,7 @@ void TInternalResources::init() {
       return;
     }
   }
+  RAM_DATA.var2 = ValidItems.size();
 }
 
 char* TInternalResources::getRoot() {
@@ -69,6 +72,12 @@ std::string TInternalResources::getID() {
     : "unknown";
 }
 
+char * TInternalResources::getPtrID() {
+  pItem item = getItemByName((char*)"ID");
+  return (item != nullptr)
+    ? (char *)getStringFormResource(item).c_str()
+    : (char *) unknown;
+}
 char * TInternalResources::getItemName(u16 idx) {
   return Root->Items[idx].Name;
 }

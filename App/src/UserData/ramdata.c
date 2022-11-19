@@ -1,4 +1,4 @@
 //смотри RAMdata.h
-#include "RAMdata.h"//содержит описания структур данных
+#include "RAMdata.h"
 
 TRAM_DATA RAM_DATA;

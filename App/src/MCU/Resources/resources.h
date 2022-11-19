@@ -14,6 +14,7 @@ struct TInternalResources {
     static pItem getItemByName(char* Name);
     static TItemLimits getItemLimitsByName(char* Name);
     static std::string getID();
+    static char* getPtrID();
     static char* getRoot();
   private:
     static pResources Root;// = (pResources)RESOURCES_DATA;//RESOURCES_ADDRESS;
