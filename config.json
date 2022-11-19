@@ -1,7 +1,7 @@
 {
-  "App": "D:/Project/EFi_Tomsk/FirmWare/OLED.EFI.CPU.v2.0/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
-  "SkipSectors":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
-  "SkipSectors1":[],
+  "App": "D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
+  "SkipSectors1":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
+  "SkipSectors":[],
   "COM":{
     "port":"COM3",
   "settings": {
@@ -16,16 +16,22 @@
     "info": "0x08008200",
     "infoSize": 8,
     "CheckFrom": "0x08008208",
-    "CheckTo": "0x08019200"
+    "CheckTo":   "0x08042000"
   },
   "resources": {
     "start": "0x08080000",
     "items": {
-      "ID" : "xxxxxxxx OLED.EFI2 v2.4.0 25.02.2022 www.intmash.ru",
+      "ID" : "12345678 DExS.SMFCB v1.10.3.0 29.11.2021 MVK www.intmash.ru",
 	  "URL" : "www.intmash.ru",
-	  "INI" : { 
-			"file":"D:/Project/EFi_Tomsk/FirmWare/EFI.CPU.v2.0/Ajuster/00000397 EFI.CPU v2.2.2.ini"
-	  }
+	  "SOURCES":"DEV1/DEV2/",
+      "DEV1" : { 
+        "file":"D:/Project/Projects/DelphiProjects/ma010ENG/Devices/DExS.GEN/00000151_Synchrosope.ini"
+      },
+	  "DEV2" : { 
+        "file":"D:/Project/Projects/!SMFCB/DExSys/FW/CM4/DExS-SMFCB/Devices/DExS SMFCB 1_10_2.ini"
+      },
+	  "DEVICES":"U1/",
+	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0010,0,/FLASH,0x2000,0x2069,10,/CD,0xC000,0xC011,10,/"
     }
   }
 }

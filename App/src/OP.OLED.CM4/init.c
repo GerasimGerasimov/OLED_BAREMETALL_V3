@@ -171,7 +171,7 @@ void SPI1_Configuration(void){
 * Return         : None
 ********************************************************************************/
 
-#define APP_START_ADDR 0x08000000
+#define APP_START_ADDR 0x08008000
 
 //разрешаем переходы по векторам и настраиваем преоритеты следующих прерываний:
 void NVIC_Configuration(void)

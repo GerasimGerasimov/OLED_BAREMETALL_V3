@@ -23,7 +23,6 @@ typedef struct Resources {
 
 typedef TResources* pResources;
 
-#define RESOURCES_ADDRESS 0x08080000
 #define RESOURCES_DATA OSResources::getRes()
 
 class IResources {

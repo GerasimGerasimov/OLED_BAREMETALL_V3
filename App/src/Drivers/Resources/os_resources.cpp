@@ -2,7 +2,9 @@
 #include "crc16.h"
 #include <string.h>
 
-u8* OSResources::res = NULL;
+#define RESOURCES_ADDRESS 0x08080000
+
+u8* OSResources::res = (u8*) RESOURCES_ADDRESS;//NULL;
 
 const u8* OSResources::getRes(void) {
     return res;

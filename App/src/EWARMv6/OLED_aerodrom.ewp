@@ -1110,6 +1110,9 @@
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Resources\os_resources.cpp</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Resources\resources_wrapper.cpp</name>
+            </file>
         </group>
         <file>
             <name>$PROJ_DIR$\..\Drivers\com_master_driver.cpp</name>

@@ -33,10 +33,6 @@ u8 NumLogStr=0;
 
 tU16 LocalPassword=0;
 
-
-//#include "tst_bmp.h" //для теста 
-#include <stdio.h>
-
 static volatile tU8 OverturnX = 0;
 
 void update(tU8 Overturn);
@@ -47,10 +43,10 @@ void popUpAlarmScreen(void);
 int main(void) {  
   BootLoadCmdFillZero();  
   Init();
-  TGrahics::init();
+  //TGrahics::init();
   App::init();
-  App::run();
-  
+  //App::run();
+  IDinit();
   
   if(FLASH_DATA.Overturn.Coord.X) OverturnX = FLASH_DATA.Overturn.Coord.X - 1;
   else OverturnX = (OVERTURN_X_IN) ? 0 : 1;
@@ -67,8 +63,6 @@ int main(void) {
   LED1_ON;
   
   __enable_irq(); 
-  //TIntResources::init();
-  //IDinit();
   
   PowerLogScrNum = 0xff; //присвоили номера экранов лога
   BlackBoxScrNum = 0xff; //но у этой прошивке у нас нет ни лога ни черного ящика, так что им заведомо неиспользуемые номера
