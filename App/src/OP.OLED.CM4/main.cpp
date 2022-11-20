@@ -9,21 +9,23 @@
 #include "ModbusMasterConf.h"
 #include "ModbusSlaveConf.h"
 
-//#include <iar_dlmalloc.h>
+#include <iar_dlmalloc.h>
 #include <string>
-
+#include <app.h>
 
 //#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
 //#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
+
+struct mallinfo IARHeapInfo;
 
 int main(void) {  
   BootLoadCmdFillZero();  
   Init();
   LED_WRN_ON;
   OSResources::init();
-  TInternalResources::init();
+  //TInternalResources::init();
   //TGrahics::init();
-  //App::init();
+  App::init();
   //App::run();
   
   ModbusClientInit(); //слейв дл€ проверки
@@ -43,8 +45,8 @@ int main(void) {
   static bool tggl = false;
   static u32 i = 200000;
   
-  static const char* c = "0123456789ABCDEF";
-  std::string str = "unknown  Addr:";//TODO объ€вил Static и апп не падает, без статика не стартует совсем.
+  //static const char* c = "0123456789ABCDEF";
+  //std::string str = "unknown  Addr:";//TODO объ€вил Static и апп не падает, без статика не стартует совсем.
   
   while (1)
   { 
@@ -52,8 +54,10 @@ int main(void) {
       ? i--
       : (tggl = !tggl, i = 100000);
     (tggl)
-      ? (LED_RUN_ON, str="qwertyt fhnfdffg vhvbhvhgv")
-        :(LED_RUN_OFF, str.assign(c, 16));
+      ? (LED_RUN_ON/*, str=TInternalResources::getID()*/)
+        :(LED_RUN_OFF/*, str.assign(c, 16)*/);
+     IARHeapInfo = __iar_dlmallinfo();
+     RAM_DATA.var2 = IARHeapInfo.fordblks;
   }  
 }
 

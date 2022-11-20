@@ -67,11 +67,7 @@ std::string TInternalResources::getStringFormResource(pItem item) {
   const u32 Addr = item->BinaryDataAddr;
   const u32 Size = item->BinaryDataSize;
   std::string str = "unknown  Addr:";
-  u8* p = (u8*) ((u32)Root+Addr);
-  //RAM_DATA.var1 = (u32) ((u32)p >> 16);
-  //RAM_DATA.var2 = (u32) ((u32)p >> 0);
-  //RAM_DATA.var3 = Addr;
-  //RAM_DATA.var4 = Size;
+  u8* p = (u8*) ((unsigned int)Root+Addr);
   str.assign((char*) p, Size);/*TODO вот на этой строке и сыпется!*/
   return str;
 }

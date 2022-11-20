@@ -1,20 +1,20 @@
 #include "app.h"
 #include <string>
-#include "graphics.h"
-#include "display_driver.h"
+//#include "graphics.h"
+//#include "display_driver.h"
 
-#include "Router.h"
-#include "msg.h"
-#include "DevicePollManager.h"
+//#include "Router.h"
+//#include "msg.h"
+//#include "DevicePollManager.h"
 
-#include "IniResources.h"
-#include "IniSlotsprops.h"
-#include "CreateSlotsByStart.h"
+//#include "IniResources.h"
+//#include "IniSlotsprops.h"
+//#include "CreateSlotsByStart.h"
 #include "resources.h"
-#include "CreateCustomSlot.h"
+//#include "CreateCustomSlot.h"
 
 void App::init(void) {
-    //TInternalResources::init();
+    TInternalResources::init();
     //IniResources::init();
     //IniSlotsProps::init();
     /*TODO для управления от встроенных DIO нужен слот*/
@@ -27,6 +27,7 @@ void App::init(void) {
 
 void App::run(void) {
 
+  /*
     TMessage m;
     while (true) {
         TRouter::chekNextPage();
@@ -39,4 +40,5 @@ void App::run(void) {
         TDisplayDriver::out();
         DevicePollManager::execute();
     }
+*/
 }

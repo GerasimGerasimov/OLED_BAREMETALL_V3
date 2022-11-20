@@ -1472,6 +1472,9 @@
         <name>MCU</name>
         <group>
             <name>App</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\App\app.cpp</name>
+            </file>
         </group>
         <group>
             <name>Components</name>
