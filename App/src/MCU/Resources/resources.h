@@ -2,6 +2,8 @@
 #define RESOURCES_H
 
 #include "iresources.h"
+#include <vector>
+#include <string>
 
 typedef struct ItemLimits {
     char* RootOffset;

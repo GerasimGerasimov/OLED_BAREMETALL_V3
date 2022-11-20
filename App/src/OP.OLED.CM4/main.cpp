@@ -9,6 +9,10 @@
 #include "ModbusMasterConf.h"
 #include "ModbusSlaveConf.h"
 
+//#include <iar_dlmalloc.h>
+#include <string>
+
+
 //#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
 //#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
 
@@ -21,7 +25,6 @@ int main(void) {
   //TGrahics::init();
   //App::init();
   //App::run();
-  //IDinit();
   
   ModbusClientInit(); //слейв дл€ проверки
   //ModbusMasterInit(); //мастер  
@@ -40,12 +43,17 @@ int main(void) {
   static bool tggl = false;
   static u32 i = 200000;
   
+  static const char* c = "0123456789ABCDEF";
+  std::string str = "unknown  Addr:";//TODO объ€вил Static и апп не падает, без статика не стартует совсем.
+  
   while (1)
   { 
     (i)
       ? i--
-      : (tggl = !tggl, i = 200000);
-    (tggl)?LED_RUN_ON:LED_RUN_OFF;
+      : (tggl = !tggl, i = 100000);
+    (tggl)
+      ? (LED_RUN_ON, str="qwertyt fhnfdffg vhvbhvhgv")
+        :(LED_RUN_OFF, str.assign(c, 16));
   }  
 }
 

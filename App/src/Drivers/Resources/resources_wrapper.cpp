@@ -8,7 +8,6 @@ char * getIDfromResources(void) {
 }
 
 TItemProps getIDPropsFromRes(void) {
-  //TItemProps
   TItemLimits props = TInternalResources::getItemLimitsByName((char*)"ID");
   return {props.RootOffset, props.Size};
 }

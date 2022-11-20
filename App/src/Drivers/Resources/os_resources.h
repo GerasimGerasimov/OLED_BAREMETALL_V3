@@ -3,7 +3,6 @@
 
 #include "resources.h"
 #include "stm32f4xx.h"
-#include <vector>
 
 struct OSResources {
   public:
