@@ -2,8 +2,8 @@
 #include "Intmash_bastypes.h"
 #include "resources_wrapper.h"
 
-char * DeviceID = 0;//массив для формирования ID-строки
-
-void IDinit() { 
-  DeviceID = getIDfromResources(); 
+int getID(char **addr) {//функция, формирующая ID-строку
+  TItemProps props = getIDPropsFromRes();
+  *addr = props.Addr;
+  return props.Size;
 }

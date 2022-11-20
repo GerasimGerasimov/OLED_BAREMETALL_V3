@@ -9,7 +9,6 @@ pResources TInternalResources::Root = nullptr;
 
 void TInternalResources::init() {
   Root = (pResources) RESOURCES_DATA;
-  RAM_DATA.var1 = (u32) Root;
   u16 i = 0;
   while (i < Root->NumberOfItems) {
     pItem p = &Root->Items[i++];
@@ -20,7 +19,6 @@ void TInternalResources::init() {
       return;
     }
   }
-  RAM_DATA.var2 = ValidItems.size();
 }
 
 char* TInternalResources::getRoot() {
@@ -53,15 +51,28 @@ TItemLimits TInternalResources::getItemLimitsByName(char* Name) {
 
 const char * unknown = "unknown";
 
-/*надо не физический адрес в TResourceProps.Addr помещать, а смешение относительно начала ресурсов Root
+/*TODO надо не физический адрес в TResourceProps.Addr помещать, а смешение относительно начала ресурсов
 это позволит обращатся к ресурсам безопасно под любой ОС*/
+/* было так в работающей версии
+std::string getStringFormResource(pItem item) {
+  const u32 Addr = item->BinaryDataAddr;
+  const u32 Size = item->BinaryDataSize;
+  std::string str;
+  str.assign((char*) Addr, Size);
+  return str;
+}
+*/
 
 std::string TInternalResources::getStringFormResource(pItem item) {
   const u32 Addr = item->BinaryDataAddr;
   const u32 Size = item->BinaryDataSize;
-  std::string str;
-  u8* p = (u8*) (Root+Addr);
-  str.assign((char*) p, Size);
+  std::string str = "unknown  Addr:";
+  u8* p = (u8*) ((u32)Root+Addr);
+  //RAM_DATA.var1 = (u32) ((u32)p >> 16);
+  //RAM_DATA.var2 = (u32) ((u32)p >> 0);
+  //RAM_DATA.var3 = Addr;
+  //RAM_DATA.var4 = Size;
+  str.assign((char*) p, Size);/*TODO вот на этой строке и сыпется!*/
   return str;
 }
 
@@ -78,6 +89,7 @@ char * TInternalResources::getPtrID() {
     ? (char *) getStringFormResource(item).c_str()
     : (char *) unknown;
 }
+
 char * TInternalResources::getItemName(u16 idx) {
   return Root->Items[idx].Name;
 }

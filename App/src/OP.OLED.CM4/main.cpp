@@ -21,7 +21,7 @@ int main(void) {
   //TGrahics::init();
   //App::init();
   //App::run();
-  IDinit();
+  //IDinit();
   
   ModbusClientInit(); //слейв для проверки
   //ModbusMasterInit(); //мастер  

@@ -7,10 +7,10 @@ typedef  struct {
     tU16Union FLAGS;    //00
     tU16 Last_lnk_error;//01
     
-    tU32 var1; //02
-    tU32 var2; //03
-    tU32 var3; //04
-    tU32 var4; //05
+    tU16 var1; //02
+    tU16 var2; //03
+    tU16 var3; //04
+    tU16 var4; //05
         
 } TRAM_DATA;
 

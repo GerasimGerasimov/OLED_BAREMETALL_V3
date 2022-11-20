@@ -7,7 +7,6 @@
 #include "FlashData.h"
 #include "RAMdata.h"
 #include "ModbusSlave.h"
-#include "str.h"
 
 #define CRC_SIZE 2 //размер crc-2 байта
 #define WR_ANSWER_SIZE 8 //размер ответа на запрос записи 
@@ -15,28 +14,24 @@
 #define PREFIX_SHIFT 4
 #define PREFIX_MASK  ((tU8)0xF0)
 
-//функция вычисления длины ID 
-tU8 GetDeviceIDLength(void){
-tU8 i=0;
- while (DeviceID[i++]!=0);
- return i;
-}
-
 //запись ID устройства в буфер + crc. ответ на команду х11
 tU8 GetDeviceID(ModbusSlaveType* Slave){
-  tU8 i=0;  
-  tU8 DataLength = 0; //длинна отправляемой посылки
-  IDinit();
-  DataLength = getStrLenght(DeviceID);  
-  Slave->Buffer[MB_DATA_BYTE_CNT_CMD_11]=DataLength;
-  do
-  Slave->Buffer[MB_DATA_SECTION_CMD_11+i]=DeviceID[i];
-  while ((i++)!=DataLength);
-  DataLength += MB_DATA_SECTION_CMD_11;//прибавить длину заголовка   
-  DataLength += CRC_SIZE;//прибавить длину crc 
-  FrameEndCrc16((tU8*)Slave->Buffer, DataLength);
-
-  return DataLength;
+  char* Addr = 0; 
+  int Size = getID(&Addr);
+  if (Size) {
+    tU8 i=0;  
+    Slave->Buffer[MB_DATA_BYTE_CNT_CMD_11]=Size+1;//см что + 1! или не будет последней буквы
+    do
+    Slave->Buffer[MB_DATA_SECTION_CMD_11+i]=*Addr++;
+    while ((i++)!=Size);
+    
+  } else {//если нет ID в ресурсах
+    Slave->Buffer[MB_COMMAND_CODE] = 0x11 | 0x80;//ошибка!
+  }
+  Size += MB_DATA_SECTION_CMD_11;//прибавить длину заголовка    
+  Size += CRC_SIZE;//прибавить длину crc  
+  FrameEndCrc16((tU8*)Slave->Buffer, Size);
+  return Size;
 }
 
 
