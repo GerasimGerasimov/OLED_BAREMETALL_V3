@@ -9,17 +9,19 @@
 
 #include "IniResources.h"
 #include "IniSlotsprops.h"
-//#include "CreateSlotsByStart.h"
+#include "CreateSlotsByStart.h"
 #include "resources.h"
-//#include "CreateCustomSlot.h"
+#include "CreateCustomSlot.h"
+#include "RAMdata.h"
 
 void App::init(void) {
     TInternalResources::init();
     //IniResources::init();
     IniSlotsProps::init();
     /*TODO для управления от встроенных DIO нужен слот*/
-    //std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
-    //slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
+    std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
+    slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
+    RAM_DATA.var4 = slots.size();
     //DevicePollManager::init(slots);
     //TRouter::Init();
     //Msg::send_message((u32)EventSrc::REPAINT, 0, 0);

@@ -1481,6 +1481,9 @@
         </group>
         <group>
             <name>DevicePollManager</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\DevicePollManager\Slot.cpp</name>
+            </file>
         </group>
         <group>
             <name>DevicesValues</name>
@@ -1544,6 +1547,12 @@
         </group>
         <group>
             <name>Slots</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Slots\CreateCustomSlot.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Slots\CreateSlotsByStart.cpp</name>
+            </file>
         </group>
     </group>
     <group>

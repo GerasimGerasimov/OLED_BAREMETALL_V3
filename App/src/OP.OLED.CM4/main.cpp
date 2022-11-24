@@ -12,6 +12,7 @@
 #include <iar_dlmalloc.h>
 #include <string>
 #include <app.h>
+#include "IniSlotsprops.h"
 
 //#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
 //#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
@@ -47,7 +48,7 @@ int main(void) {
   
   //static const char* c = "0123456789ABCDEF";
   //std::string str = "unknown  Addr:";//TODO объ€вил Static и апп не падает, без статика не стартует совсем.
-  
+  RAM_DATA.var3 = IniSlotsProps::Devices.size();
   while (1)
   { 
     (i)

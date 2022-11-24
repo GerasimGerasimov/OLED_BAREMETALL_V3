@@ -1,5 +1,5 @@
 #include "CreateSlotsByStart.h"
-#include "CommonSlotHandler.h"
+//#include "CommonSlotHandler.h"
 
 //static const u8 cmdGetID[] = { 1,    3, 0x00, 0x00, 0x00, 0x1F };
 //                               adr,cmd, firstAddr , regsToRead
@@ -23,7 +23,7 @@ std::vector <Slot> CreateSlotsByStart::init(std::map<std::string, TDeviceNetwork
 			/*TODO собственно создать слот для заданного COM порта*/
 			Slot* pSlot = new Slot(devname, section, prop->StartAddr, prop->LastAddr);
 			pSlot->addcmd(getReadCmdFromSettings(slotsprops.NetworkAddr, prop->StartAddr, prop->LastAddr));
-			pSlot->onData = CommonSlotHandler::parseRespond;
+			pSlot->onData = nullptr;//CommonSlotHandler::parseRespond;
 			pSlot->Interval = prop->Interval;
 			res.push_back(*pSlot);
 		}
