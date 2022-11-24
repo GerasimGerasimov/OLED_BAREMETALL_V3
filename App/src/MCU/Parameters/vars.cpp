@@ -2,7 +2,9 @@
 #include "parser.h"
 #include "IniResources.h"
 
-TScale::TScale(char* source, int scrLen) : ISignal(source, scrLen) {
+TScale::TScale(char* source, int scrLen)
+  : ISignal(source, scrLen)
+  , ValueSize(0) {
 }
 
 TScale::TScale(TScaleProps props)

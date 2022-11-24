@@ -1176,6 +1176,9 @@
             <file>
                 <name>$PROJ_DIR$\..\MCU\Helpers\crc16.c</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Helpers\utils.cpp</name>
+            </file>
         </group>
         <group>
             <name>IDrivers</name>
@@ -1188,6 +1191,12 @@
         </group>
         <group>
             <name>ini</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\ini\IniSlotsProps.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\ini\parser.cpp</name>
+            </file>
         </group>
         <group>
             <name>Modbus</name>

@@ -1,8 +1,8 @@
 #include "parser.h"
 
-char* IniParser::Root = NULL;
+char* IniParser::Root = nullptr;
 int IniParser::RootSize = 0;
-char* IniParser::SearchPointer = NULL;
+char* IniParser::SearchPointer = nullptr;
 
 void IniParser::init() {
 
@@ -63,11 +63,10 @@ int IniParser::isDelimiter(char** ptr, char Delimiter) {
             case '\n': return(-3);//LN (конец строки)
             default: {
                 res++;//inc смещение
-                if (c == Delimiter) return(res);//возвр. номер заданного символа в строке
+                if (c == Delimiter) return res;//возвр. номер заданного символа в строке
             }
         }
     } while (true);
-    return(res);
 }
 
 void IniParser::resetFind(char* start) {
@@ -117,10 +116,9 @@ static bool isNexSymbolValid(char** ptr) {
 //если это символы типа CR, LN возвращает ноль
 //если EOF то (int)ParcerResult::END
 int IniParser::getStringLenght(char** ptr) {
-    int limitCounter = 0;
     int res = 0;
     char c;
-    while (limitCounter = RootSize - (int)(*&ptr[0] - &Root[0])) {
+    while (RootSize - (int)(*&ptr[0] - &Root[0])) {
         c = *((*ptr)++);
         switch (c) {
         case '\r': //CR (возврат каретки)
@@ -164,7 +162,6 @@ int IniParser::getSectionLinesCount(char* SectionName) {//возвращает кол-во стро
 int IniParser::isDelimiterSizeLimited(char delimiter, char*& src, int& size) {
     char c;
     int count = 0;
-    int startsize = size;
     while (size-- != 0) {
         count++;
         c = *src++;

@@ -10,6 +10,7 @@ public:
 	~TU8BIT();
 	std::string getMSU();
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
+        std::string getValue(){return "";};
 	virtual void setValue();
 private:
 	char* MSU;

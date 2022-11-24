@@ -7,8 +7,8 @@
 //#include "msg.h"
 //#include "DevicePollManager.h"
 
-//#include "IniResources.h"
-//#include "IniSlotsprops.h"
+#include "IniResources.h"
+#include "IniSlotsprops.h"
 //#include "CreateSlotsByStart.h"
 #include "resources.h"
 //#include "CreateCustomSlot.h"
@@ -16,7 +16,7 @@
 void App::init(void) {
     TInternalResources::init();
     //IniResources::init();
-    //IniSlotsProps::init();
+    IniSlotsProps::init();
     /*TODO для управления от встроенных DIO нужен слот*/
     //std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     //slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));

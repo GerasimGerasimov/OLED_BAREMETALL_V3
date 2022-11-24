@@ -29,6 +29,7 @@ public:
 	~TGeneralCaseSignal();
 	std::string getMSU(); 
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
+        std::string getValue(){return "";};
 	virtual void setValue();
 protected:
 	std::string value(const TSlotHandlerArsg& args, const char* format);
