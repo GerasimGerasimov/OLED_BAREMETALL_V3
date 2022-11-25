@@ -21,7 +21,7 @@
   "resources": {
     "start": "0x08080000",
     "items": {
-      "ID" : "12345678 DExS.SMFCB v1.10.3.0 25.11.2022 MVK www.intmash.ru",
+      "ID" : "12345678 OLED v1.10.3.0 27.11.2022 www.intmash.ru",
 	  "URL" : "www.intmash.ru",
 	  "SOURCES":"DEV1/",
       "DEV1" : { 

@@ -58,8 +58,9 @@ int main(void) {
       ? (LED_RUN_ON/*, str=TInternalResources::getID()*/)
         :(LED_RUN_OFF/*, str.assign(c, 16)*/);
      IARHeapInfo = __iar_dlmallinfo();
-     RAM_DATA.var3 = IARHeapInfo.fordblks;/* total free space */
+     RAM_DATA.var3 = IARHeapInfo.uordblks;/* total free space */
      RAM_DATA.var4 = IARHeapInfo.usmblks;/* maximum total allocated space */
+     RAM_DATA.var2 ++;
   }  
 }
 
