@@ -1514,6 +1514,9 @@
         </group>
         <group>
             <name>GraphicsFunctions</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\GraphicsFunctions\graphics.cpp</name>
+            </file>
         </group>
         <group>
             <name>Helpers</name>

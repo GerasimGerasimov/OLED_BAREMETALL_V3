@@ -12,7 +12,7 @@
 #include <iar_dlmalloc.h>
 #include <string>
 #include <app.h>
-#include "IniSlotsprops.h"
+#include "graphics.h"
 
 //#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
 //#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
@@ -25,8 +25,10 @@ int main(void) {
   LED_WRN_ON;
   OSResources::init();
   //TInternalResources::init();
-  //TGrahics::init();
+  TGrahics::init();
+  TGrahics::outText("Загрузка...", 0, 0, 1, "MSSansSerifBold14");
   App::init();
+
   //App::run();
   
   ModbusClientInit(); //слейв для проверки

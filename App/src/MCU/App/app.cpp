@@ -1,6 +1,6 @@
 #include "app.h"
 #include <string>
-//#include "graphics.h"
+#include "graphics.h"
 //#include "display_driver.h"
 
 //#include "Router.h"
@@ -13,7 +13,6 @@
 #include "resources.h"
 #include "CreateCustomSlot.h"
 #include "RAMdata.h"
-#include "TMCUFonts.h"
 
 void App::init(void) {
     TInternalResources::init();
@@ -22,7 +21,6 @@ void App::init(void) {
     /*TODO для управления от встроенных DIO нужен слот*/
     std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
-    TMCUFonts::init();
     //RAM_DATA.var1 = slots.size();
     //DevicePollManager::init(slots);
     //TRouter::Init();
