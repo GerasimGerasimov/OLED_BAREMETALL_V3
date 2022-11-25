@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>3574280641</fileChecksum>
+    <fileChecksum>3265208068</fileChecksum>
     <configuration>
         <name>STM32F407IGT6</name>
         <outputs>
@@ -382,7 +382,7 @@
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\resources.o</file>
             <file>$TOOLKIT_DIR$\inc\cpp\iterator</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\stm32f4xx_spi.o</file>
-            <file>$PROJ_DIR$\..\MCU\ini\IniSlotsprops.h</file>
+            <file>$PROJ_DIR$\..\MCU\ini\IniSlotsProps.h</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\com_data_valid.__cstat.et</file>
             <file>$PROJ_DIR$\STM32F407IGT6\Obj\com_data_valid.o</file>
             <file>$PROJ_DIR$\..\OP.OLED.CM4\LEDs.h</file>
@@ -2952,7 +2952,7 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 239 145 469 257 323 592 274 454 429 252 579 206 100 243 370 354 352 74 573 211 515 509 420 127 317 598 84 47 120 440 374 498 70 80 66 62 284 319 481 136 434 552 330 503 419 423 383 411 115 140 203 376 264 246 309 337 313 54 177 104 132 83 513 312 166 464 291 339</file>
+                    <file> 239 145 469 257 323 592 274 454 429 252 579 206 100 243 370 354 352 74 573 211 515 509 420 127 317 88 598 84 47 120 440 374 498 70 80 66 62 284 319 481 136 434 552 330 503 419 423 383 411 115 140 203 376 264 246 309 337 313 54 177 52 50 104 132 83 67 513 312 166 464 291 339</file>
                 </tool>
             </inputs>
         </file>

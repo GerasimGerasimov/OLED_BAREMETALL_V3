@@ -1499,6 +1499,18 @@
         </group>
         <group>
             <name>Fonts</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Fonts\MSSansSerifBold14.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Fonts\TMCUFonts.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Fonts\TMCUText.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Fonts\Verdana12.cpp</name>
+            </file>
         </group>
         <group>
             <name>GraphicsFunctions</name>

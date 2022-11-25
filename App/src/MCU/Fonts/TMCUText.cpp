@@ -1,9 +1,9 @@
 #include "TMCUText.h"
 
-pMCUFont TMCUText::font = NULL;
+pMCUFont TMCUText::font = nullptr;
 u8 TMCUText::BytesByWidth = 0;
 u8 TMCUText::index = 0;
-u8* TMCUText::CharImage = NULL;
+u8* TMCUText::CharImage = nullptr;
 u16 TMCUText::ImageSize = 0;
 u8 TMCUText::ImageHeight = 0;
 
