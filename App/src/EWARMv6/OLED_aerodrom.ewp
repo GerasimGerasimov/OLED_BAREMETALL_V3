@@ -1201,6 +1201,9 @@
         <group>
             <name>ini</name>
             <file>
+                <name>$PROJ_DIR$\..\MCU\ini\IniResources.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\ini\IniSlotsProps.cpp</name>
             </file>
             <file>
@@ -1218,6 +1221,39 @@
         </group>
         <group>
             <name>Parameters</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\generalcase.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\inistring.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\parameters.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\ParametersUtils.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\scaleutils.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\signal.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\signalfactory.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\TBit.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\TFloat.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\TU16bit.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\vars.cpp</name>
+            </file>
         </group>
         <group>
             <name>Resources</name>

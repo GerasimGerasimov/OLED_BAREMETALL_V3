@@ -3,6 +3,7 @@
 #include "IniSlotsProps.h"
 #include "signal.h"
 #include <vars.h>
+#include "RAMdata.h"
 
 const static std::vector<std::string> SectioNameOrder = { "vars", "RAM", "FLASH", "CD"};
 
@@ -23,6 +24,7 @@ U1
 
 void IniResources::init(void) {
 	readSources();
+        RAM_DATA.var1 = Sources["DEV1"]["CD"].size();
 }
 
 /*TODO Проверить: эта функция ни где не используется?*/

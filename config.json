@@ -1,7 +1,7 @@
 {
   "App": "D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
-  "SkipSectors":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
-  "SkipSectors1":[],
+  "SkipSectors1":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
+  "SkipSectors":[],
   "COM":{
     "port":"COM3",
   "settings": {
@@ -21,7 +21,7 @@
   "resources": {
     "start": "0x08080000",
     "items": {
-      "ID" : "12345678 DExS.SMFCB v1.10.3.0 29.11.2021 MVK www.intmash.ru",
+      "ID" : "12345678 DExS.SMFCB v1.10.3.0 25.11.2022 MVK www.intmash.ru",
 	  "URL" : "www.intmash.ru",
 	  "SOURCES":"DEV1/",
       "DEV1" : { 

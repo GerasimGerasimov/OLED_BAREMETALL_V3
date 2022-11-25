@@ -44,16 +44,16 @@ int main(void) {
   
 //------------------------------------------------------------------------------
   static bool tggl = false;
-  static u32 i = 200000;
+  static u32 i = 1;
   
   //static const char* c = "0123456789ABCDEF";
   //std::string str = "unknown  Addr:";//TODO объ€вил Static и апп не падает, без статика не стартует совсем.
-  RAM_DATA.var2 = IniSlotsProps::Devices.size();
+  //RAM_DATA.var2 = IniSlotsProps::Devices.size();
   while (1)
   { 
     (i)
       ? i--
-      : (tggl = !tggl, i = 100000);
+      : (tggl = !tggl, i = 50000);
     (tggl)
       ? (LED_RUN_ON/*, str=TInternalResources::getID()*/)
         :(LED_RUN_OFF/*, str.assign(c, 16)*/);
