@@ -21,7 +21,7 @@ void App::init(void) {
     /*TODO для управления от встроенных DIO нужен слот*/
     std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
-    RAM_DATA.var4 = slots.size();
+    RAM_DATA.var1 = slots.size();
     //DevicePollManager::init(slots);
     //TRouter::Init();
     //Msg::send_message((u32)EventSrc::REPAINT, 0, 0);

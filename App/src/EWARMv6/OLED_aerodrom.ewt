@@ -1487,6 +1487,12 @@
         </group>
         <group>
             <name>DevicesValues</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\DevicesValues\DevicesValuesHandler.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\DevicesValues\HandleSubscribers.cpp</name>
+            </file>
         </group>
         <group>
             <name>Events</name>
@@ -1547,6 +1553,9 @@
         </group>
         <group>
             <name>Slots</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Slots\CommonSlotHandler.cpp</name>
+            </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Slots\CreateCustomSlot.cpp</name>
             </file>
