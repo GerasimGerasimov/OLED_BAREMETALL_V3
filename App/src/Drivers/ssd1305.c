@@ -1,9 +1,5 @@
 #include "stm32f4xx.h"
-
-
 #include "ssd1305.h"
-
-
 
 void write_cmd(unsigned char);
 void write_data(unsigned char);
@@ -82,46 +78,18 @@ void ssd1305_init()
   LCD_NSS_HI;
 }
 
-void ssd1305_on()
+/*
+static void ssd1305_on()
 {
   write_cmd(SSD1305_CMD_DISPON);
 }
 
-void ssd1305_off()
+static void ssd1305_off()
 {
   write_cmd(SSD1305_CMD_DISPOFF);
 }
-
-void ssd1305_fill(u8 *data)
-{
-  write_cmd(SSD1305_CMD_SETPAGEADD_PGMODE + 0);
-  write_cmd(SSD1305_CMD_SETLOWCOLADD + 0);
-  write_cmd(SSD1305_CMD_SETHIGHCOLADD + 0);
-  for(int x=0; x<128*8;x++)
-  {
-    write_data(*(data + x));
-  }
-}
-
-void ssd1305_test_fill(void)
-{
-  int x,y;
-  u32 i=0;
-  write_cmd(SSD1305_CMD_SETPAGEADD_PGMODE + 0);
-  write_cmd(SSD1305_CMD_SETLOWCOLADD + 0);
-  write_cmd(SSD1305_CMD_SETHIGHCOLADD + 0);
-  for(x=0; x<128;x++)
-  {
-    for(y=0; y<8; y++)
-    {
-      write_data((u8)(i/8));
-      i++;
-    }
-  }
-}
-
-
-void SPI_SendByte(unsigned char byte)
+*/
+static void SPI_SendByte(unsigned char byte)
 {
 
      while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET);
@@ -134,38 +102,11 @@ void SPI_SendByte(unsigned char byte)
 //     LCD_NSS_HI;
 }
 
-void write_cmd(unsigned char cmd)
+static void write_cmd(unsigned char cmd)
 {
   LCD_COMMAND;
   for(u32 i=0x070;i>0;i--){}//задержка для установления работы 0x010
   (void)SPI_SendByte(cmd);
-}
-
-void write_data(unsigned char data)
-{
-  LCD_DATA;
-// for(u32 i=0x070;i>0;i--){}//задержка для установления работы 0x010
-  (void)SPI_SendByte(data);
-}
-
-
-void ssd1305_rst()
-{
-  LCD_NSS_HI;
-  for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
-  LCD_NSS_LO; 
-
-  write_cmd(SSD1305_CMD_SETDISPSTART); 
-  write_cmd(0x00); 
-  write_cmd(SSD1305_CMD_SETPAGEADD_PGMODE + 0);
-  write_cmd(SSD1305_CMD_SETLOWCOLADD + 0);
-  write_cmd(SSD1305_CMD_SETHIGHCOLADD + 0);
-  
- // Set Normal Display (Not inverse)
-  write_cmd(SSD1305_CMD_NORMALINV + 0x00);
- // for(u32 i=0x070;i>0;i--){}//задержка для установления работы 0x010
-LCD_DATA;
-
 }
 
 void ssd1305_rst_first()

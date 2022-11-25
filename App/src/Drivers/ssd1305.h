@@ -40,22 +40,12 @@
 
   #ifdef __cplusplus
     extern "C" void ssd1305_init();
-    extern "C" void ssd1305_on(void);
-    extern "C" void ssd1305_off(void);
-    extern "C" void ssd1305_test_fill(void);
-    extern "C" void ssd1305_fill(u8 *data);
     extern "C" void ssd1305_rst_first();
     extern "C" void ssd1305_rst_second();
-    extern "C" void write_data(unsigned char data);
   #else
     extern void ssd1305_init();
-    extern void ssd1305_on(void);
-    extern void ssd1305_off(void);
-    extern void ssd1305_test_fill(void);
-    extern void ssd1305_fill(u8 *data);
     extern void ssd1305_rst_first();
     extern void ssd1305_rst_second();
-    extern void write_data(unsigned char data);
   #endif
 
 // #RES pin action
