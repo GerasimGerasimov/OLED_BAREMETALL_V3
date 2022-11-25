@@ -2,8 +2,8 @@
 #include "ramdata.h"
 #include "flashdata.h"
 #include "crc16.h"
-//#include "ssd1305.h"
-//#include "display.h"
+#include "ssd1305.h"
+#include "display_dc.h"
 
 #include "defines.h"
 
@@ -211,7 +211,7 @@ void DMA_Configuration (void)
   //настройка ДМА для АЦП
   DMA_InitStructure.DMA_Channel = DMA_Channel_3;                              // выбор канала ДМА
   DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&SPI1->DR;          // откуда берать данные
-  DMA_InitStructure.DMA_Memory0BaseAddr = 0;//getFrameBufferAddr();//(uint32_t)&framebuffer[0][0];            // куда заталкивать данные
+  DMA_InitStructure.DMA_Memory0BaseAddr = getFrameBufferAddr();//(uint32_t)&framebuffer[0][0];            // куда заталкивать данные
   DMA_InitStructure.DMA_BufferSize = 0;                                      // выбор размера буфера (я так понял в нашем случае количество каналов АЦП)
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;            // запрещаем инкрементировать адрес периферии (откуда берём)
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;                     // разрешаем инкрементировать адрес памяти (куда пишем)
@@ -246,7 +246,7 @@ void Init (void){
   for(u32 InitDelay=12000; InitDelay>0; InitDelay--) {}
   
   SPI1_Configuration();
-  //ssd1305_init();
+  ssd1305_init();
   //LCD_DATA;
   DMA_Configuration();
   TIM6_Configuration();

@@ -13,6 +13,7 @@
 #include <string>
 #include <app.h>
 #include "graphics.h"
+#include "display_driver.h"
 
 //#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
 //#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
@@ -24,9 +25,10 @@ int main(void) {
   Init();
   LED_WRN_ON;
   OSResources::init();
-  //TInternalResources::init();
+  TDisplayDriver::CleanScreen();
   TGrahics::init();
   TGrahics::outText("Загрузка...", 0, 0, 1, "MSSansSerifBold14");
+  TDisplayDriver::out();
   App::init();
 
   //App::run();

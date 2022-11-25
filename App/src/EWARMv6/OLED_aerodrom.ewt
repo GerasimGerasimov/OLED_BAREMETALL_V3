@@ -1441,7 +1441,13 @@
             <name>$PROJ_DIR$\..\Drivers\com_master_driver.cpp</name>
         </file>
         <file>
+            <name>$PROJ_DIR$\..\Drivers\display_dc.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\Drivers\display_driver.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Drivers\ssd1305.c</name>
         </file>
     </group>
     <group>

@@ -10,6 +10,7 @@ struct TDisplayDriver {
   public:
     static void setDC(void);
     static void out(void);
+    static void CleanScreen(void);
 };
 
 #endif
