@@ -11,6 +11,9 @@ struct TDisplayDriver {
     static void setDC(void);
     static void out(void);
     static void CleanScreen(void);
+  private:
+    static void prepareFrame(void);
+    static void rotateFrame(void);
 };
 
 #endif

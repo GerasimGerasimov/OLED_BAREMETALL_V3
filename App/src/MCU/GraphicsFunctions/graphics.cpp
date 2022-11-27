@@ -27,9 +27,9 @@ void TGrahics::fillRect(TFillRect props) {
         pixel.y++;
     }
 }
-
+   
 inline void TGrahics::setPixel(TPixel& props) {
-	screen[props.x][props.y] = props.color;
+  screen[props.x][props.y] = props.color;
 }
 
 inline void TGrahics::setPixel(u8 x, u8 y, u8 color) {

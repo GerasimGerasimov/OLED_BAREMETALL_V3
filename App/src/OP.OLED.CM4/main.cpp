@@ -24,11 +24,13 @@ int main(void) {
   BootLoadCmdFillZero();  
   Init();
   LED_WRN_ON;
-  OSResources::init();
+  
   TDisplayDriver::CleanScreen();
   TGrahics::init();
-  TGrahics::outText("Загрузка...", 0, 0, 1, "MSSansSerifBold14");
+  TGrahics::outText("Загрузка...", 30, 20, 1, "MSSansSerifBold14");
   TDisplayDriver::out();
+  
+  OSResources::init();
   App::init();
 
   //App::run();
@@ -50,9 +52,6 @@ int main(void) {
   static bool tggl = false;
   static u32 i = 1;
   
-  //static const char* c = "0123456789ABCDEF";
-  //std::string str = "unknown  Addr:";//TODO объявил Static и апп не падает, без статика не стартует совсем.
-  //RAM_DATA.var2 = IniSlotsProps::Devices.size();
   while (1)
   { 
     (i)

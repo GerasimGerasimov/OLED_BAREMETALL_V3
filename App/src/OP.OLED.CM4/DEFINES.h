@@ -4,7 +4,7 @@
 #include "LEDs.h"
 
 //для Spi необходим
-extern u8 framebuffer[8][128];
+//extern u8 framebuffer[8][128];
 
 
 
