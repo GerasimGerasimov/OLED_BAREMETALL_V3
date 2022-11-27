@@ -76,26 +76,26 @@ void TDisplayDriver::rotateFrame(void){
   }
   
   //отзеркаливание обратно в буфер
-    for (int i=0; i<8; i++) 
-    {
-      for (int j=0; j<(MAX_END_X+1); j++)
-      { framebuffer[i][j]=framebuffer_tmp[i][MAX_END_X - j];}
+  for (int i=0; i<8; i++) {
+    for (int j=0; j<(MAX_END_X+1); j++) {
+      framebuffer[i][j]=framebuffer_tmp[i][MAX_END_X - j];
     }
+  }
 }
 
 void TDisplayDriver::out(void) {
-  prepareFrame();
-  rotateFrame();
-  ssd1305_rst_first();
-  DMA_Cmd(DMA2_Stream3, DISABLE);  //TX
-  DMA2->LIFCR = (uint32_t) (DMA_FLAG_FEIF3 | DMA_FLAG_DMEIF3 | DMA_FLAG_TEIF3 | DMA_FLAG_HTIF3 | DMA_FLAG_TCIF3);
-  DMA2_Stream3->NDTR = 1024;
-  DMA_Cmd(DMA2_Stream3, ENABLE); //TX
-    
-  if ( DMA2_Stream3->NDTR!=0)
-   {
-     while (DMA2_Stream3->NDTR);
-   }
-  ssd1305_rst_second();
+    prepareFrame();
+    rotateFrame();
+    ssd1305_rst_first();
+    DMA_Cmd(DMA2_Stream3, DISABLE);  //TX
+    DMA2->LIFCR = (uint32_t) (DMA_FLAG_FEIF3 | DMA_FLAG_DMEIF3 | DMA_FLAG_TEIF3 | DMA_FLAG_HTIF3 | DMA_FLAG_TCIF3);
+    DMA2_Stream3->NDTR = 1024;
+    DMA_Cmd(DMA2_Stream3, ENABLE); //TX
+      
+    if ( DMA2_Stream3->NDTR!=0)
+     {
+       while (DMA2_Stream3->NDTR);
+     }
+    ssd1305_rst_second();
 };
 

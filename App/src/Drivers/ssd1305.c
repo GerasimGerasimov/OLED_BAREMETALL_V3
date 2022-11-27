@@ -117,11 +117,6 @@ void ssd1305_rst_first()
   write_cmd(0x00); 
   write_cmd(SSD1305_CMD_SETPAGEADD_PGMODE + 0);
   write_cmd(SSD1305_CMD_SETLOWCOLADD + 0);
-  //write_cmd(SSD1305_CMD_SETHIGHCOLADD + 0);
-  
- // Set Normal Display (Not inverse)
-  //write_cmd(SSD1305_CMD_NORMALINV + 0x00);
-
   LCD_DATA;
 
 }
@@ -130,7 +125,7 @@ void ssd1305_rst_second()
   for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
   for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
   for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
-   LCD_NSS_HI;
+  LCD_NSS_HI;
 }
 
 
