@@ -120,7 +120,7 @@ void ssd1305_rst_first()
   write_cmd(SSD1305_CMD_SETHIGHCOLADD + 0);
   
  // Set Normal Display (Not inverse)
-  write_cmd(SSD1305_CMD_NORMALINV + 0x00);
+  //write_cmd(SSD1305_CMD_NORMALINV + 0x00);
 
   LCD_DATA;
 

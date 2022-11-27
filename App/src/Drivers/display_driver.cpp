@@ -13,6 +13,7 @@ void TDisplayDriver::setDC(void) {
 //u8 framebuffer     [8]   [128]; //для передачи по SPI: 8 строк по 128 байт  
 //вот, в байт с данными расположен вертикально! поэтому одна строка это 128 вертикально расположенных байт с точками
 //каждый бит это точка. И таких строк 8 штук
+
 void TDisplayDriver::prepareFrame(void){
   u8 a;
   u8 m = 0;
@@ -65,15 +66,15 @@ void TDisplayDriver::CleanScreen(void) {
 
 /*функция переворота экрана*/
 void TDisplayDriver::rotateFrame(void){
-  //используется пока только инверся по Х!!!!!!!!!!!!!!!
   static u8 framebuffer_tmp[8][128];
   
   //копирование буфера во временный
-  for (int i=0; i<8; i++) 
-  {
-      for (int j=0; j<(MAX_END_X+1); j++)
-      { framebuffer_tmp[i][j]=framebuffer[i][j];}
+  u32* ft = (u32*)&framebuffer_tmp;
+  u32* fs = (u32*)&framebuffer;
+  for (int i=0; i<(2*128); i++){
+    *ft++ = *fs++;
   }
+  
   //отзеркаливание обратно в буфер
     for (int i=0; i<8; i++) 
     {

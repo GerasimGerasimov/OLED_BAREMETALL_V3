@@ -1236,6 +1236,9 @@
         </group>
         <group>
             <name>Msg</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Msg\msg.cpp</name>
+            </file>
         </group>
         <group>
             <name>Pages</name>
@@ -1302,6 +1305,9 @@
         <name>OP.OLED.CM4</name>
         <file>
             <name>$PROJ_DIR$\..\OP.OLED.CM4\init.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\OP.OLED.CM4\livecontrol.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\..\OP.OLED.CM4\main.cpp</name>
