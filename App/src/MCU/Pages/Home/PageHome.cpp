@@ -81,9 +81,9 @@ TPageHome::TPageHome(std::string Name)
 
     AddList({ MainMenu });
 
-    //HandlerSubscribers::set("U1/RAM/",   [this](TSlotHandlerArsg args) { SlotU1RAMUpdate(args); });
-    //HandlerSubscribers::set("U1/FLASH/", [this](TSlotHandlerArsg args) { SlotU1FLASHUpdate(args); });
-    //HandlerSubscribers::set("U1/CD/",    [this](TSlotHandlerArsg args) { SlotU1CDUpdate(args); });
+    HandlerSubscribers::set("U1/RAM/",   [this](TSlotHandlerArsg args) { SlotU1RAMUpdate(args); });
+    HandlerSubscribers::set("U1/FLASH/", [this](TSlotHandlerArsg args) { SlotU1FLASHUpdate(args); });
+    HandlerSubscribers::set("U1/CD/",    [this](TSlotHandlerArsg args) { SlotU1CDUpdate(args); });
 };
 
 //        //((TParameter*)DataSrc)
@@ -105,7 +105,7 @@ void TPageHome::SlotU1FLASHUpdate(TSlotHandlerArsg args) {
 void TPageHome::SlotU1CDUpdate(TSlotHandlerArsg args) {
     //pLTagIoutAve->Value->setCaption(pLTagIoutAve->DataSrc->getValue(args, "%.0f"));
 
-    //Msg::send_message(REPAINT, 0, 0);
+   Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
 
 
