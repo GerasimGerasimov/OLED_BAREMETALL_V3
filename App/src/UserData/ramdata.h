@@ -11,6 +11,7 @@ typedef  struct {
     tU16 var2; //03
     tU16 var3; //04
     tU16 var4; //05
+    tU16 KeyCode;
         
 } TRAM_DATA;
 

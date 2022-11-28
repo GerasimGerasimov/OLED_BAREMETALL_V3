@@ -3,7 +3,7 @@
 #include "defines.h"
 #include "ramdata.h"
 #include "flashdata.h"
-//#include "ssd1305.h"
+#include "timer_wrapper.h"
 
 u16 num = 0;
 /******************************************************************************/
@@ -17,7 +17,9 @@ u16 num = 0;
 
 void TIM6_DAC_IRQHandler(void)//таймер общего назначения 1 мс
 { 
+  
     TIM6->SR = 0;//&= ~TIM_SR_UIF;// снять флаг прерывания
+    sendTimerMessage();
     /*
     if (num == 500)
     {

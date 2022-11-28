@@ -1449,6 +1449,15 @@
         <file>
             <name>$PROJ_DIR$\..\Drivers\ssd1305.c</name>
         </file>
+        <file>
+            <name>$PROJ_DIR$\..\Drivers\timer_wrapper.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Drivers\timer_wrapper_cpp.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Drivers\virtualKeyEvents.cpp</name>
+        </file>
     </group>
     <group>
         <name>EWARMv6</name>

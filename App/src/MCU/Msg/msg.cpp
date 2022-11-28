@@ -50,7 +50,7 @@ void Msg::send_message(u32 event, u32 p1, u32 p2){
 
 bool Msg::get_message(TMessage* m){
   if (msg_queue_beg == msg_queue_end) {return false;};//очередь пуста, если указатели начала и конца равны
-  *m = Messages[msg_queue_beg]; //копирую содержимое первого в очережи сообщения
+  *m = Messages[msg_queue_beg]; //копирую содержимое первого в очереди сообщения
   msg_queue_beg++; //назначаю следующего
   if (msg_queue_beg >= msg_buff_size) {msg_queue_beg = 0;}//контролирую границы
   return true;//в очереди что-то было!

@@ -14,6 +14,7 @@
 #include "resources.h"
 #include "CreateCustomSlot.h"
 #include "RAMdata.h"
+#include "virtualKeyEvents.h"
 
 void App::init(void) {
     TInternalResources::init();
@@ -46,5 +47,6 @@ void App::run(void) {
         //TGrahics::outText(res, 30, 20, 1, "MSSansSerifBold14");
         TDisplayDriver::out();
         //DevicePollManager::execute();
+        scanVirtualKeyCode();
     }
 }
