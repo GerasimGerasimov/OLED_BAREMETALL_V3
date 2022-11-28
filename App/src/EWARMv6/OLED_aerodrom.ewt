@@ -1497,10 +1497,16 @@
                 <name>$PROJ_DIR$\..\MCU\Components\common.cpp</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Components\HeaderLabel.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Components\Label.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Components\LinkLabel.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\NumericEdit.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Components\Pages.cpp</name>
@@ -1517,6 +1523,9 @@
         </group>
         <group>
             <name>DevicePollManager</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\DevicePollManager\DevicePollManager.cpp</name>
+            </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\DevicePollManager\Slot.cpp</name>
             </file>
@@ -1586,6 +1595,9 @@
         </group>
         <group>
             <name>Modbus</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Modbus\AppModbusSlave.cpp</name>
+            </file>
         </group>
         <group>
             <name>Msg</name>
@@ -1595,6 +1607,9 @@
         </group>
         <group>
             <name>Pages</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\EditValue\PageEditValue.cpp</name>
+            </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\Home\PageHome.cpp</name>
             </file>

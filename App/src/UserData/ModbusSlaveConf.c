@@ -59,8 +59,7 @@ void ModbusClientInit(void) //фукци€ инициализации структуры, пример
 //прерывание USART от опционального RS485
 void USART1_IRQHandler(void)
 {
-  tU8 MsgSize = UsartTxRxFinish(&UART1toRS485);//определили что произошло: прием или прин€то MsgSize байт. 
-  if (fRtrWaitResp) return; 
+  tU8 MsgSize = UsartTxRxFinish(&UART1toRS485);//определили что произошло: прием или прин€то MsgSize байт. ; 
         
   if(MsgSize){//если прин€тно  
     //if (LED2_ST) LED2_OFF; else LED2_ON; //моргнули светиком  
@@ -69,10 +68,10 @@ void USART1_IRQHandler(void)
       //если ретрансл€ци€ включена и прин€то валидное сообщение по нужному адресу
       if ((crc16((tU8*)RS485slave.Buffer, MsgSize) == 0) && (RS485slave.Buffer[0] == RS485slave.SlaveAddress))
       {
-        fRtrWaitResp =1;
-        RTR_size = MsgSize;
-        for(tU8 i=0; i<MsgSize;i++) {slot_RTR.OutBuf[i] = RS485slave.Buffer[i];}    
-        slot_RTR.Flags.Bits.SKIP_SLOT = 0; //сбросили скип
+        //fRtrWaitResp =1;
+        //RTR_size = MsgSize;
+        //for(tU8 i=0; i<MsgSize;i++) {slot_RTR.OutBuf[i] = RS485slave.Buffer[i];}    
+        //slot_RTR.Flags.Bits.SKIP_SLOT = 0; //сбросили скип
       }
       else UsartRecieve(&UART1toRS485, &RS485slave.Buffer[0]);
     }
@@ -84,10 +83,9 @@ void USART1_IRQHandler(void)
       else UsartRecieve(&UART1toRS485, &RS485slave.Buffer[0]);      
     }
   }  
-  else  UsartRecieve(&UART1toRS485, &RS485slave.Buffer[0]);//если отправлено, зар€жаем на прием.
-
-  
+  else  UsartRecieve(&UART1toRS485, &RS485slave.Buffer[0]);//если отправлено, зар€жаем на прием. 
 }
+
 //функци€ дл€ сброса зависани€
 void RebootMBSlave(void)
 {

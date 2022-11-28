@@ -6,7 +6,7 @@
 
 #include "Router.h"
 #include "msg.h"
-//#include "DevicePollManager.h"
+#include "DevicePollManager.h"
 
 #include "IniResources.h"
 #include "IniSlotsprops.h"
@@ -23,7 +23,7 @@ void App::init(void) {
     /*TODO для управления от встроенных DIO нужен слот*/
     std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
-    //DevicePollManager::init(slots);
+    DevicePollManager::init(slots);
     TRouter::Init();
     Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
@@ -46,7 +46,7 @@ void App::run(void) {
         //TGrahics::fillRect(fr);
         //TGrahics::outText(res, 30, 20, 1, "MSSansSerifBold14");
         TDisplayDriver::out();
-        //DevicePollManager::execute();
+        DevicePollManager::execute();
         scanVirtualKeyCode();
     }
 }

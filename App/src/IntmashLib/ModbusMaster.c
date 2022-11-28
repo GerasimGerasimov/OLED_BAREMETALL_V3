@@ -1,8 +1,6 @@
 #include "ModbusMaster.h"
 #include "crc16.h"
 
-
-
 /*Обработка транзакции, вызывает в прерывании интерфеса связи*/
 void ModbusMasterTransferProcessing(MBmasterType* Master, tU16 TransferStatus)
 {  

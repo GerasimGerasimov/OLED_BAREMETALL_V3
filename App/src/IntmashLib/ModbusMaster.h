@@ -86,7 +86,7 @@ void ModbusMasterTransferProcessing(MBmasterType* Master, tU16 TransferStatus); 
 
 
 #define MB_MASTER_BUF_SIZE  256
-#define MB_MASTER_SLOTS_MAX 24
+#define MB_MASTER_SLOTS_MAX 1
 
 //слот для организации типовой транзакции
 typedef struct {  

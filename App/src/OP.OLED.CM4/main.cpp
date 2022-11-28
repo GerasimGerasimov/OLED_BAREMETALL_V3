@@ -28,7 +28,7 @@ int main(void) {
   TDisplayDriver::out();
   
   ModbusClientInit(); //слейв для проверки
-  //ModbusMasterInit(); //мастер  
+  ModbusMasterInit(); //мастер  
   __enable_irq(); 
   
   OSResources::init();

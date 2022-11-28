@@ -1,7 +1,7 @@
 #include "Router.h"
 #include "PageMainMenu.h"
 //#include "PageCounters.h"
-//#include "PageEditValue.h"
+#include "PageEditValue.h"
 #include "PageHome.h"
 //#include "PageHelp.h"
 
@@ -21,7 +21,7 @@ void TRouter::Init(void) {
     //Pages["Help"] = new TPageHelp("Home");
     Pages["MainMenu"] = new TPageMainMenu("MainMenu");
     //Pages["Counters"] = new TPageCounters("Counters");
-    //Pages["EditValue"] = new TPageEditValue("EditValue");
+    Pages["EditValue"] = new TPageEditValue("EditValue");
     setInitPage();
     //setActivePage("Home", NULL);
 }
