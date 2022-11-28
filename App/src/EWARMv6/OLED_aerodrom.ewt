@@ -1484,6 +1484,27 @@
         </group>
         <group>
             <name>Components</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\common.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\Label.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\LinkLabel.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\Pages.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\TagLine.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\TComponentListVertical.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\TComponentsContainer.cpp</name>
+            </file>
         </group>
         <group>
             <name>DevicePollManager</name>
@@ -1565,6 +1586,12 @@
         </group>
         <group>
             <name>Pages</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Home\PageHome.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\MainMenu\PageMainMenu.cpp</name>
+            </file>
         </group>
         <group>
             <name>Parameters</name>
@@ -1596,7 +1623,13 @@
                 <name>$PROJ_DIR$\..\MCU\Parameters\TFloat.cpp</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\TS16bit.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Parameters\TU16bit.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\TU8BIT.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Parameters\vars.cpp</name>
@@ -1610,6 +1643,9 @@
         </group>
         <group>
             <name>Router</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Router\Router.cpp</name>
+            </file>
         </group>
         <group>
             <name>Slots</name>

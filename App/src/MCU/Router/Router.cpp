@@ -1,27 +1,27 @@
 #include "Router.h"
 #include "PageMainMenu.h"
-#include "PageCounters.h"
-#include "PageEditValue.h"
+//#include "PageCounters.h"
+//#include "PageEditValue.h"
 #include "PageHome.h"
-#include "PageHelp.h"
+//#include "PageHelp.h"
 
 /*TODO переписать вызов страниц, ибо сейчас вызов остаётся в стеке и в итоге он закончится
 Надо дать задание роутеру на переключение, и когда в новом Арр цикле дело дойдёт до роутера
 он окроет нужную страницу
 В роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
-TPage* TRouter::Page = NULL;
-TPage* TRouter::BackPage = NULL;
+TPage* TRouter::Page = nullptr;
+TPage* TRouter::BackPage = nullptr;
 
-TRouterTask TRouter::RouterTask = { false, "", NULL };
+TRouterTask TRouter::RouterTask = { false, "", nullptr };
 TPageValueEditEntryData TRouter::PageValueEditEntryData = {"", ""};
 std::map<std::string, TPage*> TRouter::Pages = std::map<std::string, TPage*>();
 
 void TRouter::Init(void) {
     Pages["Home"] = new TPageHome("Home");
-    Pages["Help"] = new TPageHelp("Home");
+    //Pages["Help"] = new TPageHelp("Home");
     Pages["MainMenu"] = new TPageMainMenu("MainMenu");
-    Pages["Counters"] = new TPageCounters("Counters");
-    Pages["EditValue"] = new TPageEditValue("EditValue");
+    //Pages["Counters"] = new TPageCounters("Counters");
+    //Pages["EditValue"] = new TPageEditValue("EditValue");
     setInitPage();
     //setActivePage("Home", NULL);
 }
@@ -57,14 +57,14 @@ void TRouter::ProcessMessage(TMessage* m) {
 };
 
 void TRouter::setInitPage() {
-    setActivePage("Home", NULL);
+    setActivePage("Home", nullptr);
     RouterTask.isDone = true;
 }
 
 TPage* TRouter::setActivePage(std::string PageName, void* props) {
     return (Pages.count(PageName))
         ? (BackPage = Page, Page = Pages[PageName], Page->setProps(props), Page)
-        : (NULL);
+        : (nullptr);
 }
 
 void TRouter::setBackPage(std::string url) {

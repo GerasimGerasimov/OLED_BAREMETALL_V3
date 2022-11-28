@@ -10,12 +10,12 @@ void TPageHome::clear() {
 }
 
 bool TPageHome::ProcessMessage(TMessage* m) {
-    TVisualObject* e = { NULL };
+    TVisualObject* e = { nullptr };
     switch (m->Event) {
         case (u32)EventSrc::KEYBOARD: {
             switch (m->p1) {
                 case (u32)KeyCodes::ESC:
-                    TRouter::setTask({ false, "MainMenu", NULL });
+                    TRouter::setTask({ false, "MainMenu", nullptr });
                     break;
                 case (u32)KeyCodes::F1:
                     e = getSignalOfFocusedChild();
@@ -31,7 +31,7 @@ bool TPageHome::ProcessMessage(TMessage* m) {
                         /*TODO насыщать страницу EditValue*/
                         TRouter::PageValueEditEntryData.tag = ((TTagLine*)(e))->Tag;
                         TRouter::PageValueEditEntryData.value = ((TTagLine*)(e))->Value->getCaption();
-                        TRouter::setTask({ false, "EditValue", NULL });
+                        TRouter::setTask({ false, "EditValue", nullptr });
                     }
                     break;
             }
@@ -47,14 +47,14 @@ bool TPageHome::ProcessMessage(TMessage* m) {
 TVisualObject* TPageHome::getSignalOfFocusedChild() {
     for (auto& element : List) {
         TVisualObject* e = element->getFocusedElement();
-        TParameter* p = (e) ? (TParameter*) e->getDataSrc() : NULL;
+        TParameter* p = (e) ? (TParameter*) e->getDataSrc() : nullptr;
         if (p) return e;
     }
-    return NULL;
+    return nullptr;
 }
 
 void TPageHome::goToTagInfoPage(int a) {
-    TRouter::setTask({ false, "Counters", NULL });
+    TRouter::setTask({ false, "Counters", nullptr });
 }
 
 TPageHome::TPageHome(std::string Name)
@@ -63,7 +63,8 @@ TPageHome::TPageHome(std::string Name)
     LabelInit.style = LabelsStyle::WIDTH_DINAMIC;
     LabelInit.Rect = { 10, 10, 10, 10 };
     LabelInit.focused = false;
-
+/*TODO SignalFactoty если не находит параметра (BIT, WORD я об этом) то на МК приложение падает
+проверить под WIN*/ 
     pLTagUref     = new TTagLine("Fgen", "U1/RAM/Fgen/", LabelInit);
     pLTagUref->inFocus = true;
     pLTagIref     = new TTagLine("Phi", "U1/RAM/Phi/", LabelInit);
@@ -72,17 +73,17 @@ TPageHome::TPageHome(std::string Name)
     pLTagSparkFrq = new TTagLine("Un", "U1/FLASH/Unominal/", LabelInit);
     pLTagOut      = new TTagLine("Ugen", "U1/RAM/Ugen/", LabelInit);
 
-    MainMenu = new TComponentListVertical({ pLTagUref    , pLTagIref     , pLTagUoutAve ,
-                                            pLTagIoutAve , pLTagSparkFrq , pLTagOut /*,
-                                            pLTagIinAve */ });
+    MainMenu = new TComponentListVertical({ pLTagUref    , pLTagIref     , pLTagUoutAve,
+                                            pLTagIoutAve , pLTagSparkFrq , pLTagOut ,
+                                            /*pLTagIinAve */ });
     
     MainMenu->FocusedLine = 0;
 
     AddList({ MainMenu });
 
-    HandlerSubscribers::set("U1/RAM/",   [this](TSlotHandlerArsg args) { SlotU1RAMUpdate(args); });
-    HandlerSubscribers::set("U1/FLASH/", [this](TSlotHandlerArsg args) { SlotU1FLASHUpdate(args); });
-    HandlerSubscribers::set("U1/CD/",    [this](TSlotHandlerArsg args) { SlotU1CDUpdate(args); });
+    //HandlerSubscribers::set("U1/RAM/",   [this](TSlotHandlerArsg args) { SlotU1RAMUpdate(args); });
+    //HandlerSubscribers::set("U1/FLASH/", [this](TSlotHandlerArsg args) { SlotU1FLASHUpdate(args); });
+    //HandlerSubscribers::set("U1/CD/",    [this](TSlotHandlerArsg args) { SlotU1CDUpdate(args); });
 };
 
 //        //((TParameter*)DataSrc)

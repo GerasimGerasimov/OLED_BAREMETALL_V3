@@ -31,9 +31,9 @@ TSignalPropsPointers SignalFactoty::getSignalProps(const char* dev, const char* 
 }
 
 static const std::map<std::string, std::function<pSignal(TSignalPropsPointers)>> TypeToSignal = {
-	//{"TByte", [](TSignalPropsPointers props) {return new TU8BIT(props); }},
+	{"TByte", [](TSignalPropsPointers props) {return new TU8BIT(props); }},
 	{"TFloat", [](TSignalPropsPointers props) {return new TFloat(props); }},
-	//{"TInteger", [](TSignalPropsPointers props) {return new TS16BIT(props); }},
+	{"TInteger", [](TSignalPropsPointers props) {return new TS16BIT(props); }},
 	{"TBit", [](TSignalPropsPointers props) {return new TBit(props); }},
 	{"TWORD", [](TSignalPropsPointers props) {return new TU16BIT(props); }}
 };
