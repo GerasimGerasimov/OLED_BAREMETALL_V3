@@ -3,6 +3,7 @@
 #include <IniResources.h>
 #include <Slot.h>
 #include <AppModbusSlave.h>
+#include "RAMdata.h"
 
 void TPageEditValue::view() {
     MainMenu->view();
@@ -40,6 +41,7 @@ bool TPageEditValue::ProcessMessage(TMessage* m) {
 };
 
 void SlotU1RAMUpdate(Slot& slot, u8* reply) {
+  RAM_DATA.var1++;
     slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
     //тут бы можно было из массива reply куда-то скопировать результат,
     //но он не нужен если в slot.RespondLenghtOrErrorCode значение больше нуля

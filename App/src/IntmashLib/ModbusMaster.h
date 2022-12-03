@@ -92,22 +92,15 @@ void ModbusMasterTransferProcessing(MBmasterType* Master, tU16 TransferStatus); 
 typedef struct {  
   //буфер сообщения для отправки   
   tU8 OutBuf [MB_MASTER_BUF_SIZE]; 
-  //процедура которая вызывается перед отправкой сообщения
-  void (*OnStart)(void);
-  //что делаем после отправки (включение приёмника, либо нулевой указатель)
-  void (*ToRecieve)(void);
-  //процедура которая вызывается после получения ответа от устройства, если контрольная сумма сошлась
-  void (*OnFinish)(void);
+  tU8 InBuf [MB_MASTER_BUF_SIZE]; 
+  //процедура которая вызывается если данные не получены
+  void (*OnTimeOut)(void);
+  //что делаем после получения каких-то данных
+  void (*OnRecieve)(void);
   //флаги (ошибки, служебные флаги)
   tU8Union Flags;
+  u8 InBufLen;
 } MBmasterSlotType;
-//флаги слота
-#define REPEATING_TRANSMIT B0
-#define SKIP_SLOT          B1
-#define TIMEOUT_ERR        B2
-#define CRC_ERR            B3
-#define SLOT_ERRORS        ((tU8)0x0C)
-
 
 
 typedef struct {  

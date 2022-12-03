@@ -16,7 +16,4 @@
     extern void BootLoadCmdFillZero(void);
   #endif
 
-extern ModbusSlaveType RS485slave;
-extern Intmash_Usart UART1toRS485;
-
 #endif

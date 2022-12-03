@@ -18,7 +18,10 @@ void ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandle
     Slot* slot = DevicePollManager::getSlotByDevPosAndSection(DevPos, Section);
     slot->cmdLen = ModbusSlave::CreateWriteCmd(slot->OutBuf, { Cmd, DevAddrHex, RegHexAddr, ValueHex });
     slot->onData = callback;
-    slot->Flags &= ~(u16)SlotStateFlags::SKIP_SLOT;
+    slot->Flags &= ~(u16) SlotStateFlags::SKIP_SLOT; //пометить слот на выполнение
+                          //| (u16)SlotStateFlags::CRC_ERR //сброс ошибок... хотя ошибки будут анализироваться позже
+                          //| (u16)SlotStateFlags::TIMEOUT_ERR
+                          //| (u16)SlotStateFlags::DATA_VALID );
 }
 
 const std::map < std::string, std::function <u8(u8*, TWriteCmdSrc&) >> ModbusSlave::WriteCmdVariants = {

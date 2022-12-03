@@ -1154,9 +1154,6 @@
             <name>$PROJ_DIR$\..\IntmashLib\id.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\IntmashLib\ModbusMaster.c</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\..\IntmashLib\ModbusSlave.c</name>
         </file>
     </group>

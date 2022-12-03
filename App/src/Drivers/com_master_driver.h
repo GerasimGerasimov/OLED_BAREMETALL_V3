@@ -23,11 +23,13 @@ private:
         static void default_callback(s16 result, u8* reply);
 	static void com_thread(void);
 	static void create_com_thread(void);
-	static TDriverComReadEndHandler onReadEdnd;
+	static TDriverComReadEndHandler onReadEnd;
 	static u8* outbuf;
 	static u16 OutBufLen;
 	static u16 DelayAfterWrite;
 	static u8 reply[256];
+        static void onReadData(void);
+        static void onTimeOut(void);
 };
 
 #endif
