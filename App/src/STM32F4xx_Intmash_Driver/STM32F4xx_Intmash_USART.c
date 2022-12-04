@@ -139,7 +139,7 @@ Comment:
 		  UsartTxRxFinish(&USERusart);
 		}
 */
-tS8 UsartTxRxFinish(Intmash_Usart *UserUsartStr)
+tU8 UsartTxRxFinish(Intmash_Usart *UserUsartStr)
 {
   static tU32 IIR;
   IIR = UserUsartStr->USARTx->SR;
@@ -150,7 +150,7 @@ tS8 UsartTxRxFinish(Intmash_Usart *UserUsartStr)
         UserUsartStr->USARTx->CR3 &=  ~USART_CR3_DMAT;//запретить UART-ту передавать по DMA
         UserUsartStr->DMAy_StreamTX->CR &= ~(uint32_t)DMA_SxCR_EN;//выключить DMA передатчика         
 
-        return -1; //сообщение отправилось
+        return 0; //сообщение отправилось
       }
     if ((IIR & USART_SR_IDLE) & (UserUsartStr->USARTx->CR1 & USART_CR1_IDLEIE)) // Между байтами при приёме обнаружена пауза в 1 IDLE байт
       {

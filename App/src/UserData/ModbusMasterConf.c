@@ -85,11 +85,11 @@ void ModbusMasterSend(u8* data, u8 len){
 }
 
 void USART2_IRQHandler(void){ 
-  tS16 TransferStatus = UsartTxRxFinish(&UART_MASTER);
-  //-1 - данные были отправлены
+  tU16 TransferStatus = UsartTxRxFinish(&UART_MASTER);
+  //0 - данные были отправлены
   //!0 - что-то принято
   //если данные отправлены, то надо включить таймер таймаута для ожидания ответа
-  if (TransferStatus == -1) {
+  if (TransferStatus == 0) {
     SetMasterTimer(500);//установили таймер на ожидание таймаута
     UsartRecieve(&UART_MASTER, (tU8*)&SlotMaster.InBuf);//и ждать поступления данных
   } else {//какие-то данные приняты (в ответ на запрос)

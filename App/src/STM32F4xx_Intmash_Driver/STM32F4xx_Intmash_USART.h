@@ -52,12 +52,12 @@ typedef struct
     extern "C" void UsartDriverInit (Intmash_Usart *UserUsartStr);
     extern "C" void UsartTransmit(Intmash_Usart *UserUsartStr, tU8* Buffer, tU8 Cnt);
     extern "C" void UsartRecieve (Intmash_Usart *UserUsartStr, tU8* Buffer);
-    extern "C" tS8 UsartTxRxFinish(Intmash_Usart *UserUsartStr);
+    extern "C" tU8 UsartTxRxFinish(Intmash_Usart *UserUsartStr);
   #else
     extern void UsartDriverInit (Intmash_Usart *UserUsartStr);
     extern void UsartTransmit(Intmash_Usart *UserUsartStr, tU8* Buffer, tU8 Cnt);
     extern void UsartRecieve (Intmash_Usart *UserUsartStr, tU8* Buffer);
-    extern tS8 UsartTxRxFinish(Intmash_Usart *UserUsartStr);
+    extern tU8 UsartTxRxFinish(Intmash_Usart *UserUsartStr);
   #endif
     
 
