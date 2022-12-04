@@ -3,7 +3,7 @@
 //#include "PageCounters.h"
 #include "PageEditValue.h"
 #include "PageHome.h"
-//#include "PageHelp.h"
+#include "PageHelp.h"
 
 /*TODO переписать вызов страниц, ибо сейчас вызов остаётся в стеке и в итоге он закончится
 Надо дать задание роутеру на переключение, и когда в новом Арр цикле дело дойдёт до роутера
@@ -18,7 +18,7 @@ std::map<std::string, TPage*> TRouter::Pages = std::map<std::string, TPage*>();
 
 void TRouter::Init(void) {
     Pages["Home"] = new TPageHome("Home");
-    //Pages["Help"] = new TPageHelp("Home");
+    Pages["Help"] = new TPageHelp("Help");
     Pages["MainMenu"] = new TPageMainMenu("MainMenu");
     //Pages["Counters"] = new TPageCounters("Counters");
     Pages["EditValue"] = new TPageEditValue("EditValue");

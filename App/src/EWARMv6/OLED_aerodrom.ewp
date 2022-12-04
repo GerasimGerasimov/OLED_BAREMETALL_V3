@@ -1194,6 +1194,9 @@
             <file>
                 <name>$PROJ_DIR$\..\MCU\Components\TComponentsContainer.cpp</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\WrappedText.cpp</name>
+            </file>
         </group>
         <group>
             <name>DevicePollManager</name>
@@ -1283,6 +1286,9 @@
             <name>Pages</name>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\EditValue\PageEditValue.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Help\PageHelp.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\Home\PageHome.cpp</name>
