@@ -1,5 +1,4 @@
 #include "STM32F4xx_Intmash_USART.h"
-#include "ModbusSlave.h"
 #include "flashdata.h"
 #include "ModbusMasterConf.h"
 

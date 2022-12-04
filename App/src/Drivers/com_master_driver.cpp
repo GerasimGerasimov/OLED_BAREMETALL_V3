@@ -30,7 +30,7 @@ void ComMasterDriver::onReadData(void){
 
 /*TODO почему то запускается слот!*/
 void ComMasterDriver::onTimeOut(void){
-  //RAM_DATA.Last_lnk_error++;
+  RAM_DATA.Last_lnk_error++;
   if (ComMasterDriver::onReadEnd) {
     ComMasterDriver::onReadEnd(-1, (u8*)&SlotMaster.InBuf);
   }
