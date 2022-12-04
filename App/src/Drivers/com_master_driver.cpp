@@ -5,34 +5,25 @@
 TDriverComReadEndHandler ComMasterDriver::onReadEnd = nullptr;//ComMasterDriver::default_callback;//NULL;
 u8* ComMasterDriver::outbuf = nullptr;
 u16 ComMasterDriver::OutBufLen = 0;
-u16 ComMasterDriver::DelayAfterWrite = 0;
+u16 ComMasterDriver::TimeOut = 0;
 u8 ComMasterDriver::reply[256];
+
+static const s16 ERR_TIME_OUT = -1;
 
 void ComMasterDriver::default_callback(s16 result, u8* reply){
 }
 
-/*
-static void OnDataReceived(void) {
-  RAM_DATA.var1++;
-  //ComMasterDriver::onReadEdnd();
-}
-
-static void OnTimeOut(void) {
-
-}
-*/
 void ComMasterDriver::onReadData(void){
   RAM_DATA.var1++;
   if (ComMasterDriver::onReadEnd) {
-    ComMasterDriver::onReadEnd(SlotMaster.InBufLen, (u8*)&SlotMaster.InBuf);
+    ComMasterDriver::onReadEnd(SlotMaster.InBufLen, (u8*)&ComMasterDriver::reply);
   }
 }
 
-/*TODO почему то запускается слот!*/
 void ComMasterDriver::onTimeOut(void){
   RAM_DATA.Last_lnk_error++;
   if (ComMasterDriver::onReadEnd) {
-    ComMasterDriver::onReadEnd(-1, (u8*)&SlotMaster.InBuf);
+    ComMasterDriver::onReadEnd(ERR_TIME_OUT, (u8*)&ComMasterDriver::reply);
   }
 }
 
@@ -40,29 +31,14 @@ void ComMasterDriver::send(TComMasterTask task) {
     onReadEnd = task.callback;
     outbuf = task.pbuff;
     OutBufLen = task.len;
-    DelayAfterWrite = task.DelayAfterWrite;
-    //RAM_DATA.var1++;
-    SlotMaster.OnRecieve = &ComMasterDriver::onReadData;//&OnDataReceived;
+    TimeOut = task.TimeOut;
+    SlotMaster.OnRecieve = &ComMasterDriver::onReadData;
     SlotMaster.OnTimeOut = &ComMasterDriver::onTimeOut;
+    ModbusMasterSetCondition(TimeOut, (u8*)&ComMasterDriver::reply);
     ModbusMasterSend(outbuf, OutBufLen); 
 }
 
 void ComMasterDriver::com_thread(void) {
-  /*
-    DWORD ButesToRead;
-    DWORD Count;
-    DWORD fSuccess;
-    while (true) {
-        fSuccess = WriteFile(hCom, outbuf, OutBufLen, &Count, NULL);
-        Sleep(DelayAfterWrite);// p.SleepAfterWrite);
-        ButesToRead = 256;
-        fSuccess = ReadFile(hCom, &reply, ButesToRead, &Count, NULL);
-        s16 result = (fSuccess > 0) ? Count : -1;
-        if (onReadEdnd) onReadEdnd(result, reply);
-        ::SuspendThread(hComThread);
-    }
-    return 0;
-*/
 }
 
 

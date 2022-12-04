@@ -22,7 +22,7 @@ void DevicePollManager::execute(void) {
 	switch ((DevicePollManagerStatus)Status)
 	{
 	case DevicePollManagerStatus::SEND_REQUEST:
-		ComMasterDriver::send({ (u8*)&slot->OutBuf, slot->cmdLen, slot-> DelayAfterWrite, {checkRespond} });
+		ComMasterDriver::send({ (u8*)&slot->OutBuf, slot->cmdLen, slot->TimeOut, {checkRespond} });
 		Status = (u16)DevicePollManagerStatus::WAIT_RESPOND;
 		/*TODO после записи не отрабатывает тайм-аут, и поэтому ответ после записи флэша
 		приходит вместе с данными уже другого слота (в данном случае часто опрашиваемого RAM)

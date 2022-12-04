@@ -1,5 +1,6 @@
 #include "CreateSlotsByStart.h"
 #include "CommonSlotHandler.h"
+#include "FlashData.h"//содержит описания структур данных
 
 //static const u8 cmdGetID[] = { 1,    3, 0x00, 0x00, 0x00, 0x1F };
 //                               adr,cmd, firstAddr , regsToRead
@@ -25,6 +26,7 @@ std::vector <Slot> CreateSlotsByStart::init(std::map<std::string, TDeviceNetwork
 			pSlot->addcmd(getReadCmdFromSettings(slotsprops.NetworkAddr, prop->StartAddr, prop->LastAddr));
 			pSlot->onData = CommonSlotHandler::parseRespond;
 			pSlot->Interval = prop->Interval;
+                        pSlot->TimeOut = FLASH_DATA.TIME_OUT_Lnkmngr;
 			res.push_back(*pSlot);
 		}
 	}

@@ -16,6 +16,7 @@ void ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandle
     const std::string DevPos = IniResources::getDevicePositionByTag(tag);
     const std::string Section = "CmdWrite";
     Slot* slot = DevicePollManager::getSlotByDevPosAndSection(DevPos, Section);
+    slot->TimeOut = 2000;/*TODO сделать зависимой от типа памяти RAM = 500ms, CD/FLASH = 2000...3000ms*/
     slot->cmdLen = ModbusSlave::CreateWriteCmd(slot->OutBuf, { Cmd, DevAddrHex, RegHexAddr, ValueHex });
     slot->onData = callback;
     slot->Flags &= ~(u16) SlotStateFlags::SKIP_SLOT; //пометить слот на выполнение

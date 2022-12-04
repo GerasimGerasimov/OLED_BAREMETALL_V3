@@ -6,6 +6,8 @@ MBmasterSlotType SlotMaster;
 
 Intmash_Usart UART_MASTER;
 
+static u16 TimeOut = 0;
+static u8* ReplyPtr = 0;
 //функции таймера
 void SetMasterTimer(tU16 delay){  
   TIM7->CNT = 0;
@@ -78,6 +80,12 @@ void TIM7_IRQHandler(void){
   }
 }
 
+
+void ModbusMasterSetCondition(u16 timeOut, u8* replyPtr) {
+  TimeOut = timeOut;
+  ReplyPtr = replyPtr;
+}
+
 void ModbusMasterSend(u8* data, u8 len){
   SlotMaster.InBufLen = 0;
   UsartTransmit(&UART_MASTER, data, len);
@@ -89,8 +97,8 @@ void USART2_IRQHandler(void){
   //!0 - что-то принято
   //если данные отправлены, то надо включить таймер таймаута для ожидания ответа
   if (TransferStatus == 0) {
-    SetMasterTimer(500);//установили таймер на ожидание таймаута
-    UsartRecieve(&UART_MASTER, (tU8*)&SlotMaster.InBuf);//и ждать поступления данных
+    SetMasterTimer(TimeOut);//установили таймер на ожидание таймаута
+    UsartRecieve(&UART_MASTER, ReplyPtr);//и ждать поступления данных
   } else {//какие-то данные приняты (в ответ на запрос)
     StopMasterTimer();
     if (SlotMaster.OnRecieve) {

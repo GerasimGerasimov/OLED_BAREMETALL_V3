@@ -11,7 +11,7 @@ Slot::Slot()
 	, Interval(0)
 	, TmpInterval(0)
 	, InputBufValidBytes(0)
-	, DelayAfterWrite(0){
+	, TimeOut(0){
 }
 
 Slot::Slot(std::string device, std::string section, u16 StartAddr, u16 LastAddr)
@@ -26,7 +26,7 @@ Slot::Slot(std::string device, std::string section, u16 StartAddr, u16 LastAddr)
 	, Interval(0)
 	, TmpInterval(0)
 	, InputBufValidBytes(0)
-	, DelayAfterWrite(0)
+	, TimeOut(0)
 {
 
 }

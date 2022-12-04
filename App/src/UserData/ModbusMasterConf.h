@@ -7,14 +7,14 @@ extern MBmasterSlotType SlotMaster;
 
   #ifdef __cplusplus
     extern "C" void ModbusMasterInit(void);
+    extern "C" void ModbusMasterSetCondition(u16 timeOut, u8* replyPtr);
     extern "C" void ModbusMasterSend(u8* data, u8 len);
     extern "C" void RebootMBMaster(void);
-    extern "C" void StopMasterTimer(void);
   #else
     extern void ModbusMasterInit(void);
+    extern void ModbusMasterSetCondition(u16 timeOut, u8* replyPtr);
     extern void ModbusMasterSend(u8* data, u8 len);
     extern void RebootMBMaster(void);
-    extern void StopMasterTimer(void);
   #endif
 
 #endif

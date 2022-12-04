@@ -43,7 +43,7 @@ public:
 	u16 StartAddrOffset;
 	u16 LastAddrOffset;
 	u16 Interval;
-	u16 DelayAfterWrite;
+	u16 TimeOut;
 	std::string Device;
 	std::string Section;
 	bool isIntervalDone();
