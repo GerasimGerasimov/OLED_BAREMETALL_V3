@@ -5,10 +5,7 @@
 #include "PageHome.h"
 #include "PageHelp.h"
 
-/*TODO переписать вызов страниц, ибо сейчас вызов остаётся в стеке и в итоге он закончится
-Надо дать задание роутеру на переключение, и когда в новом Арр цикле дело дойдёт до роутера
-он окроет нужную страницу
-В роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
+/*TODOВ роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
 TPage* TRouter::Page = nullptr;
 TPage* TRouter::BackPage = nullptr;
 
@@ -23,7 +20,6 @@ void TRouter::Init(void) {
     //Pages["Counters"] = new TPageCounters("Counters");
     Pages["EditValue"] = new TPageEditValue("EditValue");
     setInitPage();
-    //setActivePage("Home", NULL);
 }
 
 void TRouter::setTask(TRouterTask task) {
