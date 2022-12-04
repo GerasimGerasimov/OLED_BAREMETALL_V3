@@ -13,6 +13,7 @@
 #include <app.h>
 #include "graphics.h"
 #include "display_driver.h"
+#include "link_led.h"
 
 //#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
 //#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
@@ -36,7 +37,7 @@ int main(void) {
 
   LED_RUN_ON;
   LED_WRN_OFF;
-  LED_LINK_OFF;
+  LinkLED::init();
   LED_ALARM_OFF;
   
   LED2_OFF;

@@ -20,7 +20,6 @@ public:
 	static void send(TComMasterTask task);
 	static void close();
 private:
-        static void default_callback(s16 result, u8* reply);
 	static void com_thread(void);
 	static void create_com_thread(void);
 	static TDriverComReadEndHandler onReadEnd;

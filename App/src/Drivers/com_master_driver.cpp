@@ -1,27 +1,26 @@
 #include "com_master_driver.h"
 #include "ModbusMasterConf.h"
 #include "RAMdata.h"
+#include "link_led.h"
 
-TDriverComReadEndHandler ComMasterDriver::onReadEnd = nullptr;//ComMasterDriver::default_callback;//NULL;
+TDriverComReadEndHandler ComMasterDriver::onReadEnd = nullptr;
 u8* ComMasterDriver::outbuf = nullptr;
 u16 ComMasterDriver::OutBufLen = 0;
 u16 ComMasterDriver::TimeOut = 0;
 u8 ComMasterDriver::reply[256];
 
+static const s16 NO_LNK_ERR = 0;
 static const s16 ERR_TIME_OUT = -1;
 
-void ComMasterDriver::default_callback(s16 result, u8* reply){
-}
-
 void ComMasterDriver::onReadData(void){
-  RAM_DATA.var1++;
+  LinkLED::setState(NO_LNK_ERR);
   if (ComMasterDriver::onReadEnd) {
     ComMasterDriver::onReadEnd(SlotMaster.InBufLen, (u8*)&ComMasterDriver::reply);
   }
 }
 
 void ComMasterDriver::onTimeOut(void){
-  RAM_DATA.Last_lnk_error++;
+  LinkLED::setState(ERR_TIME_OUT);
   if (ComMasterDriver::onReadEnd) {
     ComMasterDriver::onReadEnd(ERR_TIME_OUT, (u8*)&ComMasterDriver::reply);
   }

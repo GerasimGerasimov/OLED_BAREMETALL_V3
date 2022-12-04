@@ -4,13 +4,9 @@
 #include "ramdata.h"
 #include "flashdata.h"
 #include "timer_wrapper.h"
+#include "leds_timer_wrapper.h"
 
 u16 num = 0;
-/******************************************************************************/
-
-
-/******************************************************************************/
-
 
 #include "ModbusMasterConf.h"
 #include "ModbusSlaveConf.h"
@@ -19,6 +15,7 @@ void TIM6_DAC_IRQHandler(void)//таймер общего назначения 1 мс
 { 
   
     TIM6->SR = 0;//&= ~TIM_SR_UIF;// снять флаг прерывания
+    LedsTimerTick();
     sendTimerMessage();
     /*
     if (num == 500)

@@ -1429,6 +1429,18 @@
     <group>
         <name>Drivers</name>
         <group>
+            <name>Leds</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Leds\leds_timer_wrapper.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Leds\leds_timer_wrapper_cpp.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Leds\Link\link_led.cpp</name>
+            </file>
+        </group>
+        <group>
             <name>Resources</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Resources\os_resources.cpp</name>

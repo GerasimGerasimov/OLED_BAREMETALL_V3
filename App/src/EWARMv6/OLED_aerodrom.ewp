@@ -364,6 +364,8 @@
                     <state>$PROJ_DIR$\..\Resources</state>
                     <state>$PROJ_DIR$\..\Helpers</state>
                     <state>$PROJ_DIR$\..\Drivers</state>
+                    <state>$PROJ_DIR$\..\Drivers\Leds</state>
+                    <state>$PROJ_DIR$\..\Drivers\Leds\Link</state>
                     <state>$PROJ_DIR$\..\Drivers\Resources</state>
                     <state>$PROJ_DIR$\..\MCU\IDrivers</state>
                     <state>$PROJ_DIR$\..\MCU\GraphicsFunctions</state>
@@ -1105,6 +1107,18 @@
     </group>
     <group>
         <name>Drivers</name>
+        <group>
+            <name>Leds</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Leds\leds_timer_wrapper.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Leds\leds_timer_wrapper_cpp.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Leds\Link\link_led.cpp</name>
+            </file>
+        </group>
         <group>
             <name>Resources</name>
             <file>

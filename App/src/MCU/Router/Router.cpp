@@ -5,7 +5,7 @@
 #include "PageHome.h"
 #include "PageHelp.h"
 
-/*TODOВ роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
+/*TODO В роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
 TPage* TRouter::Page = nullptr;
 TPage* TRouter::BackPage = nullptr;
 
