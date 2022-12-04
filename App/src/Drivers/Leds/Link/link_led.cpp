@@ -34,9 +34,10 @@ void LinkLED::blinkErrState(){
 }
 
 void LinkLED::blinkNoErrState(){
-  PULSE = 25;
-  PAUSE = 25;
-  blink();
+  LED_LINK_ON;
+  //PULSE = 15;
+  //PAUSE = 15;
+  //blink();
 }
 
 void LinkLED::blink(void) {
