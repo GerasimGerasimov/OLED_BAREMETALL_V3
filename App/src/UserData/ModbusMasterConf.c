@@ -81,7 +81,7 @@ void TIM7_IRQHandler(void){
 
 void ModbusMasterSend(u8* data, u8 len){
   SlotMaster.InBufLen = 0;
-  UsartTransmit(&UART_MASTER, SlotMaster.OutBuf, len);
+  UsartTransmit(&UART_MASTER, data, len);
 }
 
 void USART2_IRQHandler(void){ 

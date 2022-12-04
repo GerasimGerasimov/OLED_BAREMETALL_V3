@@ -17,5 +17,5 @@ void ctrlSysLive(void) {
    IARHeapInfo = __iar_dlmallinfo();
    RAM_DATA.var3 = IARHeapInfo.uordblks;/* total free space */
    RAM_DATA.var4 = IARHeapInfo.usmblks;/* maximum total allocated space */
-   RAM_DATA.var2 ++;
+   //RAM_DATA.var2 ++;
 }
