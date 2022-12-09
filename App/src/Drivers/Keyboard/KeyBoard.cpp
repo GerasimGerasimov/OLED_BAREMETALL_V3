@@ -25,9 +25,6 @@ u16 KeyBoard::ScanCode = 0;
 u16 KeyBoard::repeatState = (u16)KeyRepeatCtrl::First;
 u16 KeyBoard::repeatDelay = 0;
 
-/*TODO сделать так, чтобы при нажатии клавиши отправлялось сообщение
-а далее, если эта клавиша остаётся нажатой то пауза 0.5 сек
-потом автоповтор выдачи кода с 0.25 сек*/
 void KeyBoard::sendKeyboardMsg(void) {
   static u16 prevScanCode = 0;
     if (ScanCode != prevScanCode) {
@@ -144,7 +141,7 @@ void KeyBoard::debouncing(u16 rawcode)
       else btn_last=0; //сохраняем в предыдущее значение = 0
     }
   }
-  RAM_DATA.var1 = ScanCode;
+  RAM_DATA.var2 = ScanCode;
 }
 
 

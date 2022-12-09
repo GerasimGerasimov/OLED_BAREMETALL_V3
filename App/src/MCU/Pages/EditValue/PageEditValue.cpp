@@ -1,4 +1,6 @@
-﻿#include "PageEditValue.h"
+﻿/*TODO выяснить обстоятельсва при которых курсор при входе в окно не мигает
+и вроде в таком случае не работате OK и ESC*/
+#include "PageEditValue.h"
 #include "Router.h"
 #include <IniResources.h>
 #include <Slot.h>
