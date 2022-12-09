@@ -16,7 +16,14 @@ enum class KeyCtrl : u32 {
         ROWS = 0x07
 };
 
+enum class KeyRepeatCtrl {
+  First,
+  Next
+};
+
 u16 KeyBoard::ScanCode = 0;
+u16 KeyBoard::repeatState = (u16)KeyRepeatCtrl::First;
+u16 KeyBoard::repeatDelay = 0;
 
 /*TODO сделать так, чтобы при нажатии клавиши отправлялось сообщение
 а далее, если эта клавиша остаётся нажатой то пауза 0.5 сек
@@ -26,6 +33,36 @@ void KeyBoard::sendKeyboardMsg(void) {
     if (ScanCode != prevScanCode) {
       Msg::send_message((u32)EventSrc::KEYBOARD, ScanCode, 0);
       prevScanCode = ScanCode;
+      prepareToRepeat();
+    } else {
+      if (ScanCode) {
+        repeating();
+      }
+    }
+}
+
+static const u16 FirstDelay = 650;
+static const u16 NextDelay = 150;
+
+void KeyBoard::prepareToRepeat(void){
+  repeatState = (u16)KeyRepeatCtrl::First;
+  repeatDelay = FirstDelay;
+}
+
+void KeyBoard::repeating(void){
+  switch (repeatState) {
+    case (u16)KeyRepeatCtrl::First:
+        (repeatDelay)
+          ? repeatDelay --
+          : (repeatState = (u16)KeyRepeatCtrl::Next);
+      break;
+    case (u16)KeyRepeatCtrl::Next:
+        (repeatDelay)
+          ? repeatDelay --
+          : ( repeatDelay = NextDelay,
+                Msg::send_message((u32)EventSrc::KEYBOARD, ScanCode, 0),
+                 0);    
+    break;
   }
 }
 

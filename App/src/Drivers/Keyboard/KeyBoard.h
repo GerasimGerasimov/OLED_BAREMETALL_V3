@@ -9,6 +9,11 @@ struct KeyBoard {
     static void debouncing (u16 rawcode);
     static void sendKeyboardMsg(void);
     static u16 ScanCode;
+  private:
+    static void prepareToRepeat(void);
+    static void repeating(void);
+    static u16 repeatState;
+    static u16 repeatDelay;
 };
 
 #endif
