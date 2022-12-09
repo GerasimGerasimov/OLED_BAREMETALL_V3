@@ -1452,6 +1452,12 @@
                 <name>$PROJ_DIR$\..\Drivers\Keyboard\buttons.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\Keyboard\KeyBoard.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Keyboard\KeyBoard_wrapper_cpp.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\Keyboard\virtualKeyEvents.cpp</name>
             </file>
         </group>

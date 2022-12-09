@@ -12,17 +12,6 @@
 #ifndef INTMASH_BASTYPES_H_
 #define INTMASH_BASTYPES_H_
 
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
-#include <stdbool.h>
-
-#ifdef __cplusplus
-#include <string>
-#endif
-*/
-
 typedef unsigned char tU8;
 typedef signed char tS8;
 

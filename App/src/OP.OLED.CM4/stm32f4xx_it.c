@@ -15,7 +15,7 @@ void TIM6_DAC_IRQHandler(void) {//таймер общего назначения 1 мс
     TIM6->SR = 0;//&= ~TIM_SR_UIF;// снять флаг прерывания
     LedsTimerTick();
     sendTimerMessage();
-    buttons_scan(buttons_check()); //проверка нажатой кнопки и подавление дребезга
+    KeyBoardUpdate();
 }
 
 /******************************************************************************/
