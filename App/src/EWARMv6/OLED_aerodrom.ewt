@@ -1429,6 +1429,30 @@
     <group>
         <name>Drivers</name>
         <group>
+            <name>Communications</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Communications\com_master_driver.cpp</name>
+            </file>
+        </group>
+        <group>
+            <name>Display</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Display\display_dc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Display\display_driver.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Display\ssd1305.c</name>
+            </file>
+        </group>
+        <group>
+            <name>Keyboard</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Keyboard\virtualKeyEvents.cpp</name>
+            </file>
+        </group>
+        <group>
             <name>Leds</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Leds\leds_timer_wrapper.c</name>
@@ -1449,27 +1473,15 @@
                 <name>$PROJ_DIR$\..\Drivers\Resources\resources_wrapper.cpp</name>
             </file>
         </group>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\com_master_driver.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\display_dc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\display_driver.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\ssd1305.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\timer_wrapper.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\timer_wrapper_cpp.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\Drivers\virtualKeyEvents.cpp</name>
-        </file>
+        <group>
+            <name>Timer</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Timer\timer_wrapper.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\Timer\timer_wrapper_cpp.cpp</name>
+            </file>
+        </group>
     </group>
     <group>
         <name>EWARMv6</name>
