@@ -5,8 +5,6 @@
 #include "ssd1305.h"
 #include "display_dc.h"
 
-#include "defines.h"
-
 ErrorStatus HSEStartUpStatus;
 //--------------------------------------------------------------
 

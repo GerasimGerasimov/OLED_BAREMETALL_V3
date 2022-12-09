@@ -2,7 +2,6 @@
 #include "stm32f4xx.h"
 #include "init.h"
 #include "id.h"
-#include "defines.h"
 #include "os_resources.h"
 #include "resources.h"
 
@@ -14,9 +13,7 @@
 #include "graphics.h"
 #include "display_driver.h"
 #include "link_led.h"
-
-//#define OVERTURN_X_IN  (GPIOD->IDR & GPIO_Pin_2) 
-//#define OVERTURN_Y_IN  (GPIOB->IDR & GPIO_Pin_3) 
+#include "LEDs.h"
 
 int main(void) {  
   BootLoadCmdFillZero();  
