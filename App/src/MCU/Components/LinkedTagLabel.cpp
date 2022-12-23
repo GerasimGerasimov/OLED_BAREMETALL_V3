@@ -13,7 +13,7 @@ bool TLinkedTagLabel::ProcessMessage(TMessage* m) {
             }
         }
     }
-    return true;
+    return false;
 }
 
 TLinkedTagLabel::TLinkedTagLabel(std::string tag, TLabelInitStructure init)

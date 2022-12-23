@@ -17,6 +17,7 @@ bool TWrappedText::ProcessMessage(TMessage* m) {
                 break;
         }
     }
+    return false;
 }
 
 void  TWrappedText::view(void) {//вывести строку на экране

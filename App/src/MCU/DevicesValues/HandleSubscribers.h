@@ -2,7 +2,7 @@
 #define HANDLE_SUBSCRIBERS_H
 
 #include <string>
-#include <vector>
+#include <list>
 #include <map>
 #include <functional>
 #include "Slot.h"
@@ -13,14 +13,19 @@ typedef struct {
 	std::string section;
 } THandlerSearchStruct;
 
+typedef struct TSubscriber {
+	int id;
+	std::function<void(TSlotHandlerArsg)> handler;
+};
+
 class HandlerSubscribers {
 public:
-	static void set(std::string source, std::function<void(TSlotHandlerArsg)> handler);
-	static void remove(std::string source);
+	static int set(std::string source, std::function<void(TSlotHandlerArsg)> handler);
+	static void remove(std::string source, int& ID);
 	static void send(Slot& slot);
 
 private:
-	static std::map<std::string, std::map<std::string, std::vector<std::function<void(TSlotHandlerArsg)>>>> Handlers;
+	static std::map<std::string, std::map<std::string, std::list<TSubscriber>>> Handlers;
 };
 
 #endif

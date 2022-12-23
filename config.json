@@ -1,7 +1,7 @@
 {
   "App": "D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
-  "SkipSectors":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
-  "SkipSectors1":[],
+  "SkipSectors1":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
+  "SkipSectors":[],
   "COM":{
     "port":"COM3",
   "settings": {
@@ -21,14 +21,14 @@
   "resources": {
     "start": "0x08080000",
     "items": {
-      "ID" : "12345678 OLED v1.10.3.0 27.11.2022 www.intmash.ru",
+	  "ID" : "12345678 OLED.CM4 v0.0.0 19.12.2022 www.intmash.ru",
 	  "URL" : "www.intmash.ru",
 	  "SOURCES":"DEV1/",
       "DEV1" : { 
-        "file":"D:/Project/Projects/DelphiProjects/ma010ENG/Devices/DExS.GEN/00000151_Synchrosope.ini"
+        "file":"C:/Users/info/source/repos/WindowsProject1/Drivers/Resources/RES2BINCONFIG/resource_EFI.CPU_v2.2.2.ini"
       },
 	  "DEVICES":"U1/",
-	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0010,0,/FLASH,0x2000,0x2069,10,/CD,0xC000,0xC011,10,/"
+	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0040,0,/FLASH,0x2000,0x2042,10,/CD,0xC000,0xC039,10,/"
     }
   }
 }

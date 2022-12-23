@@ -8,24 +8,26 @@
 #include "WrappedText.h"
 #include "NumericEdit.h"
 #include "parameters.h"
+#include <Slot.h>
 
 class TPageEditValue : public TPage
 {
 public:
-    virtual void view();//вывести объект на экране
+    virtual void view();
     virtual const u16 getHeight(void) { return 0; };
     void onOpen();
-    void clear();//очистит список
-    bool ProcessMessage(TMessage* m);//обработчик сообщений
+    bool ProcessMessage(TMessage* m);
     void sendValue(void);
-    TPageEditValue(std::string Name);//конструктор
-    ~TPageEditValue();//деструктор
+    TPageEditValue(std::string Name);
+    ~TPageEditValue();
 private:
     TComponentListVertical* MainMenu;
     THeaderLabel* pHeader;
     TNumericEdit* pEdit;
     TParameter* p;
     std::string tag;
+    bool isDataSent = false;
+    void SlotUpdate(Slot& slot, u8* reply);
 };
 
 #endif

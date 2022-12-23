@@ -1,12 +1,21 @@
 #include "PageHome.h"
 #include "Router.h"
+#include "TagLine.h"
 #include <IniResources.h>
 
 void TPageHome::view() {
-    MainMenu->view();
+    TagList->view();
 };
 
-void TPageHome::clear() {
+void TPageHome::onOpen() {
+    fillPageContainer();
+    SubscriberID = HandlerSubscribers::set("U1/RAM/", [this](TSlotHandlerArsg args) { SlotUpdate(args); });
+}
+
+void TPageHome::startToClose() {
+    HandlerSubscribers::remove("U1/RAM/", SubscriberID);
+    TagList->Clear();
+    isOpen = false;
 }
 
 bool TPageHome::ProcessMessage(TMessage* m) {
@@ -27,8 +36,6 @@ bool TPageHome::ProcessMessage(TMessage* m) {
                 case (u32)KeyCodes::ENT:
                     e = getSignalOfFocusedChild();
                     if (e) {
-                        /*TODO а можно передавать “ег и значение, а там внутри разбиратьс€*/
-                        /*TODO насыщать страницу EditValue*/
                         TRouter::PageValueEditEntryData.tag = ((TTagLine*)(e))->Tag;
                         TRouter::PageValueEditEntryData.value = ((TTagLine*)(e))->Value->getCaption();
                         TRouter::setTask({ false, "EditValue", nullptr });
@@ -53,61 +60,39 @@ TVisualObject* TPageHome::getSignalOfFocusedChild() {
     return nullptr;
 }
 
-void TPageHome::goToTagInfoPage(int a) {
-    TRouter::setTask({ false, "Counters", nullptr });
-}
-
-TPageHome::TPageHome(std::string Name)
-    :TPage(Name) {
+void TPageHome::fillPageContainer(void) {
+    TagList->Clear();
     TLabelInitStructure LabelInit;
     LabelInit.style = LabelsStyle::WIDTH_DINAMIC;
     LabelInit.Rect = { 10, 10, 10, 10 };
     LabelInit.focused = false;
-/*TODO SignalFactoty если не находит параметра (BIT, WORD € об этом) то на ћ  приложение падает
-проверить под WIN*/ 
-    pLTagUref     = new TTagLine("Fgen", "U1/RAM/Fgen/", LabelInit);
-    pLTagUref->inFocus = true;
-    pLTagIref     = new TTagLine("Phi", "U1/RAM/Phi/", LabelInit);
-    pLTagUoutAve  = new TTagLine("UbusOK", "U1/RAM/UbusOK/", LabelInit);
-    pLTagIoutAve  = new TTagLine("DVA", "U1/FLASH/Modbus_RS485_DVA/", LabelInit);
-    pLTagSparkFrq = new TTagLine("Un", "U1/FLASH/Unominal/", LabelInit);
-    pLTagOut      = new TTagLine("Ugen", "U1/RAM/Ugen/", LabelInit);
+    TagList->AddList({
+        new TTagLine("Uref", "U1/RAM/Uref/", LabelInit),
+        new TTagLine("Iref", "U1/RAM/Iref/", LabelInit),
+        new TTagLine("UoutAve", "U1/RAM/UoutAve/", LabelInit),
+        new TTagLine("IoutAve", "U1/RAM/IoutAve/", LabelInit),
+        new TTagLine("SpReq", "U1/RAM/SparkFrq/", LabelInit),
+        new TTagLine("Out", "U1/RAM/Out/", LabelInit),
+    });
+}
 
-    MainMenu = new TComponentListVertical({ pLTagUref    , pLTagIref     , pLTagUoutAve,
-                                            pLTagIoutAve , pLTagSparkFrq , pLTagOut ,
-                                            /*pLTagIinAve */ });
-    
-    MainMenu->FocusedLine = 0;
-
-    AddList({ MainMenu });
-
-    HandlerSubscribers::set("U1/RAM/",   [this](TSlotHandlerArsg args) { SlotU1RAMUpdate(args); });
-    HandlerSubscribers::set("U1/FLASH/", [this](TSlotHandlerArsg args) { SlotU1FLASHUpdate(args); });
-    HandlerSubscribers::set("U1/CD/",    [this](TSlotHandlerArsg args) { SlotU1CDUpdate(args); });
+TPageHome::TPageHome(std::string Name)
+    :TPage(Name) {
+    TVerticalContainerProps props = { false };
+    TagList = new TVerticalContainer(props, {});
+    AddList({ TagList });
 };
 
-//        //((TParameter*)DataSrc)
-void TPageHome::SlotU1RAMUpdate(TSlotHandlerArsg args) {
-    pLTagUref->Value->setCaption(((TParameter*)pLTagUref->getDataSrc())->getValue(args, "%.2f"));
-    pLTagIref->Value->setCaption(((TParameter*)pLTagIref->getDataSrc())->getValue(args, "%.2f"));
-    pLTagOut->Value->setCaption(((TParameter*)pLTagOut->getDataSrc())->getValue(args, "%.2f"));
-    pLTagUoutAve->Value->setCaption(((TParameter*)pLTagUoutAve->getDataSrc())->getValue(args, ""));
-
+void TPageHome::SlotUpdate(TSlotHandlerArsg args) {
+    for (auto& e : TagList->List) {
+        TTagLine* tag = (TTagLine*)e;
+        TParameter* p = (TParameter*)tag->getDataSrc();
+        tag->Value->setCaption(p->getValue(args, ""));
+    }
     Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
-
-void TPageHome::SlotU1FLASHUpdate(TSlotHandlerArsg args) {
-    pLTagSparkFrq->Value->setCaption(((TParameter*)pLTagSparkFrq->getDataSrc())->getValue(args, "%.0f"));
-    pLTagIoutAve->Value->setCaption(((TParameter*)pLTagIoutAve->getDataSrc())->getValue(args, "%.0f"));
-    Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
-}
-
-void TPageHome::SlotU1CDUpdate(TSlotHandlerArsg args) {
-    //pLTagIoutAve->Value->setCaption(pLTagIoutAve->DataSrc->getValue(args, "%.0f"));
-
-   Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
-}
-
 
 TPageHome::~TPageHome() {
+    TagList->Clear();
+    delete TagList;
 };

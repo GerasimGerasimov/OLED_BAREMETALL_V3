@@ -15,7 +15,10 @@ enum class LabelsStyle : u32 {
     WIDTH_FIXED   = 2,
     BGRND_TRANSPARENT = 4,
     TEXT_ALIGN_CENTER = 8,
-    HOLD_SELECTED_STYLE = 16
+    HOLD_SELECTED_STYLE = 16,
+    FIXED_HEADER = 32,
+    FIXED_FOOTER = 64,
+    CLIPPED = 128
 };
 
 struct TLabelInitStructure {
@@ -26,6 +29,7 @@ struct TLabelInitStructure {
     TColorScheme PrimaryColor = { PRIMARY_COLOR , BACKGROUND_COLOR }; //основная цветовая схема 
     TColorScheme SelectedColor = { BACKGROUND_COLOR, PRIMARY_COLOR };//цветовая схема при выделении
     TElementRect Rect = { 0, 0, 64, 10 };
+    TVisualObject* pOwner = nullptr;
 };
 
 //строка текста

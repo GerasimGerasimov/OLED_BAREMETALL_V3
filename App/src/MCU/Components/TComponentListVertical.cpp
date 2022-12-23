@@ -8,7 +8,9 @@ bool TComponentListVertical::ProcessMessage(TMessage* m){//обработчик сообщений
     if (ItemsCount() == 0) return false;//список пуст
 
     for (auto& element : List) {
-        element->ProcessMessage(m);
+        if (element->ProcessMessage(m)) {
+            return false;
+        };
     }
 
     switch (m->Event) {
@@ -16,11 +18,11 @@ bool TComponentListVertical::ProcessMessage(TMessage* m){//обработчик сообщений
             switch (m->p1) {
                 case (u32)KeyCodes::Up:{//кнопка вверх
                     goUp();
-                    return true;
+                    return false;
                 }
                 case (u32)KeyCodes::Down:{//кнопка вниз
                     goDown();
-                    return true;
+                    return false;
                 }
             }
             return false;

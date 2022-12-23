@@ -2,7 +2,7 @@
 #include "IniResources.h"
 
 bool TTagLine::ProcessMessage(TMessage* m) {
-    return true;
+    return false;
 }
 
 const std::string TTagLine::ComponentName() {
@@ -19,7 +19,10 @@ TTagLine::TTagLine(std::string caption, std::string tag, TLabelInitStructure ini
     Value->setCaption(((TParameter*)DataSrc)->getDefaultValue());
 }
 
-TTagLine::~TTagLine() {//деструктор
+TTagLine::~TTagLine() {
+    delete Caption;
+    delete Value;
+    delete msu;
 }
 
 const u16 TTagLine::getHeight(void) {
@@ -33,16 +36,13 @@ void TTagLine::view(void) {
     Caption->ElementRect.Left = ElementRect.Left;
     Caption->view();//выводит Coption
 
-    /*TODO надо вывести значение тега*/
     if (DataSrc) {/*TODO 2-й раз пишу нужен пустой объект для отлавливания несуществующих тегов*/
-        //Value->setCaption(DataSrc->getValue());
         Value->inFocus = inFocus;
         Value->ElementRect.Top = ElementRect.Top;
         Value->ElementRect.Left = 55;//ElementRect.Left;
         Value->view();
     }
 
-    /*TODO надо вывести ед.изм тега*/
     if (DataSrc) {/*TODO 2-й раз пишу нужен пустой объект для отлавливания несуществующих тегов*/
         msu->setCaption(((TParameter*) DataSrc)->getMSU());
         msu->inFocus = inFocus;

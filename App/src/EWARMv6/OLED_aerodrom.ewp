@@ -367,6 +367,8 @@
                     <state>$PROJ_DIR$\..\Drivers\Timer</state>
                     <state>$PROJ_DIR$\..\Drivers\Leds</state>
                     <state>$PROJ_DIR$\..\Drivers\Leds\Link</state>
+                    <state>$PROJ_DIR$\..\Drivers\Leds\Alarm</state>
+                    <state>$PROJ_DIR$\..\Drivers\Leds\Warning</state>
                     <state>$PROJ_DIR$\..\Drivers\Resources</state>
                     <state>$PROJ_DIR$\..\MCU\IDrivers</state>
                     <state>$PROJ_DIR$\..\MCU\GraphicsFunctions</state>
@@ -389,7 +391,16 @@
                     <state>$PROJ_DIR$\..\MCU\Pages\EditValue</state>
                     <state>$PROJ_DIR$\..\MCU\Pages\Home</state>
                     <state>$PROJ_DIR$\..\MCU\Pages\Help</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\Alarms</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\Warning</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\OperateStatus</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\BasicSettings</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\BasicProtectionsSettings</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\CleanSettings</state>
                     <state>$PROJ_DIR$\..\MCU\Resources</state>
+                    <state>$PROJ_DIR$\..\MCU\StateControllers</state>
+                    <state>$PROJ_DIR$\..\MCU\StateControllers\Alarms</state>
+                    <state>$PROJ_DIR$\..\MCU\StateControllers\Warnings</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1143,6 +1154,18 @@
         </group>
         <group>
             <name>Leds</name>
+            <group>
+                <name>Alarm</name>
+                <file>
+                    <name>$PROJ_DIR$\..\Drivers\Leds\Alarm\LedAlarms.cpp</name>
+                </file>
+            </group>
+            <group>
+                <name>Warning</name>
+                <file>
+                    <name>$PROJ_DIR$\..\Drivers\Leds\Warning\LedWarnings.cpp</name>
+                </file>
+            </group>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Leds\leds_timer_wrapper.c</name>
             </file>
@@ -1207,6 +1230,9 @@
                 <name>$PROJ_DIR$\..\MCU\Components\common.cpp</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Components\FixedHeader.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Components\HeaderLabel.cpp</name>
             </file>
             <file>
@@ -1229,6 +1255,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Components\TComponentsContainer.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Components\TVerticalContainer.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Components\WrappedText.cpp</name>
@@ -1321,6 +1350,18 @@
         <group>
             <name>Pages</name>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Alarms\PageAlarms.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\BasicProtectionsSettings\PageBasicProtectionsSettings.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\BasicSettings\PageBasicSettings.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\CleanSettings\PageCleanSettings.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\EditValue\PageEditValue.cpp</name>
             </file>
             <file>
@@ -1331,6 +1372,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\MainMenu\PageMainMenu.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\OperateStatus\PageOperateStatus.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Warning\PageWarnings.cpp</name>
             </file>
         </group>
         <group>
@@ -1397,6 +1444,24 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Slots\CreateSlotsByStart.cpp</name>
+            </file>
+        </group>
+        <group>
+            <name>StateControllers</name>
+            <group>
+                <name>Alarms</name>
+                <file>
+                    <name>$PROJ_DIR$\..\MCU\StateControllers\Alarms\Alarms.cpp</name>
+                </file>
+            </group>
+            <group>
+                <name>Warnings</name>
+                <file>
+                    <name>$PROJ_DIR$\..\MCU\StateControllers\Warnings\Warnings.cpp</name>
+                </file>
+            </group>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\StateControllers\StateControllers.h</name>
             </file>
         </group>
     </group>

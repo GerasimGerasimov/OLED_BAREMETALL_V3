@@ -9,7 +9,7 @@ public:
 	TBit(TSignalPropsPointers props);
 	~TBit();
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
-        std::string getValue(){return "";};
+    std::string getValue(){return "";};
 private:
 	TSpecialSignalAddr Addr;
 	const std::string value(const TSlotHandlerArsg& args);

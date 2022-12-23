@@ -37,3 +37,29 @@ std::string Utils::getValueAsFormatStr(float& value, const char* format) {
     std::sprintf(&output[0], format, value);
     return output;
 }
+
+const std::string Utils::UnSignedintToStr(u32 value) {
+    char s[10];
+    //GIST "%.4X" преобразование числа в hex с заданным кол-вом значащих нулей
+    sprintf(s, "%.i", value);
+    std::string res(s);
+    return res;
+}
+
+const char*& Utils::getFormat(float& value) {
+    static const char* _0_ = "%.0f";
+    static const char* _1_ = "%.1f";
+    static const char* _2_ = "%.2f";
+    static const char* _3_ = "%.3f";
+    static const char* _4_ = "%.4f";
+    static const char* _5_ = "%.5f";
+    int f = (int)value;
+    float d = value - f;
+    d = (d < 0) ? -d : d;
+    if (d > 0.90000f) return _0_;
+    if (d > 0.09000f) return _1_;
+    if (d > 0.00900f) return _2_;
+    if (d > 0.00090f) return _3_;
+    if (d > 0.00009f) return _4_;
+    return _0_;
+}

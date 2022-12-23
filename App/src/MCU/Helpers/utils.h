@@ -7,10 +7,11 @@
 
 class Utils {
 public:
-	//std::wstring s2ws(const std::string& str);
 	static void swp_copy_u16(u8* s, u16* d, u8 c);
 	static void comma_to_dot(char* input);
 	static std::string getValueAsFormatStr(float& value, const char* format);
+	static const std::string UnSignedintToStr(u32 value);
+	static const char*& getFormat(float& value);
 };
 
 #endif

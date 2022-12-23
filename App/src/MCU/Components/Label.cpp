@@ -20,6 +20,8 @@ void TLabel::outCaption(TColorScheme& ColorScheme) {
         Left = (ElementRect.Width - TextSize.width) / 2;
     }
     TGrahics::outText(Caption, Left, Top, ColorScheme.Color, Font);
+    //TClipRect clip{ Left,Top,ElementRect.Width, ElementRect.Height };
+    //TGrahics::outTextClipped(Caption, Left, Top, ColorScheme.Color, Font, clip);
 }
 
 const u16 TLabel::getHeight(void) {
@@ -37,9 +39,7 @@ void TLabel::fillBackGround(TColorScheme& ColorScheme) {
 void TLabel::setCaption(std::string caption) {//добавить/изменить текст в строке
     if (Caption != caption) {
         Caption = caption;
-        if (Style & (int)LabelsStyle::TEXT_ALIGN_CENTER) {
             TextSize = TMCUFonts::getTextSizes(Caption, Font);
-        }
     }
 }
 
@@ -66,8 +66,9 @@ TLabel::TLabel(TLabelInitStructure init)
     , SelectedColor(init.SelectedColor)
     , Style((int)init.style)
     , Font((init.font != "") ? init.font : "Verdana12")
-    , Caption(init.caption)
+    , Caption("")
     , TextSize(TMCUFonts::getTextSizes(Caption, Font)){
+    setCaption(init.caption);
 }
 
 TLabel::~TLabel() {//деструктор

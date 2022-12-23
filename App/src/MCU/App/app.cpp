@@ -15,23 +15,24 @@
 #include "CreateCustomSlot.h"
 #include "RAMdata.h"
 #include "virtualKeyEvents.h"
+#include "Alarms.h"
+#include "Warnings.h"
 
 void App::init(void) {
     TInternalResources::init();
     IniResources::init();
     IniSlotsProps::init();
-    /*TODO для управления от встроенных DIO нужен слот*/
     std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
     DevicePollManager::init(slots);
     TRouter::Init();
+    Alarms::init();
+    Warnings::init();
     Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
 
 void App::run(void) {
     TMessage m;
-    //TFillRect fr = {30, 20, 60, 14, 0};
-    //char s[8];
     while (true) {
       ctrlSysLive();
         TRouter::chekNextPage();
@@ -41,12 +42,9 @@ void App::run(void) {
                 TRouter::Page->view();
             }
         }
-	//sprintf(s, "%i", RAM_DATA.var2);
-	//std::string res(s);
-        //TGrahics::fillRect(fr);
-        //TGrahics::outText(res, 30, 20, 1, "MSSansSerifBold14");
         TDisplayDriver::out();
         DevicePollManager::execute();
         scanVirtualKeyCode();
+        if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
     }
 }

@@ -21,6 +21,7 @@ public:
     ~TPage();//деструктор
     void setProps(void* _props);
     virtual void startToClose();
+    virtual void onClose();
     virtual bool isClosed();
 protected:
     void* props;

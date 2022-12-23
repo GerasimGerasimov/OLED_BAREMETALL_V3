@@ -3,7 +3,7 @@
 #include <IniResources.h>
 #include <DevicePollManager.h>
 
-void ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandler callback) {
+bool ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandler callback) {
     TParameter* p = (TParameter*)IniResources::getSignalByTag(tag);
     std::string ValueHex = p->getValueHex(value);//получил значение в хексах и сразу длину (так как строка)
     std::string RegHexAddr = p->getRegHexAddr();//получил номер регистра в хексах
@@ -18,11 +18,14 @@ void ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandle
     Slot* slot = DevicePollManager::getSlotByDevPosAndSection(DevPos, Section);
     slot->TimeOut = 2000;/*TODO сделать зависимой от типа памяти RAM = 500ms, CD/FLASH = 2000...3000ms*/
     slot->cmdLen = ModbusSlave::CreateWriteCmd(slot->OutBuf, { Cmd, DevAddrHex, RegHexAddr, ValueHex });
-    slot->onData = callback;
-    slot->Flags &= ~(u16) SlotStateFlags::SKIP_SLOT; //пометить слот на выполнение
+    return (slot->cmdLen)
+        ? (slot->onData = callback,
+            slot->Flags &= ~(u16)SlotStateFlags::SKIP_SLOT, //пометить слот на выполнение
                           //| (u16)SlotStateFlags::CRC_ERR //сброс ошибок... хотя ошибки будут анализироваться позже
                           //| (u16)SlotStateFlags::TIMEOUT_ERR
                           //| (u16)SlotStateFlags::DATA_VALID );
+            true)
+        : false;
 }
 
 const std::map < std::string, std::function <u8(u8*, TWriteCmdSrc&) >> ModbusSlave::WriteCmdVariants = {

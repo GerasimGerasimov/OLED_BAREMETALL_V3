@@ -9,6 +9,9 @@ void TComponentsContainer::AddList(std::vector <TVisualObject*> Source) {//добав
 }
 
 void  TComponentsContainer::Clear(void){//очистит список
+	for (auto& e : List) {
+		delete e;
+	}
   List.clear();
 }
 

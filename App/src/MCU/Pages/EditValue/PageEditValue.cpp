@@ -1,18 +1,16 @@
 ﻿/*TODO выяснить обстоятельсва при которых курсор при входе в окно не мигает
 и вроде в таком случае не работате OK и ESC*/
+
+/*TODO при возврате их этого окна, "слетает" подписка на обновление данных*/
 #include "PageEditValue.h"
 #include "Router.h"
 #include <IniResources.h>
-#include <Slot.h>
 #include <AppModbusSlave.h>
 #include "RAMdata.h"
 
 void TPageEditValue::view() {
     MainMenu->view();
 };
-
-void TPageEditValue::clear() {
-}
 
 void TPageEditValue::onOpen() {
     tag = TRouter::PageValueEditEntryData.tag;
@@ -30,29 +28,36 @@ bool TPageEditValue::ProcessMessage(TMessage* m) {
         case (u32)EventSrc::KEYBOARD: {
             switch (m->p1) {
                 case (u32)KeyCodes::ESC:
-                    TRouter::goBack();
+                    TRouter::setTask({ false, "Home", nullptr });
                     return true;
                 case (u32)KeyCodes::ENT:
                     sendValue();
-                    //TRouter::goBack();
                     return true;
                 }
         }
     }
+    if (isDataSent) {
+        isDataSent = false;
+        TRouter::setTask({ false, "Home", nullptr });
+    }
     return false;
 };
 
-void SlotU1RAMUpdate(Slot& slot, u8* reply) {
-  RAM_DATA.var1++;
+void TPageEditValue::SlotUpdate(Slot& slot, u8* reply) {
     slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
-    TRouter::goBack();
+    isDataSent = true;
     //тут бы можно было из массива reply куда-то скопировать результат,
     //но он не нужен если в slot.RespondLenghtOrErrorCode значение больше нуля
 }
 
 void TPageEditValue::sendValue(void) {
     std::string value = pEdit->getValue();
-    ModbusSlave::setValue(tag, value, SlotU1RAMUpdate);
+    if (ModbusSlave::setValue(tag, value, [this](Slot& slot, u8* reply) { SlotUpdate(slot, reply);})) {
+
+    }
+    else {
+        isDataSent = true;
+    }
     /*TODO если запись успешна - показать анимаци успешной записаи, если нет соотв неуспешной*/
 }
 

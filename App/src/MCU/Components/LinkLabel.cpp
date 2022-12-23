@@ -1,8 +1,21 @@
 #include "LinkLabel.h"
 #include "Router.h"
 
-/*TODO сделать медленную прокрутку влево (а затем переход в начало) 
-если элемент находитс€ в фокусе, а его Caption не входит на экран*/
+static const int BEFORE_PAUSE = 15;
+static const int AFTER_PAUSE = 10;
+static const int SHIFT_DELAY = 4;
+
+enum class AnimationStage {
+    WAIT_BEFORE_SHIFTING,
+    SHIFTING,
+    WAIT_AFTER_SHIFTING,
+};
+
+static struct {
+    std::string shifted;
+    int Delay;
+    u8 Stage;
+} TLinkLabelVars = { "", BEFORE_PAUSE, (u8)AnimationStage::WAIT_BEFORE_SHIFTING };
 
 bool TLinkLabel::ProcessMessage(TMessage* m) {
     switch (m->Event) {
@@ -11,7 +24,7 @@ bool TLinkLabel::ProcessMessage(TMessage* m) {
                 switch (m->p1) {
                     case (u32)KeyCodes::ENT: {
                         TRouter::setTask({ false, URL, NULL });
-                        break;
+                        return true;
                     }
                 }
             }
@@ -20,7 +33,7 @@ bool TLinkLabel::ProcessMessage(TMessage* m) {
             doShift();
             break;
     }
-    return true;
+    return false;
 }
 
 void TLinkLabel::doShift(void) {
@@ -30,29 +43,47 @@ void TLinkLabel::doShift(void) {
         ≈сли в фокусе, и достиг последненг символа, то пауза,
         после паузы быстрый сдвиг вправо до первой буквы, пауза,
         медленный сдвиг влево.*/
-        TLinkLabelVars.shifted = SrcCaption.substr(Shift);
-        TextSize = TMCUFonts::getTextSizes(Caption, Font);
-        if (TextSize.width > ElementRect.Width) {
-            Shift++;
-            Caption = TLinkLabelVars.shifted;
-            TLinkLabelVars.ReturnPause = RETURN_PAUSE;
-        }
-        else {
-            if (TLinkLabelVars.ReturnPause) {
-                TLinkLabelVars.ReturnPause--;
-                return;
-            }
-            if (Shift != 0) {
-                Shift = 0;
-                Caption = SrcCaption;
-            }
+        switch (TLinkLabelVars.Stage) {
+            case (u8)AnimationStage::WAIT_BEFORE_SHIFTING:
+                (TLinkLabelVars.Delay)
+                    ? (TLinkLabelVars.Delay--)
+                    : (TLinkLabelVars.Delay = 0,
+                        TLinkLabelVars.Stage = (u8)AnimationStage::SHIFTING);
+            break;
+            case (u8)AnimationStage::SHIFTING:
+                (TLinkLabelVars.Delay)
+                    ? (TLinkLabelVars.Delay--)
+                    : (TLinkLabelVars.Delay = SHIFT_DELAY);
+                TLinkLabelVars.shifted = SrcCaption.substr(Shift);
+                TextSize = TMCUFonts::getTextSizes(Caption, Font);
+                if (TextSize.width > ElementRect.Width) {
+                    Shift++;
+                    Caption = TLinkLabelVars.shifted;
+                }
+                else {
+                    if (Shift != 0) {
+                        TLinkLabelVars.Delay = AFTER_PAUSE;
+                        TLinkLabelVars.Stage = (u8)AnimationStage::WAIT_AFTER_SHIFTING;
+                    }
+                }
+            break;
+            case (u8)AnimationStage::WAIT_AFTER_SHIFTING:
+                (TLinkLabelVars.Delay)
+                    ? (TLinkLabelVars.Delay--)
+                    : (TLinkLabelVars.Delay = BEFORE_PAUSE,
+                        TLinkLabelVars.Stage = (u8)AnimationStage::WAIT_BEFORE_SHIFTING,
+                        Caption = SrcCaption,
+                        Shift = 0);
+            break;
+
         }
     }
     else {
         if (Caption != SrcCaption) {
             setCaption(SrcCaption);
             Shift = 0;
-            TLinkLabelVars.ReturnPause = RETURN_PAUSE;
+            TLinkLabelVars.Delay = BEFORE_PAUSE;
+            TLinkLabelVars.Stage = (u8)AnimationStage::WAIT_BEFORE_SHIFTING;
         }
     }
 }
@@ -61,7 +92,7 @@ TLinkLabel::TLinkLabel(std::string caption, std::string url, TLabelInitStructure
     : TLabel(init)
     , URL(url)
     , SrcCaption(caption)
-    , Shift(0) {
+    , Shift(0){
     Caption = caption;
 }
 

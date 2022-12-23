@@ -19,7 +19,6 @@ class TComponentsContainer : public TVisualObject
     ~TComponentsContainer();
     const u16 ItemsCount() const;
     std::vector<TVisualObject*> getFocusedElements();
-  protected:
     std::vector <TVisualObject*> List;
 };
 

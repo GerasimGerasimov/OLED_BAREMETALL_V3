@@ -3,18 +3,15 @@
 #include <functional>
 
 void TPageMainMenu::view() {
-    MainMenu->view();
+    Container->view();
 };
-
-void TPageMainMenu::clear() {
-}
 
 bool TPageMainMenu::ProcessMessage(TMessage* m) {
     switch (m->Event) {
         case (u32)EventSrc::KEYBOARD: {
             switch (m->p1) {
             case (u32)KeyCodes::ESC:
-                TRouter::setTask({ false, "Home", NULL });
+                TRouter::setTask({ false, "Home", nullptr });
                 break;
             }
         }
@@ -28,24 +25,28 @@ bool TPageMainMenu::ProcessMessage(TMessage* m) {
 
 TPageMainMenu::TPageMainMenu(std::string Name)
     :TPage(Name) {
+    TVerticalContainerProps pLabelsProps = { true };
     TLabelInitStructure LabelInit;
     LabelInit.style = LabelsStyle::WIDTH_DINAMIC;
     LabelInit.Rect = { 10, 10, 10, 10 };
     AddList({
-        MainMenu = new TComponentListVertical({
+        Container = new TVerticalContainer(pLabelsProps, {
             new TLinkLabel("Основные параметры", "Home",LabelInit),
-            new TLinkLabel("Предупреждения", "Home", LabelInit),
-            new TLinkLabel("Аварии", "Home", LabelInit),
-            new TLinkLabel("Основные уставки работы", "Home", LabelInit),
-            new TLinkLabel("Уставки защит", "Home", LabelInit),
-            new TLinkLabel("Уставки режима очистки", "Home", LabelInit),
-            new TLinkLabel("Уставки ручного режима", "Home", LabelInit),
-            new TLinkLabel("Уставки ВАХ", "Home", LabelInit),
-            new TLinkLabel("Данные прямой ВАХ", "Home", LabelInit),
-            new TLinkLabel("Данные обратной ВАХ", "Home", LabelInit),
-            new TLinkLabel("Уставки интерфейсов", "Home", LabelInit),
-            new TLinkLabel("Данные драйвера", "Home", LabelInit),
-            new TLinkLabel("Настройки панели", "Home", LabelInit)
+            new TLinkLabel("Статус работы", "OperateStatus", LabelInit),
+            new TLinkLabel("Аварии", "Alarms", LabelInit),
+            new TLinkLabel("Предупреждения", "Warnings", LabelInit),
+            new TLinkLabel("Основные уставки", "BasicSettings", LabelInit),
+            new TLinkLabel("защиты. Основные уставки", "BasicProtectionsSettings", LabelInit),
+            new TLinkLabel("Очистка. Уставки", "CleanSettings", LabelInit),
+            
+            //new TLinkLabel("Уставки защит", "Home", LabelInit),
+            //new TLinkLabel("Уставки ручного режима", "Home", LabelInit),
+            //new TLinkLabel("Уставки ВАХ", "Home", LabelInit),
+            //new TLinkLabel("Данные прямой ВАХ", "Home", LabelInit),
+            //new TLinkLabel("Данные обратной ВАХ", "Home", LabelInit),
+            //new TLinkLabel("Уставки интерфейсов", "Home", LabelInit),
+            //new TLinkLabel("Данные драйвера", "Home", LabelInit),
+            //new TLinkLabel("Настройки панели", "Home", LabelInit)
            })
     });
 };

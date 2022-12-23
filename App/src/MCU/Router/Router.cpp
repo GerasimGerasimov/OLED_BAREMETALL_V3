@@ -1,9 +1,14 @@
 #include "Router.h"
 #include "PageMainMenu.h"
-//#include "PageCounters.h"
+#include "PageAlarms.h"
 #include "PageEditValue.h"
 #include "PageHome.h"
 #include "PageHelp.h"
+#include "PageWarnings.h"
+#include "PageOperateStatus.h"
+#include "PageBasicSettings.h"
+#include "PageBasicProtectionsSettings.h"
+#include "PageCleanSettings.h"
 
 /*TODO В роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
 TPage* TRouter::Page = nullptr;
@@ -17,8 +22,13 @@ void TRouter::Init(void) {
     Pages["Home"] = new TPageHome("Home");
     Pages["Help"] = new TPageHelp("Help");
     Pages["MainMenu"] = new TPageMainMenu("MainMenu");
-    //Pages["Counters"] = new TPageCounters("Counters");
+    Pages["Alarms"] = new TPageAlarms("Alarms");
+    Pages["Warnings"] = new TPageWarnings("Warnings");
+    Pages["BasicSettings"] = new TPageBasicSettings("BasicSettings");
     Pages["EditValue"] = new TPageEditValue("EditValue");
+    Pages["OperateStatus"] = new TPageOperateStatus("OperateStatus");
+    Pages["BasicProtectionsSettings"] = new TPageBasicProtectionsSettings("BasicProtectionsSettings");
+    Pages["CleanSettings"] = new TPageCleanSettings("CleanSettings");
     setInitPage();
 }
 
