@@ -20,14 +20,15 @@ int main(void) {
   Init();
   LED_WRN_ON;
   
-  ModbusClientInit(); //слейв для проверки
-  __enable_irq(); 
+
   TDisplayDriver::CleanScreen();
   TGrahics::init();
-  TGrahics::outText("Загрузка...", 30, 20, 1, "MSSansSerifBold14");
+  TGrahics::outText("Загрузка...", 0, 0, 1, "MSSansSerifBold14");
   TDisplayDriver::out();
   
   ModbusMasterInit(); //мастер  
+  ModbusClientInit(); //слейв для проверки
+  __enable_irq();
   
   OSResources::init();
   App::init();

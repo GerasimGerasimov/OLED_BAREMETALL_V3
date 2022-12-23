@@ -10,12 +10,14 @@
 
 #include "bootloader.h"
                          
-const char * IDtext = "Bootloader v1.1.0 23.12.2022 www.intmash.ru";
+const char * IDtext = "Bootloader v1.1.1 23.12.2022 www.intmash.ru";
 
 int main(void) {
   
   GPIO_INIT_Configuration();
-  if (INIT_IST) {
+  for(u32 i=0x000100;i>0;i--); //
+  INIT_ON;
+  if (INIT_IST != 0) {
     LED5_OFF;
     if (isBootLoaderMustBeStart() != true) {
       
@@ -23,13 +25,11 @@ int main(void) {
         jumpToApplication();
       }
     }
-  } else {//0-замкнут init
-    LED5_ON;
   }
   
   IDinit(1, (char *) IDtext);
   Init();
-
+  LED5_ON;
   LED_WRN_OFF; 
   LED_RUN_OFF;
   LED_LINK_OFF;

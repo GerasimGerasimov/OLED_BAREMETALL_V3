@@ -12,7 +12,7 @@ typedef struct ItemLimits {
 
 struct TInternalResources {
   public:
-    static void init();
+    static bool init();
     static pItem getItemByName(char* Name);
     static TItemLimits getItemLimitsByName(char* Name);
     static std::string getID();
