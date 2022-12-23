@@ -3,6 +3,8 @@
 */*/EWARMv6/STM32F407IGT6/List
 */*/EWARMv6/settings/EFI.CPU.wsdt
 
+*.dep
+*.wsdt
 ./.svn/**
 .vscode
 .vscode/c_cpp_properties.json
