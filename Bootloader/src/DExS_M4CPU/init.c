@@ -7,6 +7,17 @@
 
 ErrorStatus HSEStartUpStatus;
 
+
+void GPIO_INIT_Configuration (void) {
+  GPIO_InitTypeDef GPIO_InitStructure;
+  RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOA, ENABLE);
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//притянут кверху
+  //порт A                       USB_P
+  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_12;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+}
 //--------------------------------------------------------------
 
 void GPIO_Configuration(void){//настройка портов ввода-вывода
@@ -24,6 +35,9 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
   
   //сначала входы, которые влияют на формат изобряжения (тип экрана)  
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//притянуты кверху
+  //порт A                       USB_P
+  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_12;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
   //порт B                       INVY
   GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_3;
   GPIO_Init(GPIOB, &GPIO_InitStructure);
@@ -49,13 +63,13 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//теперь выходы пушпульные
   GPIO_ResetBits(GPIOA, GPIO_Pin_6);//  GPIO_SetBits(GPIOA, GPIO_Pin_6); //D/#C в 1
     
-  //порт А                            LED2        DIR2         D/#C         DIR1         LED1
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_6 | GPIO_Pin_8 | GPIO_Pin_11;            
+  //порт А                            LED5        DIR2         D/#C         DIR1
+  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_6 | GPIO_Pin_8;            
   GPIO_Init(GPIOA, &GPIO_InitStructure);
   
   GPIO_ResetBits(GPIOB, GPIO_Pin_0);//GPIO_SetBits(GPIOB, GPIO_Pin_0); //ресет в 1
   //порт B                           #RES          LED_LNK       LED_RUN      LED_ALRM     LED_WRN        
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_1;//GPIO_Pin_13
+  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_1;
   GPIO_Init(GPIOB, &GPIO_InitStructure);
     //порт А                         NSS             
   GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_4;            

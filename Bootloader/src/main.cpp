@@ -10,29 +10,36 @@
 
 #include "bootloader.h"
                          
-const char * IDtext = "Bootloader v1.0.0 22.02.2021 www.intmash.ru";
+const char * IDtext = "Bootloader v1.1.0 23.12.2022 www.intmash.ru";
 
 int main(void) {
   
-  
-  if (isBootLoaderMustBeStart() != true) {
-    if ( isApplicationReadyToStart()) {
-      jumpToApplication();
+  GPIO_INIT_Configuration();
+  if (INIT_IST) {
+    LED5_OFF;
+    if (isBootLoaderMustBeStart() != true) {
+      
+      if ( isApplicationReadyToStart()) {
+        jumpToApplication();
+      }
     }
+  } else {//0-замкнут init
+    LED5_ON;
   }
   
   IDinit(1, (char *) IDtext);
   Init();
-  LED_WRN_OFF;
+
+  LED_WRN_OFF; 
   LED_RUN_OFF;
   LED_LINK_OFF;
   LED_ALARM_OFF;
-  LED2_OFF;
   
   __enable_irq(); 
 
   while (1)
   { 
+    (INIT_IST)? LED5_OFF : LED5_ON;
     ////////////////////////////////////////////////////////////////////////////    
     if (RAM_DATA.FLAGS0.bits.T1000Hz) {
       RAM_DATA.FLAGS0.bits.T1000Hz = 0;

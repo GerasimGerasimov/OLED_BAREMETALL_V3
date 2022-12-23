@@ -26,8 +26,8 @@ void App::init(void) {
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
     DevicePollManager::init(slots);
     TRouter::Init();
-    Alarms::init();
-    Warnings::init();
+    //Alarms::init();
+    //Warnings::init();
     Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
 
@@ -45,6 +45,6 @@ void App::run(void) {
         TDisplayDriver::out();
         DevicePollManager::execute();
         scanVirtualKeyCode();
-        if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
+        //if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
     }
 }
