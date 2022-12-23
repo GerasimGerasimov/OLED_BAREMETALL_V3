@@ -48,6 +48,6 @@ void App::run(void) {
         TDisplayDriver::out();
         DevicePollManager::execute();
         scanVirtualKeyCode();
-        //if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
+        if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
     }
 }
