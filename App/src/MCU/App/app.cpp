@@ -22,23 +22,15 @@ void App::init(void) {
     (TInternalResources::init())
       ? (TGrahics::outText("Resource OK", 0, 10, 1, "Verdana12"))
       : (TGrahics::outText("Bad resource", 0, 10, 1, "Verdana12"));
-      
     TDisplayDriver::out();    
-    
-    IniResources::init();
-    TGrahics::outText("IniResources", 0, 20, 1, "Verdana12");
-    TDisplayDriver::out();    
-    
+    IniResources::init();  
     IniSlotsProps::init();
-    TGrahics::outText("IniSlotsProps", 0, 30, 1, "Verdana12");
-    TDisplayDriver::out();  
-    
     std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
     DevicePollManager::init(slots);
     TRouter::Init();
-    //Alarms::init();
-    //Warnings::init();
+    Alarms::init();
+    Warnings::init();
     Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
 

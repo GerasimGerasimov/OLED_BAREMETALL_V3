@@ -1659,6 +1659,18 @@
         <group>
             <name>Pages</name>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Alarms\PageAlarms.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\BasicProtectionsSettings\PageBasicProtectionsSettings.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\BasicSettings\PageBasicSettings.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\CleanSettings\PageCleanSettings.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\EditValue\PageEditValue.cpp</name>
             </file>
             <file>
@@ -1669,6 +1681,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\MainMenu\PageMainMenu.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\OperateStatus\PageOperateStatus.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Warning\PageWarnings.cpp</name>
             </file>
         </group>
         <group>
@@ -1741,9 +1759,15 @@
             <name>StateControllers</name>
             <group>
                 <name>Alarms</name>
+                <file>
+                    <name>$PROJ_DIR$\..\MCU\StateControllers\Alarms\Alarms.cpp</name>
+                </file>
             </group>
             <group>
                 <name>Warnings</name>
+                <file>
+                    <name>$PROJ_DIR$\..\MCU\StateControllers\Warnings\Warnings.cpp</name>
+                </file>
             </group>
             <file>
                 <name>$PROJ_DIR$\..\MCU\StateControllers\StateControllers.h</name>
