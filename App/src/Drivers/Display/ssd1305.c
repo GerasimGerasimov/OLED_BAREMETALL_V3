@@ -118,8 +118,8 @@ void ssd1305_rst_first()
   write_cmd(SSD1305_CMD_SETPAGEADD_PGMODE + 0);
   write_cmd(SSD1305_CMD_SETLOWCOLADD + 0);
   LCD_DATA;
-
 }
+
 void ssd1305_rst_second()
 {
   for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
