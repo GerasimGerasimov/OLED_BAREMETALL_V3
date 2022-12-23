@@ -1,9 +1,5 @@
 #include "TComponentListVertical.h"
 
-bool TComponentListVertical::onEnter(void) {
-    return true;
-}
-
 bool TComponentListVertical::ProcessMessage(TMessage* m){//обработчик сообщений
     if (ItemsCount() == 0) return false;//список пуст
 
@@ -163,7 +159,8 @@ u16 TComponentListVertical::GetViewObjectsCount(){//кол-во объектов умещающихся 
 
 void  TComponentListVertical::Clear(){//очистит список
   TComponentsContainer::Clear();
-  FocusedLine = LastPosition = FirstPosition = 0;
+  FocusedLine = FirstPosition = 0;
+  LastPosition = 1;
 }
 
 TComponentListVertical::TComponentListVertical (std::vector <TVisualObject*> Source) {//конструктор

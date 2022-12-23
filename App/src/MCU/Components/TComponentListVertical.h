@@ -21,7 +21,6 @@ class TComponentListVertical : public TComponentsContainer
     virtual TVisualObject* getFocusedElement();//для контейнеров
     TComponentListVertical(std::vector <TVisualObject*> Source = {});//конструктор
     ~TComponentListVertical();//деструктор
-    virtual bool onEnter(void);
   private:
     u16 GetViewObjectsCount();//кол-во объектов умещающихся в высоту меню от FirstPosition до нижнего края
     void goUp(void);

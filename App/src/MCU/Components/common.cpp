@@ -4,13 +4,14 @@ TVisualObject::TVisualObject()
 	: inFocus(false)
 	, isSkipped(false)
 	, ElementRect({0,0,0,0})
-	, DataSrc(NULL) {
+	, DataSrc(nullptr) {
 };
 
 TVisualObject::TVisualObject(TVisualObjectInitStructure props)
-	: inFocus(props.focused)
-    , ElementRect(props.Rect)
-	, DataSrc(NULL) {
+  : inFocus(props.focused)
+  , isSkipped(false)
+  , ElementRect(props.Rect)
+  , DataSrc(nullptr) {
 
 }
 
@@ -21,7 +22,7 @@ const std::string TVisualObject::ComponentName() {
 TVisualObject::~TVisualObject() {};
 
 TVisualObject* TVisualObject::getFocusedElement() {
-	return NULL;
+	return nullptr;
 };
 
 void* TVisualObject::getDataSrc() {
