@@ -7,6 +7,7 @@
 #include <IniResources.h>
 #include <AppModbusSlave.h>
 #include "RAMdata.h"
+#include "NumericEdit.h"
 
 void TPageEditValue::view() {
     MainMenu->view();
@@ -15,8 +16,30 @@ void TPageEditValue::view() {
 void TPageEditValue::onOpen() {
     tag = TRouter::PageValueEditEntryData.tag;
     p = (TParameter*)IniResources::getSignalByTag(tag);
+
+    MainMenu->Clear();
+
+    TLabelInitStructure LabelInit;
+    LabelInit.style = (LabelsStyle)((u32)LabelsStyle::WIDTH_FIXED | (u32)LabelsStyle::TEXT_ALIGN_CENTER);
+    LabelInit.Rect = { 10, 10, 10, VIEW_PORT_MAX_WIDTH };
+    LabelInit.focused = false;
+
+    LabelInit.caption = "---";
+    pHeader = new THeaderLabel(LabelInit);
+
+    LabelInit.focused = true;
+    /*TODO тут надо создавать Edit-объект в зависимости от типа параметра... если это требуется*/
+    pEdit = new TNumericEdit(LabelInit);
+
     pHeader->setCaption(p->getName());
     pEdit->setCaption(TRouter::PageValueEditEntryData.value);
+
+    MainMenu->AddList({pHeader, pEdit});
+}
+
+void TPageEditValue::startToClose() {
+    MainMenu->Clear();
+    isOpen = false;
 }
 
 bool TPageEditValue::ProcessMessage(TMessage* m) {
@@ -88,20 +111,8 @@ TPageEditValue::TPageEditValue(std::string Name)
     значащее значение то все нули обнулятся
 */
     :TPage(Name)
-    , p(NULL) {
-    TLabelInitStructure LabelInit;
-    LabelInit.style = (LabelsStyle)((u32)LabelsStyle::WIDTH_FIXED | (u32)LabelsStyle::TEXT_ALIGN_CENTER);
-    LabelInit.Rect = { 10, 10, 10, VIEW_PORT_MAX_WIDTH };
-    LabelInit.focused = false;
-
-    LabelInit.caption = "---";
-    pHeader = new THeaderLabel(LabelInit);
-
-    LabelInit.focused = true;
-    pEdit = new TNumericEdit(LabelInit);
-
-    MainMenu = new TComponentListVertical({ pHeader, pEdit });
-
+    , p(nullptr) {
+      MainMenu = new TComponentListVertical();
     AddList({ MainMenu });
 };
 

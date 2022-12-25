@@ -35,7 +35,7 @@ std::string TU8BIT::getValue(const TSlotHandlerArsg& args, const char* format) {
 const std::string TU8BIT::value(const TSlotHandlerArsg& args, const char* format) {
 	u8 input = getRawValue(args);
 	float res = input * Scale;
-	return Utils::getValueAsFormatStr(res, format);
+	return Utils::getValueAsFormatStr(res, Utils::getFormat(res));
 }
 
 u8 TU8BIT::getRawValue(const TSlotHandlerArsg& args) {

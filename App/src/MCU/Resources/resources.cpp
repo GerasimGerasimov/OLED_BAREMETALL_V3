@@ -7,7 +7,7 @@
 std::vector<pItem> TInternalResources::ValidItems = std::vector<pItem>();
 pResources TInternalResources::Root = nullptr;
 
-bool TInternalResources::init() {
+void TInternalResources::init() {
   Root = (pResources) RESOURCES_DATA;
   u16 i = 0;
   while (i < Root->NumberOfItems) {
@@ -16,10 +16,9 @@ bool TInternalResources::init() {
       ValidItems.push_back(p);
     } else {
       ValidItems.clear();
-      return false;//в ресурсах есть ошибки
+      return;
     }
   }
-  return true;
 }
 
 char* TInternalResources::getRoot() {

@@ -18,12 +18,9 @@
 #include "Alarms.h"
 #include "Warnings.h"
 
-void App::init(void) {  
-    (TInternalResources::init())
-      ? (TGrahics::outText("Resource OK", 0, 10, 1, "Verdana12"))
-      : (TGrahics::outText("Bad resource", 0, 10, 1, "Verdana12"));
-    TDisplayDriver::out();    
-    IniResources::init();  
+void App::init(void) {
+    TInternalResources::init();
+    IniResources::init();
     IniSlotsProps::init();
     std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
     slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));

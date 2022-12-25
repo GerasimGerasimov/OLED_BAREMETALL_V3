@@ -1,25 +1,25 @@
-#include "PageBasicSettings.h"
+#include "PageNetworkSettings.h"
 #include "Router.h"
 #include "TagLine.h"
 #include <IniResources.h>
 #include <FixedHeader.h>
 
-void TPageBasicSettings::view() {
+void TPageNetworkSettings::view() {
     Container->view();
 };
 
-void TPageBasicSettings::onOpen() {
+void TPageNetworkSettings::onOpen() {
     fillPageContainer();
     SubscriberID = HandlerSubscribers::set("U1/FLASH/", [this](TSlotHandlerArsg args) { SlotUpdate(args); });
 }
 
-void TPageBasicSettings::startToClose() {
+void TPageNetworkSettings::startToClose() {
     HandlerSubscribers::remove("U1/FLASH/", SubscriberID);
     TagList->Clear();
     isOpen = false;
 }
 
-bool TPageBasicSettings::ProcessMessage(TMessage* m) {
+bool TPageNetworkSettings::ProcessMessage(TMessage* m) {
     TVisualObject* e = { nullptr };
     switch (m->Event) {
         case (u32)EventSrc::KEYBOARD: {
@@ -52,7 +52,7 @@ bool TPageBasicSettings::ProcessMessage(TMessage* m) {
     return false;
 };
 
-TVisualObject* TPageBasicSettings::getSignalOfFocusedChild() {
+TVisualObject* TPageNetworkSettings::getSignalOfFocusedChild() {
     for (auto& element : Container->List) {
         TVisualObject* e = element->getFocusedElement();
         TParameter* p = (e) ? (TParameter*) e->getDataSrc() : nullptr;
@@ -61,42 +61,44 @@ TVisualObject* TPageBasicSettings::getSignalOfFocusedChild() {
     return nullptr;
 }
 
-void TPageBasicSettings::fillPageContainer(void) {
+/*
+; уставки связи - этот уарт выведен на разъем
+p501=RS485_1_BPS/Baudrate/TPrmList/xF001/r2000.H/BPS//x01#9600/x02#19200/x03#57600/x04#115200/x04/
+p502=RS485_1_DVA/Address/TByte/xF000/r2000.L/ /1/1//0/x01/
+p503=RS485_1_PRTY/Parity/TPrmList/xF003/r2001.H/ //x00#None/x01#Odd/x02#Even/x00/
+p504=RS485_1_STOP/Stop bits/TPrmList/xF002/r2001.L/ //x00#1bit/x01#0.5bit/x02#2bit/x03#1.5bit/x00/
+
+p505=RS485_2_BPS/Baudrate/TPrmList/xF005/r2002.H/BPS//x01#9600/x02#19200/x03#57600/x04#115200/x04/
+p506=RS485_2_DVA/Address/TByte/xF004/r2002.L/ /1/1//0/x01/
+p507=RS485_2_PRTY/Parity/TPrmList/xF007/r2003.H/ //x00#None/x01#Odd/x02#Even/x00/
+p508=RS485_2_STOP/Stop bits/TPrmList/xF006/r2003.L/ //x00#1bit/x01#0.5bit/x02#2bit/x03#1.5bit/x00/
+*/
+void TPageNetworkSettings::fillPageContainer(void) {
     TagList->Clear();
     TLabelInitStructure LabelInit;
     LabelInit.style = LabelsStyle::WIDTH_DINAMIC;
     LabelInit.Rect = { 10, 10, 10, 10 };
     LabelInit.focused = false;
     TagList->AddList({
-        new TTagLine("Uref", "U1/FLASH/Uref/", LabelInit),
-        new TTagLine("Iref", "U1/FLASH/Iref/", LabelInit),
-        new TTagLine("dOutRun", "U1/FLASH/dOutRun/", LabelInit),
-        new TTagLine("dOutStop", "U1/FLASH/dOutStop/", LabelInit),
-        new TTagLine("dOutASprk", "U1/FLASH/dOutAfterSpark/", LabelInit),
-        new TTagLine("tHldASprk", "U1/FLASH/tHoldAfterSpark/", LabelInit),
-        new TTagLine("KsprkLen", "U1/FLASH/KsparkLength/", LabelInit),
-        new TTagLine("KsprkFrq", "U1/FLASH/KsparkFrq/", LabelInit),
-        new TTagLine("Ku", "U1/FLASH/Ku/", LabelInit),
-        new TTagLine("Ki", "U1/FLASH/Ki/", LabelInit),
-        new TTagLine("tShPer1", "U1/FLASH/tShakerPeriod1/", LabelInit),
-        new TTagLine("tShPause1", "U1/FLASH/tShakerPulse1/", LabelInit),
-        new TTagLine("tShPer2", "U1/FLASH/tShakerPeriod2/", LabelInit),
-        new TTagLine("AMin", "U1/FLASH/AlphaMin/", LabelInit),
-        new TTagLine("AMax", "U1/FLASH/AlphaMax/", LabelInit),
-        new TTagLine("IinNominal", "U1/FLASH/IinNominal/", LabelInit),
-        new TTagLine("UoutNominal", "U1/FLASH/UoutNominal/", LabelInit),
-        new TTagLine("IoutNominal", "U1/FLASH/IoutNominal/", LabelInit),
+        new TTagLine("#1BPS", "U1/FLASH/RS485_1_BPS/", LabelInit),
+        new TTagLine("#1ADR", "U1/FLASH/RS485_1_DVA/", LabelInit),
+        new TTagLine("#1PRT", "U1/FLASH/RS485_1_PRTY/", LabelInit),
+        new TTagLine("#1STP", "U1/FLASH/RS485_1_STOP/", LabelInit),
+        new TTagLine("#2BPS", "U1/FLASH/RS485_2_BPS/", LabelInit),
+        new TTagLine("#2ADR", "U1/FLASH/RS485_2_DVA/", LabelInit),
+        new TTagLine("#2PRT", "U1/FLASH/RS485_2_PRTY/", LabelInit),
+        new TTagLine("#2STP", "U1/FLASH/RS485_2_STOP/", LabelInit),
     });
 }
 
-TPageBasicSettings::TPageBasicSettings(std::string Name)
+TPageNetworkSettings::TPageNetworkSettings(std::string Name)
     :TPage(Name) {
     TVerticalContainerProps props = { false };
     Container = new TVerticalContainer(props, {});
 
     TLabelInitStructure LabelInit;
     LabelInit.pOwner = Container;
-    LabelInit.caption = "Основные уставки";
+    LabelInit.caption = "Интерфейсы EFi";
     TFixedHeader* pHeader = new TFixedHeader(LabelInit);
     Container->Add(pHeader);
 
@@ -110,7 +112,7 @@ TPageBasicSettings::TPageBasicSettings(std::string Name)
     AddList({ Container });
 };
 
-void TPageBasicSettings::SlotUpdate(TSlotHandlerArsg args) {
+void TPageNetworkSettings::SlotUpdate(TSlotHandlerArsg args) {
     for (auto& e : TagList->List) {
         TTagLine* tag = (TTagLine*)e;
         TParameter* p = (TParameter*)tag->getDataSrc();
@@ -119,7 +121,7 @@ void TPageBasicSettings::SlotUpdate(TSlotHandlerArsg args) {
     Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
 }
 
-TPageBasicSettings::~TPageBasicSettings() {
+TPageNetworkSettings::~TPageNetworkSettings() {
     TagList->Clear();
     Container->Clear();
     delete Container;

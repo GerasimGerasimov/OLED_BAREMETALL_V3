@@ -128,9 +128,9 @@ u16 TWrappedText::GetViewObjectsCount() {//кол-во строк умещающихся в высоту мен
 TWrappedText::TWrappedText(TLabelInitStructure init)
     : TVisualObject({init.focused, init.Rect })
     , Font((init.font != "") ? init.font : "Verdana12")
-    //, FocusLine(0)
     , FirstPosition(0)//первая отображаемая строка начинаю выводить с неё
     , LastPosition(0) //последняя отображаемая строка
+    , List({})
 {
 }
 

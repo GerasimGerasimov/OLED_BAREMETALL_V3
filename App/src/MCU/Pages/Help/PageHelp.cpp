@@ -7,11 +7,29 @@ void TPageHelp::view() {
 };
 
 void TPageHelp::onOpen() {
+    TLabelInitStructure LabelInit;
+    LabelInit.style = (LabelsStyle)((u32)LabelsStyle::WIDTH_FIXED | (u32)LabelsStyle::TEXT_ALIGN_CENTER);
+    LabelInit.Rect = { 10, 10, 10, VIEW_PORT_MAX_WIDTH };
+    LabelInit.focused = true;
+
+    LabelInit.caption = "---";
+    pHeader = new THeaderLabel(LabelInit);
+    pText = new TWrappedText(LabelInit);
+
     TParameter* p = (TParameter*)props;
     pHeader->setCaption(p->getName());
     pText->setText(p->getComment());
+
+    pText->ElementRect.Height = MainMenu->ElementRect.Height - pHeader->getHeight();
+
+    MainMenu->Clear();
+    MainMenu->AddList({ pHeader, pText });
 }
 
+void TPageHelp::startToClose() {
+    MainMenu->Clear();
+    isOpen = false;
+}
 bool TPageHelp::ProcessMessage(TMessage* m) {
     switch (m->Event) {
         case (u32)EventSrc::KEYBOARD: {
@@ -31,20 +49,7 @@ bool TPageHelp::ProcessMessage(TMessage* m) {
 
 TPageHelp::TPageHelp(std::string Name)
     :TPage(Name) {
-    TLabelInitStructure LabelInit;
-    LabelInit.style = (LabelsStyle)((u32) LabelsStyle::WIDTH_FIXED | (u32) LabelsStyle::TEXT_ALIGN_CENTER);
-    LabelInit.Rect = { 10, 10, 10, VIEW_PORT_MAX_WIDTH };
-    LabelInit.focused = true;
-
-    LabelInit.caption = "---";
-    pHeader = new THeaderLabel(LabelInit);
-
-    pText = new TWrappedText(LabelInit);
-
-    MainMenu = new TComponentListVertical({ pHeader, pText });
-
-    pText->ElementRect.Height = MainMenu->ElementRect.Height - pHeader->getHeight();
-
+    MainMenu = new TComponentListVertical();
     AddList({ MainMenu });
 };
 

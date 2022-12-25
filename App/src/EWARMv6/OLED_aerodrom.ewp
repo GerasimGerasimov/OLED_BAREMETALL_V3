@@ -397,6 +397,8 @@
                     <state>$PROJ_DIR$\..\MCU\Pages\BasicSettings</state>
                     <state>$PROJ_DIR$\..\MCU\Pages\BasicProtectionsSettings</state>
                     <state>$PROJ_DIR$\..\MCU\Pages\CleanSettings</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\Sensors</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\NetworkSettings</state>
                     <state>$PROJ_DIR$\..\MCU\Resources</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers\Alarms</state>
@@ -1374,7 +1376,13 @@
                 <name>$PROJ_DIR$\..\MCU\Pages\MainMenu\PageMainMenu.cpp</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\NetworkSettings\PageNetworkSettings.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\OperateStatus\PageOperateStatus.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Sensors\PageSensors.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\Warning\PageWarnings.cpp</name>
@@ -1408,6 +1416,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Parameters\TFloat.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Parameters\TPrmList.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Parameters\TS16bit.cpp</name>

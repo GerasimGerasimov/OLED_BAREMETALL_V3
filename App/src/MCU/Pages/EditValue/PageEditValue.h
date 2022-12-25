@@ -16,6 +16,7 @@ public:
     virtual void view();
     virtual const u16 getHeight(void) { return 0; };
     void onOpen();
+    void startToClose();
     bool ProcessMessage(TMessage* m);
     void sendValue(void);
     TPageEditValue(std::string Name);
