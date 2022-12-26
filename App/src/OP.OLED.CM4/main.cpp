@@ -16,6 +16,8 @@
 #include "LedAlarms.h"
 #include "LedWarnings.h"
 #include "LEDs.h"
+#include "internal_din.h"
+#include "internal_dout.h"
 
 int main(void) {  
   BootLoadCmdFillZero();  
@@ -33,6 +35,8 @@ int main(void) {
   LinkLED::init();
   LedWarnings::init();
   LedAlarms::init();
+  InternalDIN::init();
+  InternalDOUT::init();
   
   OSResources::init();
   App::init(); 

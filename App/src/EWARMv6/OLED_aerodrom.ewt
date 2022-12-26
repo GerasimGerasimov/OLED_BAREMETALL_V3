@@ -1435,6 +1435,12 @@
             </file>
         </group>
         <group>
+            <name>DIN</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\DIN\internal_din.cpp</name>
+            </file>
+        </group>
+        <group>
             <name>Display</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Display\display_dc.c</name>
@@ -1444,6 +1450,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Display\ssd1305.c</name>
+            </file>
+        </group>
+        <group>
+            <name>DOUT</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\DOUT\internal_dout.cpp</name>
             </file>
         </group>
         <group>

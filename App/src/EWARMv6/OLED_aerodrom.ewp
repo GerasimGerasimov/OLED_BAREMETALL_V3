@@ -370,6 +370,8 @@
                     <state>$PROJ_DIR$\..\Drivers\Leds\Alarm</state>
                     <state>$PROJ_DIR$\..\Drivers\Leds\Warning</state>
                     <state>$PROJ_DIR$\..\Drivers\Resources</state>
+                    <state>$PROJ_DIR$\..\Drivers\DIN</state>
+                    <state>$PROJ_DIR$\..\Drivers\DOUT</state>
                     <state>$PROJ_DIR$\..\MCU\IDrivers</state>
                     <state>$PROJ_DIR$\..\MCU\GraphicsFunctions</state>
                     <state>$PROJ_DIR$\..\MCU\Fonts</state>
@@ -1128,6 +1130,12 @@
             </file>
         </group>
         <group>
+            <name>DIN</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\DIN\internal_din.cpp</name>
+            </file>
+        </group>
+        <group>
             <name>Display</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Display\display_dc.c</name>
@@ -1137,6 +1145,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Display\ssd1305.c</name>
+            </file>
+        </group>
+        <group>
+            <name>DOUT</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\DOUT\internal_dout.cpp</name>
             </file>
         </group>
         <group>
