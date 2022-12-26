@@ -18,6 +18,8 @@
 #include "Alarms.h"
 #include "Warnings.h"
 
+#include "internal_din.h"
+
 void App::init(void) {
     TInternalResources::init();
     IniResources::init();
@@ -46,5 +48,6 @@ void App::run(void) {
         DevicePollManager::execute();
         scanVirtualKeyCode();
         if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
+        InternalDIN::update();
     }
 }

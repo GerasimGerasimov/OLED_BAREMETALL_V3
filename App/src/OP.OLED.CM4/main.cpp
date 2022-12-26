@@ -42,5 +42,3 @@ int main(void) {
   App::init(); 
   App::run();
 }
-
-/******************* (C) COPYRIGHT 2010 STMicroelectronics *****END OF FILE****/

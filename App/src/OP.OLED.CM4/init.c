@@ -30,6 +30,10 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
   //порт D                       INVX
   GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_2;
   GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;//входы от платы ASM OP.OLED.ADAPTOR REV3.0.0
+  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_10;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);  
   
   //далее все ноги без притяжки
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
@@ -60,6 +64,10 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
     //порт А                         NSS             
   GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_4;            
   GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 
+  //порт С, вЫходы от платы ASM OP.OLED.ADAPTOR REV3.0.0                 
+  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_8 | GPIO_Pin_9;            
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
 
 //------------------------------------------------------------------------------------------------------------   
   //Инициализируем ноги, связанные с переферией:
