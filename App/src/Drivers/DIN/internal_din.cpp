@@ -10,7 +10,7 @@
 #define DIN_5_ST   GPIOC->IDR & GPIO_Pin_6
 
 void InternalDIN::init(void){
-
+    RAM_DATA.DIO &= 0xFF00;//младший байт для входов
 }
 
 void InternalDIN::update(void){

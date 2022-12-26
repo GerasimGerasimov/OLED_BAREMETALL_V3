@@ -65,7 +65,8 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
   GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_4;            
   GPIO_Init(GPIOA, &GPIO_InitStructure);
  
-  //порт —, вџходы от платы ASM OP.OLED.ADAPTOR REV3.0.0                 
+  //порт —, вџходы от платы ASM OP.OLED.ADAPTOR REV3.0.0     
+  GPIO_ResetBits(GPIOC, GPIO_Pin_8 | GPIO_Pin_9); //ресет в 0
   GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_8 | GPIO_Pin_9;            
   GPIO_Init(GPIOC, &GPIO_InitStructure);
 

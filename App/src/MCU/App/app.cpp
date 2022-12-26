@@ -19,6 +19,7 @@
 #include "Warnings.h"
 
 #include "internal_din.h"
+#include "internal_dout.h"
 
 void App::init(void) {
     TInternalResources::init();
@@ -49,5 +50,6 @@ void App::run(void) {
         scanVirtualKeyCode();
         if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
         InternalDIN::update();
+        InternalDOUT::update();
     }
 }
