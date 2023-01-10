@@ -3,6 +3,12 @@
 #include <IniResources.h>
 #include <DevicePollManager.h>
 
+static u16 getTimeOutBySection(const std::string& section) {
+    return (section == "RAM")
+        ? 500
+        : 2000;
+}
+
 bool ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandler callback) {
     TParameter* p = (TParameter*)IniResources::getSignalByTag(tag);
     std::string ValueHex = p->getValueHex(value);//получил значение в хексах и сразу длину (так как строка)
@@ -11,12 +17,12 @@ bool ModbusSlave::setValue(std::string& tag, std::string& value, TSlotDataHandle
     /*по Tag надо узнаю на какой Адрес отправлять
         "DEVICES":"U1/", есть список устройств, надо сопостоавить из тега U1
     "U1":"DEV1/COM1/1 а из U1 найти адрес (он за COM1/)*/
-    const u16 DevAddr = IniResources::getDevNetWorkAddrByTag(tag);
+    const TValueSearchStruct Info = IniResources::spliceTagInfo(tag);
+    const u16 DevAddr = IniResources::getDevNetWorkAddrByDevPos(Info.device);  
     const std::string DevAddrHex = ModbusSlave::NetWorkAddrToHex(DevAddr);
-    const std::string DevPos = IniResources::getDevicePositionByTag(tag);
     const std::string Section = "CmdWrite";
-    Slot* slot = DevicePollManager::getSlotByDevPosAndSection(DevPos, Section);
-    slot->TimeOut = 2000;/*TODO сделать зависимой от типа памяти RAM = 500ms, CD/FLASH = 2000...3000ms*/
+    Slot* slot = DevicePollManager::getSlotByDevPosAndSection(Info.device, Section);
+    slot->TimeOut = getTimeOutBySection(Info.section);
     slot->cmdLen = ModbusSlave::CreateWriteCmd(slot->OutBuf, { Cmd, DevAddrHex, RegHexAddr, ValueHex });
     return (slot->cmdLen)
         ? (slot->onData = callback,

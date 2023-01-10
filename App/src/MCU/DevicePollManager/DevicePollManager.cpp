@@ -7,7 +7,7 @@
 //static U1RAMSlot SlotU1RAM;
 
 std::vector <Slot> DevicePollManager::Slots = {};
-Slot* DevicePollManager::slot = NULL;
+Slot* DevicePollManager::slot = nullptr;
 u16 DevicePollManager::idx = 0;
 u16 DevicePollManager::Status = (u16)DevicePollManagerStatus::TOGGLE_SLOT;
 u8 DevicePollManager::Reply[256] = {};
@@ -24,10 +24,6 @@ void DevicePollManager::execute(void) {
 	case DevicePollManagerStatus::SEND_REQUEST:
 		ComMasterDriver::send({ (u8*)&slot->OutBuf, slot->cmdLen, slot->TimeOut, {checkRespond} });
 		Status = (u16)DevicePollManagerStatus::WAIT_RESPOND;
-		/*TODO после записи не отрабатывает тайм-аут, и поэтому ответ после записи флэша
-		приходит вместе с данными уже другого слота (в данном случае часто опрашиваемого RAM)
-		визаульно это после записи значения становятся не валидными, ну а потом всё восстанавливается
-		а так, запись наконец-то удалась*/
 		break;
 	case DevicePollManagerStatus::WAIT_RESPOND:
 		break;
@@ -68,7 +64,7 @@ Slot* DevicePollManager::getNextSlot(void) {
 		return s;
 	}
 	else {
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -86,5 +82,5 @@ Slot* DevicePollManager::getSlotByDevPosAndSection(const std::string& device, co
 			return &s;
 		}
 	}
-	return NULL;
+	return nullptr;
 }

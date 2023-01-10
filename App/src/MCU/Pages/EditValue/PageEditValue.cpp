@@ -39,6 +39,7 @@ void TPageEditValue::onOpen() {
 
 void TPageEditValue::startToClose() {
     MainMenu->Clear();
+    //TagList->Clear();
     isOpen = false;
 }
 
@@ -112,7 +113,7 @@ TPageEditValue::TPageEditValue(std::string Name)
 */
     :TPage(Name)
     , p(nullptr) {
-      MainMenu = new TComponentListVertical();
+    MainMenu = new TComponentListVertical();
     AddList({ MainMenu });
 };
 

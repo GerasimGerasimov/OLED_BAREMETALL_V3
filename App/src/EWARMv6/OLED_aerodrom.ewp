@@ -405,6 +405,7 @@
                     <state>$PROJ_DIR$\..\MCU\StateControllers</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers\Alarms</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers\Warnings</state>
+                    <state>$PROJ_DIR$\..\MCU\CmdSender</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1238,6 +1239,12 @@
             <name>App</name>
             <file>
                 <name>$PROJ_DIR$\..\MCU\App\app.cpp</name>
+            </file>
+        </group>
+        <group>
+            <name>CmdSender</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\CmdSender\CmdSender.cpp</name>
             </file>
         </group>
         <group>

@@ -10,6 +10,7 @@ class Alarms {
 		static void init(void);
 		static bool isTagAlarmed(TTrackedBit& element);
 		static bool isAlarmOnce(void);
+		static bool isAlarm(void);
 		static std::map < std::string, TTrackedBit > Tags;
 	private:
 		static void uptate(const std::string PosMem, TSlotHandlerArsg& args);

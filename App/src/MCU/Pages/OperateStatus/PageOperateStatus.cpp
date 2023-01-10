@@ -2,6 +2,8 @@
 #include "Router.h"
 #include <IniResources.h>
 #include "TagLine.h"
+#include <map>
+#include <AppModbusSlave.h>
 
 void TPageOperateStatus::view() {
     Container->view();
@@ -31,6 +33,13 @@ bool TPageOperateStatus::ProcessMessage(TMessage* m) {
                         TRouter::setTask({ false, "Help", p });
                     }
                     break;
+                case (u32)KeyCodes::ENT:
+                    e = getSignalOfFocusedChild();
+                    if (e) {
+                        ISignal* p = IniResources::getSignalByTag(((TTagLine*)(e))->Tag);
+                        sendModeCmd(p);
+                    }
+                    break;
             }
         }
     }
@@ -40,6 +49,47 @@ bool TPageOperateStatus::ProcessMessage(TMessage* m) {
     }
     return false;
 };
+
+static const std::string CMD_NORMAL = "5310";
+static const std::string CMD_CLEAN = "5311";
+static const std::string CMD_VAC = "5312";
+static const std::string CMD_TEST = "5313";
+
+static const std::map <std::string, std::string> CmdBySignalName = {
+    {"Normal", CMD_NORMAL},
+    {"Clean", CMD_CLEAN},
+    {"VAC", CMD_VAC},
+    {"Manual", CMD_TEST}
+};
+
+void TPageOperateStatus::sendModeCmd(ISignal* signal) {
+    std::string name = signal->getName();
+    if (CmdBySignalName.count(name)) {
+        sendCmd((std::string&)CmdBySignalName.at(name));
+    }
+}
+
+void TPageOperateStatus::sendCmd(std::string& code) {
+    std::string cmd = "U1/RAM/CMD/";
+    TryCount = 3;
+    cmdSendInProcess = true;
+    ModbusSlave::setValue(cmd, code, [this](Slot& slot, u8* reply) { SlotUpdate(slot, reply); });
+}
+
+void TPageOperateStatus::SlotUpdate(Slot& slot, u8* reply) {
+    if (slot.RespondLenghtOrErrorCode) {
+        slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
+        cmdSendInProcess = false;
+    }
+    else {
+        if (TryCount)
+            TryCount--;
+        else {
+            slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
+            cmdSendInProcess = false;
+        }
+    }
+}
 
 TVisualObject* TPageOperateStatus::getSignalOfFocusedChild() {
     for (auto& element : List) {
@@ -52,7 +102,9 @@ TVisualObject* TPageOperateStatus::getSignalOfFocusedChild() {
 
 TPageOperateStatus::TPageOperateStatus(std::string Name)
     :TPage(Name)
-    , SubscriberID(0) {
+    , SubscriberID(0)
+    , cmdSendInProcess(false)
+    , TryCount(3) {
     TVerticalContainerProps props = { true };
     TLabelInitStructure LabelInit;
     LabelInit.style = LabelsStyle::WIDTH_DINAMIC;
@@ -64,8 +116,8 @@ TPageOperateStatus::TPageOperateStatus(std::string Name)
         new TTagLine("Run", "U1/RAM/Run/", LabelInit),
         new TTagLine("Normal", "U1/RAM/Normal/", LabelInit),
         new TTagLine("Clean", "U1/RAM/Clean/", LabelInit),
+        new TTagLine("VAC", "U1/RAM/VAC/", LabelInit),
         new TTagLine("Manual", "U1/RAM/Manual/", LabelInit),
-        new TTagLine("CMD", "U1/RAM/CMD/", LabelInit),
         });
     
     Container->FocusedLine = 0;

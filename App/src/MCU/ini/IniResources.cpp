@@ -68,6 +68,20 @@ TValueSearchStruct IniResources::TagToValueSearchStruct(const std::string& tag) 
 		return { "", "", "" };
 }
 
+TValueSearchStruct IniResources::spliceTagInfo(const std::string& tag) {
+	std::vector<std::string> v = IniParser::getListOfDelimitedString(
+		(const char)'/',
+		(char*)tag.c_str(),
+		tag.size());
+	TValueSearchStruct res;
+	if (v.size() == 3) {
+		return { v[0], v[1], v[2] };
+	}
+	else {
+		return {"", "", ""};
+	}
+}
+
 std::string IniResources::getDevicePositionByTag(const std::string& tag) {
 	std::vector<std::string> v = IniParser::getListOfDelimitedString(
 		(const char)'/',
@@ -97,6 +111,18 @@ u16 IniResources::getDevNetWorkAddrByTag(const std::string& tag) {
 	else
 		return 0;;
 }
+
+u16 IniResources::getDevNetWorkAddrByDevPos(const std::string& DevPosition) {
+	/*TODO тут явно плохое место! два взаимозависимых модуля
+	эти модули нельзя переставить местами при инициализации!
+	сначала инициализация IniResources
+	потом я могу инициализировать IniSlotsProps
+	а тут я использую данные от обоих модулей, связываю их
+	Эту функцию надо выделить как статический класс*/
+	u16 addr = IniSlotsProps::getDevNetWorkAddr(DevPosition);
+	return addr;
+}
+
 
 /*TODO найти ключ в секции vars заданного DEV и выдать его значние*/
 std::string IniResources::getScaleValueByKey(const std::string& key, const std::string& dev) {

@@ -1546,6 +1546,12 @@
             </file>
         </group>
         <group>
+            <name>CmdSender</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\CmdSender\CmdSender.cpp</name>
+            </file>
+        </group>
+        <group>
             <name>Components</name>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Components\common.cpp</name>

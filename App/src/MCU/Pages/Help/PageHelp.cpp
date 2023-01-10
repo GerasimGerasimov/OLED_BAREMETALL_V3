@@ -26,6 +26,7 @@ void TPageHelp::onOpen() {
     MainMenu->AddList({ pHeader, pText });
 }
 
+
 void TPageHelp::startToClose() {
     MainMenu->Clear();
     isOpen = false;

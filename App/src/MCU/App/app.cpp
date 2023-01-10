@@ -17,9 +17,9 @@
 #include "virtualKeyEvents.h"
 #include "Alarms.h"
 #include "Warnings.h"
-
 #include "internal_din.h"
 #include "internal_dout.h"
+#include "CmdSender.h"
 
 void App::init(void) {
     TInternalResources::init();
@@ -51,5 +51,6 @@ void App::run(void) {
         if (Alarms::isAlarmOnce()) TRouter::setTask({false, "Alarms", nullptr});
         InternalDIN::update();
         InternalDOUT::update();
+        CmdSender::update(RAM_DATA.DIO & 0x00FF);
     }
 }

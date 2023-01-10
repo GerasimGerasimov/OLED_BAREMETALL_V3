@@ -92,17 +92,17 @@ void TPageSensors::fillPageContainer(void) {
     TagList->AddList({
         new TTagLine("LastSparkLength", "U1/RAM/LastSparkLength/", LabelInit),
         new TTagLine("SparkFrq", "U1/RAM/SparkFrq/", LabelInit),
-        new TTagLine("Uout", "U1/RAM/Uout/", LabelInit),        
-        new TTagLine("Iout", "U1/RAM/Iout/", LabelInit),         
-        new TTagLine("Uin", "U1/RAM/Uin/", LabelInit),     
-        new TTagLine("Iin", "U1/RAM/Iin/", LabelInit), 
-        new TTagLine("Fin", "U1/RAM/Fin/", LabelInit),         
-        new TTagLine("UoutAve", "U1/RAM/UoutAve/", LabelInit), 
-        new TTagLine("IoutAve", "U1/RAM/IoutAve/", LabelInit),        
+        new TTagLine("UoutAve", "U1/RAM/UoutAve/", LabelInit),
+        new TTagLine("IoutAve", "U1/RAM/IoutAve/", LabelInit),
         new TTagLine("UinAve", "U1/RAM/UinAve/", LabelInit), 
-        new TTagLine("IinAve", "U1/RAM/IinAve/", LabelInit),          
-        new TTagLine("U24V", "U1/RAM/U24V/", LabelInit),    
-        new TTagLine("U5V", "U1/RAM/U5V/", LabelInit), 
+        new TTagLine("IinAve", "U1/RAM/IinAve/", LabelInit),
+        new TTagLine("Fin", "U1/RAM/Fin/", LabelInit),
+        new TTagLine("U24V", "U1/RAM/U24V/", LabelInit),
+        new TTagLine("U5V", "U1/RAM/U5V/", LabelInit),
+        new TTagLine("Uout", "U1/RAM/Uout/", LabelInit),
+        new TTagLine("Iout", "U1/RAM/Iout/", LabelInit),
+        new TTagLine("Uin", "U1/RAM/Uin/", LabelInit),
+        new TTagLine("Iin", "U1/RAM/Iin/", LabelInit),
     });
 }
 

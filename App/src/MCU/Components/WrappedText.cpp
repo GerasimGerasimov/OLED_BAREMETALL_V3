@@ -130,8 +130,7 @@ TWrappedText::TWrappedText(TLabelInitStructure init)
     , Font((init.font != "") ? init.font : "Verdana12")
     , FirstPosition(0)//первая отображаемая строка начинаю выводить с неё
     , LastPosition(0) //последняя отображаемая строка
-    , List({})
-{
+    , List({}){
 }
 
 TWrappedText::~TWrappedText() {//деструктор

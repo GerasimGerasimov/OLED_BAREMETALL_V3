@@ -57,10 +57,17 @@ void Alarms::uptate(const std::string PosMem, TSlotHandlerArsg& args){
 }
 
 bool Alarms::checkState(void) {
-	bool res = true;
+	bool res = false;
 	for (auto& e : Tags) {
-		bool state = e.second.isValid && e.second.State;//если все "1" то "1", если кто-то "0" то всё "0"
-		if (!state) {//цикл прекращается и возвращает "0" если хоть один из элементов "0"
+		bool valid = e.second.isValid;
+		bool state = e.second.State;//если все "1" то "1", если кто-то "0" то всё "0"
+		if (valid) {//данные валидны
+			if (!state) {//цикл прекращается и возвращает "0" если хоть один из элементов "0"
+				res = true;
+				break;
+			}
+		}
+		else {//что-то НЕ валидное попалось
 			res = false;
 			break;
 		}
@@ -89,5 +96,9 @@ bool Alarms::isTagAlarmed(TTrackedBit& element) {
 void Alarms::SlotU1RAMUpdate(TSlotHandlerArsg args) {
 	uptate("U1/RAM/", args);
 	State = checkState();
-	LedAlarms::setState((State?0:1));
+	LedAlarms::setState((State?1:0));
+}
+
+bool Alarms::isAlarm(void) {
+	return State;
 }
