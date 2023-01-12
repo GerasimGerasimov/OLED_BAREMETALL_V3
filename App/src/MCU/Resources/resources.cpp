@@ -8,7 +8,11 @@ std::vector<pItem> TInternalResources::ValidItems = std::vector<pItem>();
 pResources TInternalResources::Root = nullptr;
 
 void TInternalResources::init() {
+  //TODO при неисправности ресурсов, сообщить на экране и не запускать Приложение
   Root = (pResources) RESOURCES_DATA;
+  if (checkHeaderCRC()) {
+    checkTotalCRC();
+  }
   u16 i = 0;
   while (i < Root->NumberOfItems) {
     pItem p = &Root->Items[i++];
@@ -19,6 +23,19 @@ void TInternalResources::init() {
       return;
     }
   }
+}
+
+bool TInternalResources::checkHeaderCRC(void){
+  u8* p = (u8*)&Root->TotalResourceSize;
+  u16 crc = crc16(p, 8);//проверяю первые 8 байт заголовка
+  return (bool)(crc == 0);
+}
+
+bool TInternalResources::checkTotalCRC(void) {
+  u8* p = (u8*)&Root->TotalResourceSize;
+  u16 crc = crc16(p, Root->TotalResourceSize);
+  RAM_DATA.var1 = crc;
+  return (bool)(crc == 0);
 }
 
 char* TInternalResources::getRoot() {

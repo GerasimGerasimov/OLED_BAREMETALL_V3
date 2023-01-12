@@ -23,6 +23,8 @@ struct TInternalResources {
     static std::vector<pItem> ValidItems;
     static char* getItemName(u16 idx);
     static std::string getStringFormResource(pItem item);
+    static bool checkHeaderCRC(void);
+    static bool checkTotalCRC(void);
 };
 
 #endif
