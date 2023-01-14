@@ -1,6 +1,7 @@
 #include "STM32F4xx_Intmash_USART.h"
 #include "flashdata.h"
 #include "ModbusMasterConf.h"
+#include "STM32F4xx_Intmash_Flash.h"
 
 MBmasterSlotType SlotMaster;
 
@@ -21,6 +22,7 @@ void StopMasterTimer(void){
 }
 
 //инициализация мастера
+#define INTERFACE_MASTER_DEFAULT_SETTINGS (u32)(0x00000401)
 void ModbusMasterInit(void){
   tU32Union InterfaceSettings;
   InterfaceSettings.I = FLASH_DATA.Modbus_U2_RS485;

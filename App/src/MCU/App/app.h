@@ -4,8 +4,9 @@
 #include "stm32f4xx.h"
 
 class App {
-	public:
-		static void init(void);
-		static void run(void);
+  public:
+    static bool init(void);
+    static void run(void);
+    static void error(void);
 };
 #endif

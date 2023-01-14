@@ -19,6 +19,8 @@
 #include "internal_din.h"
 #include "internal_dout.h"
 
+#include "STM32F4xx_Intmash_Flash.h"
+
 int main(void) {  
   BootLoadCmdFillZero();  
   Init();
@@ -32,6 +34,11 @@ int main(void) {
   ModbusClientInit(); //слейв для проверки
   __enable_irq();
   
+  if(FlashStatus.Bits.FLASH_DATA_ERR){
+    TGrahics::outText("FLASH_DATA_ERR", 0, 24, 1, "Verdana12");
+    TDisplayDriver::out();  
+  }
+  
   LinkLED::init();
   LedWarnings::init();
   LedAlarms::init();
@@ -39,6 +46,7 @@ int main(void) {
   InternalDOUT::init();
   
   OSResources::init();
-  App::init(); 
-  App::run();
+  (App::init()) 
+    ?(App::run())
+    :(App::error());
 }

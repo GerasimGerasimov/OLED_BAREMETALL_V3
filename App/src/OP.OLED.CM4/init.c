@@ -4,6 +4,7 @@
 #include "crc16.h"
 #include "ssd1305.h"
 #include "display_dc.h"
+#include "STM32F4xx_Intmash_Flash.h"
 
 ErrorStatus HSEStartUpStatus;
 //--------------------------------------------------------------
@@ -251,6 +252,7 @@ void Init (void){
   GPIO_Configuration();//конфигурируем порты
 
   for(u32 InitDelay=12000; InitDelay>0; InitDelay--) {}
+  CheckFlashData((tU32*)&FLASH_DATA, (tU32*)&BKFLASH_DATA);
   
   SPI1_Configuration();
   ssd1305_init();

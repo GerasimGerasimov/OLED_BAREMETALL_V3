@@ -12,7 +12,7 @@ typedef struct ItemLimits {
 
 struct TInternalResources {
   public:
-    static void init();
+    static bool init();
     static pItem getItemByName(char* Name);
     static TItemLimits getItemLimitsByName(char* Name);
     static std::string getID();
@@ -23,8 +23,8 @@ struct TInternalResources {
     static std::vector<pItem> ValidItems;
     static char* getItemName(u16 idx);
     static std::string getStringFormResource(pItem item);
-    static bool checkHeaderCRC(void);
-    static bool checkTotalCRC(void);
+    static bool isHeaderCrcValid(void);
+    static bool isTotalCrcValid(void);
 };
 
 #endif

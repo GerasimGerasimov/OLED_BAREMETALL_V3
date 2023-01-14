@@ -119,15 +119,6 @@ tU8 ModbusCDWrite(tU8* Buffer,tU8 BufDataIdx, tU8 RegAddr, tU8 RegNum)//
 {
   tU8 DataLength = 0; //длинна отправляемой посылки
 
-  //если запись во флеш запрещена -не пишем, а просто формируем ответ
-  if(FlashStatus.Bits.FLASH_WRITE_DIS){
-    if(BufDataIdx != 0)
-    {
-      DataLength = WR_ANSWER_SIZE; //размер ответа на запись регистров (0x10, 0x06)
-      FrameEndCrc16((tU8*)Buffer, DataLength);
-    } 
-    return DataLength; //возвращает размер отправляемой посылки
-  }
   CopyFlashToTmpBuffer((tU32*)&CD_DATA);//DATA_BASE
   //адрес во временном буфере
   tU16 *ModbusAddrSet = (tU16*)((tU32)&FlashTmpBuffer + ((tU32)RegAddr << 1));
@@ -155,10 +146,6 @@ tU8 ModbusFlashWrite(tU8* Buffer,tU8 BufDataIdx, tU8 RegAddr, tU8 RegNum)
   tU8 DataLength = 0; //длинна отправляемой посылки
   volatile tU16Union crc, _crc;
   
-  if(FlashStatus.Bits.FLASH_WRITE_DIS == 0)
-  {
-    if(FlashStatus.Bits.FLASH_DATA_ERR==0)
-    {
       //копирование данных из основного сектора с уставками в буфер
       CopyFlashToTmpBuffer((tU32*)&FLASH_DATA);
       //адрес во временном буфере
@@ -167,11 +154,10 @@ tU8 ModbusFlashWrite(tU8* Buffer,tU8 BufDataIdx, tU8 RegAddr, tU8 RegNum)
       ModbusSwapCopy((tU8*)&Buffer[BufDataIdx], (tU16*) ModbusAddrSet, RegNum);
       //данные находятся во временном буфере, теперь:
       //Подсчитать контрольную сумму временного буфера
-      if(BufDataIdx != 0) FrameEndCrc16((tU8*)FlashTmpBuffer, FlashTmpBufferSize);       
+      if(BufDataIdx != 0) FrameEndCrc16((tU8*)FlashTmpBuffer, FlashTmpBufferSize);
       //буфер готов к записи       
       FlashDataProtectedWrite((tU32*)&FLASH_DATA, (tU32*)&BKFLASH_DATA);
-    }
-  }   
+  
   /* если BufDataIdx = 0, значит мы работаем не с буфером slave, а с переменной. 
   считать CRC в этом случае не нужно  */  
   if(BufDataIdx != 0)

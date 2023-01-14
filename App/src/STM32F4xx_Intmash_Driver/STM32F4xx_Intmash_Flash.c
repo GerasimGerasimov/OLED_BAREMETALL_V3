@@ -1,7 +1,7 @@
 #include "STM32F4xx_Intmash_Flash.h"
 #include "stm32f4xx.h"
 #include "crc16.h"
-
+#include "RAMdata.h"
 
 tU8 FlashTmpBuffer[FlashTmpBufferSize];
 tU8Union FlashStatus; //статус FLASH и BKFLASH 
@@ -18,8 +18,6 @@ void FlashSectorWrite(tU32* FlashSectorAddr, tU32* Buffer)
 {
   volatile FLASH_Status FLASHStatus_;
   tU32 Count = FlashTmpBufferSize_dw;
-
-  if (FlashStatus.Bits.FLASH_WRITE_DIS) return; //если выставлен бит запрета - писать нельзя, выходим
 
   __disable_irq(); // handles nested interrupt
   FLASH_Unlock();  // Unlock the Flash Program Erase controller
@@ -85,7 +83,7 @@ Ret:
 Comment:
 */
 void CopyFlashToTmpBuffer(tU32* Addr){
-  tU32 *dest   = (tU32 *) FlashTmpBuffer;
+  tU32 *dest   = (tU32 *) &FlashTmpBuffer;
   tU32  count  = FlashTmpBufferSize_dw;
   while (count != 0) {//21 команды
     *dest++ = *Addr++;
@@ -105,9 +103,6 @@ Comment:
 void FlashDataProtectedWrite(tU32* FlashDataSector, tU32* BackupDataSector)
 {
   volatile tU16 crc, _crc;
-  
-  //если ошибка основного сектора - не пишем, надо ребутнуть, чтобы попробовать всё исправить.
-  if (FlashStatus.Bits.FLASH_DATA_ERR) return;
   
   FlashSectorWrite(BackupDataSector, (tU32*)FlashTmpBuffer);//записали бэкап
   if (crc16((tU8*)BackupDataSector, FlashTmpBufferSize)==0)

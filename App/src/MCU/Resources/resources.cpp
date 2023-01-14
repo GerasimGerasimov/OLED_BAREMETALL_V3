@@ -7,31 +7,31 @@
 std::vector<pItem> TInternalResources::ValidItems = std::vector<pItem>();
 pResources TInternalResources::Root = nullptr;
 
-void TInternalResources::init() {
+bool TInternalResources::init() {
   //TODO при неисправности ресурсов, сообщить на экране и не запускать Приложение
   Root = (pResources) RESOURCES_DATA;
-  if (checkHeaderCRC()) {
-    checkTotalCRC();
-  }
+  if (!isHeaderCrcValid()) return false;
+  if (!isTotalCrcValid()) return false;
   u16 i = 0;
   while (i < Root->NumberOfItems) {
     pItem p = &Root->Items[i++];
     if (crc16((u8*) p, sizeof (TResourceTableItem)) == 0) {
-      ValidItems.push_back(p);
-    } else {
-      ValidItems.clear();
-      return;
-    }
-  }
+       ValidItems.push_back(p);
+     } else {
+        ValidItems.clear();
+        return false;
+     }
+   }
+  return true;
 }
 
-bool TInternalResources::checkHeaderCRC(void){
+bool TInternalResources::isHeaderCrcValid(void){
   u8* p = (u8*)&Root->TotalResourceSize;
   u16 crc = crc16(p, 8);//проверяю первые 8 байт заголовка
   return (bool)(crc == 0);
 }
 
-bool TInternalResources::checkTotalCRC(void) {
+bool TInternalResources::isTotalCrcValid(void) {
   u8* p = (u8*)&Root->TotalResourceSize;
   u16 crc = crc16(p, Root->TotalResourceSize);
   RAM_DATA.var1 = crc;
@@ -47,7 +47,7 @@ bool isRequiredName(char * Name1, char * Name2) {
 }
 
 pItem TInternalResources::getItemByName(char* Name) {
-  pItem res = NULL;
+  pItem res = nullptr;
   for (const pItem & item: ValidItems) {
     if (isRequiredName(item->Name, Name)) {
       return item;
@@ -91,7 +91,7 @@ std::string TInternalResources::getStringFormResource(pItem item) {
 
 std::string TInternalResources::getID() {
   pItem item = getItemByName((char*)"ID");
-  return (item != NULL)
+  return (item != nullptr)
     ? getStringFormResource(item)
     : "unknown";
 }

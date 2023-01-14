@@ -18,13 +18,13 @@ tU8 StartBootLoader(ModbusSlaveType* Slave);
 ModbusCommandHandlerType ModbusCommands[6]={
   {ModbusMemRead, 0x03},
   {ModbusMemWrite, 0x10},
-  {ModbusMemWrite, 0xFE},
   {GetDeviceID, 0x11},
   {StartBootLoader, 0xB0},
   {0, 0},
 }; 
 
-#define INTERFACE_DEFAULT_SETTINGS 0x00000401
+#define INTERFACE_DEFAULT_SETTINGS (u32)(0x00000401)
+
 void ModbusClientInit(void) //фукци€ инициализации структуры, пример
 { 
   //RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3 | RCC_APB1Periph_USART2, ENABLE);//
@@ -34,11 +34,12 @@ void ModbusClientInit(void) //фукци€ инициализации структуры, пример
   
   //USART1, OptRS485
   UART1toRS485.USARTx = USART1;
-  if(FlashStatus.Bits.FLASH_DATA_ERR) InterfaceSettings.I=INTERFACE_DEFAULT_SETTINGS; 
-  else InterfaceSettings.I=FLASH_DATA.Modbus_U1_RS485;
-
+  InterfaceSettings.I = (FlashStatus.Bits.FLASH_DATA_ERR)
+    ? INTERFACE_DEFAULT_SETTINGS
+    : FLASH_DATA.Modbus_U1_RS485;
+ 
+  RS485slave.SlaveAddress = InterfaceSettings.B[0];    
   UART1toRS485.USART_BaudRate = USARTbaudRate[InterfaceSettings.B[1]];
-  RS485slave.SlaveAddress = InterfaceSettings.B[0];
   UART1toRS485.USART_StopBits = InterfaceSettings.B[2];
   UART1toRS485.USART_Parity = InterfaceSettings.B[3];
 
@@ -62,9 +63,9 @@ void USART1_IRQHandler(void)
   tU8 MsgSize = UsartTxRxFinish(&UART1toRS485);//определили что произошло: прием или прин€то MsgSize байт. ; 
         
   if(MsgSize){//если прин€тно  
-    //if (LED2_ST) LED2_OFF; else LED2_ON; //моргнули светиком  
-    if (FLASH_DATA.Retranslate != 0)
-    {
+    //if (LED2_ST) LED2_OFF; else LED2_ON; //моргнули светиком 
+    /*
+    if (FLASH_DATA.Retranslate != 0) {
       //если ретрансл€ци€ включена и прин€то валидное сообщение по нужному адресу
       if ((crc16((tU8*)RS485slave.Buffer, MsgSize) == 0) && (RS485slave.Buffer[0] == RS485slave.SlaveAddress))
       {
@@ -75,7 +76,7 @@ void USART1_IRQHandler(void)
       }
       else UsartRecieve(&UART1toRS485, &RS485slave.Buffer[0]);
     }
-    else
+    else*/
     {//вызываем функцию декодировани€, определ€ем размер пакета дл€ отправки
       MsgSize = ModbusCommandDecode(&RS485slave, MsgSize, ModbusCommands); 
       //если есть что отправл€ть - отправл€ем, если нет - зар€жаем на прием.
