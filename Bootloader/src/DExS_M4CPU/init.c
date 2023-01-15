@@ -101,34 +101,6 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
 }
 
 //******************************************************************************
-//Таймер для работы с MODBUS клиентами
-void TIM8_Configuration(void)
-{
-  TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-  TIM_OCInitTypeDef TIM_OCInitStructure;
-  
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, ENABLE);                        // разрешаем тактирование
-
-  TIM_TimeBaseStructure.TIM_Prescaler = 168-1;                                // частота = TIM8CLK(168МГц)/168 = 1Мгц. один тик - микросекунда
-  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-  TIM_TimeBaseStructure.TIM_Period = 0xffff;                                  // будет крутиться по кругу до переполнения 16 бит
-  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-  TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
-
-  TIM_TimeBaseInit(TIM8, &TIM_TimeBaseStructure);
-  TIM_ARRPreloadConfig(TIM8, ENABLE);
-  
-  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing;       
-  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Disable;  
-  TIM_OCInitStructure.TIM_Pulse = 0;
-  TIM_OC1Init(TIM8, &TIM_OCInitStructure);
-  
-  TIM_ITConfig(TIM8, TIM_IT_Update, DISABLE);                                 // пока запретим прерывания
-  TIM_Cmd(TIM8, ENABLE);
-  TIM8->SR = 0;
-}
-
-//******************************************************************************
 //Таймер общего назначения с прерыванием раз в 0,001 сек
 void TIM6_Configuration(void){
   TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;

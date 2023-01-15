@@ -15,7 +15,6 @@ const char * IDtext = "Bootloader v1.1.1 23.12.2022 www.intmash.ru";
 int main(void) {
   
   GPIO_INIT_Configuration();
-  for(u32 i=0x000100;i>0;i--); //
   INIT_ON;
   if (INIT_IST != 0) {
     LED5_OFF;
