@@ -20,6 +20,9 @@ c_cpp_properties.json
 # Prerequisites
 *.d
 
+!STM32-BOOTLOADER.hex
+!OLED_EFICPU.hex
+
 # Compiled Object files
 *.slo
 *.lo
