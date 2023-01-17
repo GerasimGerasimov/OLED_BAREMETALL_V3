@@ -34,36 +34,22 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//теперь выходы пушпульные
     
-  //порт А                            LED5     DIR1
+  //порт А                        LED5         DIR1
   GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_8;            
   GPIO_Init(GPIOA, &GPIO_InitStructure);
   
-  //порт B                        LED_LNK       LED_RUN      LED_ALRM     LED_WRN        
+  //порт B                        LED_LNK       LED_RUN       LED_ALRM      LED_WRN        
   GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_1;
   GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 //------------------------------------------------------------------------------------------------------------   
   //Инициализируем ноги, связанные с переферией:
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF; 
-  //подключаем альтернативные функции к нужным пинам:
-  //GPIOA->AFR[0]  |= 0x00007700;//USART2
-  //этот способ инициализации более громоздкий, зато более понятный:
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource9,  GPIO_AF_USART1); //Tx 
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART1); //Rx
-  
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2); //Tx 
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2); //Rx
-  
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1); //SCK - OUT_SH(DIO_CLK)
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1); //MOSI - OUT_D 
-
   //настраиваем AF пины, которые push-pull, либо входы: 
-  //порт А                         USART2_Tx    USART2_Rx    USART1_Tx    USART1_Rx
-  GPIO_InitStructure.GPIO_Pin  =   GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_9 | GPIO_Pin_10;
-  GPIO_Init(GPIOA, &GPIO_InitStructure);
-  
-    //порт А                         NSS         SCK           MOSI     
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_5 | GPIO_Pin_7;            
+  //порт А                         USART1_Tx    USART1_Rx
+  GPIO_InitStructure.GPIO_Pin  =   GPIO_Pin_9 | GPIO_Pin_10;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
@@ -115,12 +101,7 @@ void NVIC_Configuration(void)
   NVIC_InitStructure.NVIC_IRQChannel = TIM6_DAC_IRQn;//таймер общего назначения(DIO)
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority =0;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-  NVIC_Init(&NVIC_InitStructure);   
-  
-  NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;//  Modbus master
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-  NVIC_Init(&NVIC_InitStructure); 
+  NVIC_Init(&NVIC_InitStructure);
 
   NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;//  Modbus slave
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
@@ -129,7 +110,6 @@ void NVIC_Configuration(void)
 }
 
 void Init (void){//начальная инициализация. 
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE); 
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
   GPIO_Configuration();//конфигурируем порт
   ModbusClientInit();//инициализируем работу интерфейсов модбас-клиента  
