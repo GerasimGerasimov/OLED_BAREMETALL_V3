@@ -657,7 +657,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>DExS.M4CPU.VTEG.hex</state>
+                    <state>OLED.CPU.BOOTLOADER.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -1075,15 +1075,15 @@
                 <debug>1</debug>
                 <option>
                     <name>ExePath</name>
-                    <state>STM32F407IGT6\Exe</state>
+                    <state>BOOTLOADER\Exe</state>
                 </option>
                 <option>
                     <name>ObjPath</name>
-                    <state>STM32F407IGT6\Obj</state>
+                    <state>BOOTLOADER\Obj</state>
                 </option>
                 <option>
                     <name>ListPath</name>
-                    <state>STM32F407IGT6\List</state>
+                    <state>BOOTLOADER\List</state>
                 </option>
                 <option>
                     <name>GEndianMode</name>
