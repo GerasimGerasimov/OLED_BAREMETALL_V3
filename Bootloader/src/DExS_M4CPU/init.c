@@ -30,50 +30,17 @@ void GPIO_Configuration(void){//настройка портов ввода-вывода
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;//
  
 //------------------------------------------------------------------------------------------------------------     
-  //инициализируем входы
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-  
-  //сначала входы, которые влияют на формат изобряжения (тип экрана)  
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//притянуты кверху
-  //порт A                       USB_P
-  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_12;
-  GPIO_Init(GPIOA, &GPIO_InitStructure);
-  //порт B                       INVY
-  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_3;
-  GPIO_Init(GPIOB, &GPIO_InitStructure);
-  //порт D                       INVX
-  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_2;
-  GPIO_Init(GPIOD, &GPIO_InitStructure);
-  
-  //далее все ноги без притяжки
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  
-  //входы клавиатуры
-  //порт B                         COL1           COL2          COL3
-  GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-  GPIO_Init(GPIOB, &GPIO_InitStructure);
-
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT; //выходы
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;//сначала с открытым коллектором  
-  
-    //порт C                        ROW1           ROW2          ROW3     
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2; 
-  GPIO_Init(GPIOC, &GPIO_InitStructure);
-
+  //инициализируем выходы
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//теперь выходы пушпульные
-  GPIO_ResetBits(GPIOA, GPIO_Pin_6);//  GPIO_SetBits(GPIOA, GPIO_Pin_6); //D/#C в 1
     
-  //порт А                            LED5        DIR2         D/#C         DIR1
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_6 | GPIO_Pin_8;            
+  //порт А                            LED5     DIR1
+  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_8;            
   GPIO_Init(GPIOA, &GPIO_InitStructure);
   
-  GPIO_ResetBits(GPIOB, GPIO_Pin_0);//GPIO_SetBits(GPIOB, GPIO_Pin_0); //ресет в 1
-  //порт B                           #RES          LED_LNK       LED_RUN      LED_ALRM     LED_WRN        
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_0 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_1;
+  //порт B                        LED_LNK       LED_RUN      LED_ALRM     LED_WRN        
+  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_1;
   GPIO_Init(GPIOB, &GPIO_InitStructure);
-    //порт А                         NSS             
-  GPIO_InitStructure.GPIO_Pin  =  GPIO_Pin_4;            
-  GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 //------------------------------------------------------------------------------------------------------------   
   //Инициализируем ноги, связанные с переферией:
