@@ -3,9 +3,6 @@
 */*/EWARMv6/CompileOut/List
 */*/EWARMv6/settings/EFI.CPU.wsdt
 
-*/*/EWARMv6/BOOTLOADER/List
-*/*/EWARMv6/BOOTLOADER/Obj
-
 *.xcl
 *.dep
 *.wsdt

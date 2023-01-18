@@ -1075,15 +1075,15 @@
                 <debug>1</debug>
                 <option>
                     <name>ExePath</name>
-                    <state>BOOTLOADER\Exe</state>
+                    <state>..\..\out</state>
                 </option>
                 <option>
                     <name>ObjPath</name>
-                    <state>BOOTLOADER\Obj</state>
+                    <state>CompileOut\Obj</state>
                 </option>
                 <option>
                     <name>ListPath</name>
-                    <state>BOOTLOADER\List</state>
+                    <state>CompileOut\List</state>
                 </option>
                 <option>
                     <name>GEndianMode</name>
@@ -1350,7 +1350,7 @@
                 </option>
                 <option>
                     <name>CCDebugInfo</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>IEndianMode</name>
