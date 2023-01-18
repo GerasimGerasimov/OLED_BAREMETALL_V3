@@ -1,12 +1,12 @@
-*/*/EWARMv6/STM32F407IGT6/
-*/*/EWARMv6/STM32F407IGT6/Exe
-*/*/EWARMv6/STM32F407IGT6/List
+*/*/EWARMv6/CompileOut/
+*/*/EWARMv6/CompileOut/Obj
+*/*/EWARMv6/CompileOut/List
 */*/EWARMv6/settings/EFI.CPU.wsdt
 
-#*/*/EWARMv6/BOOTLOADER/
-#*/*/EWARMv6/BOOTLOADER/Exe
 */*/EWARMv6/BOOTLOADER/List
 */*/EWARMv6/BOOTLOADER/Obj
+
+*.xcl
 *.dep
 *.wsdt
 ./.svn/**
