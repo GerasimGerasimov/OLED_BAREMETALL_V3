@@ -1,7 +1,7 @@
 {
   "App": "D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
-  "SkipSectors":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
-  "SkipSectors1":[],
+  "SkipSectors1":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
+  "SkipSectors":[],
   "COM":{
     "port":"COM3",
   "settings": {
