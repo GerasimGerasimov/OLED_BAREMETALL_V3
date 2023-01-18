@@ -1,5 +1,5 @@
 {
-  "App": "D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/EWARMv6/STM32F407IGT6/Exe/OLED_EFICPU.hex",
+  "App": "D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/out/OLED_EFICPU.hex",
   "SkipSectors1":["0x080A0000", "0x080C0000", "0x080E0000","0x08080000"],
   "SkipSectors":[],
   "COM":{
@@ -25,7 +25,7 @@
 	  "URL" : "www.intmash.ru",
 	  "SOURCES":"DEV1/",
       "DEV1" : { 
-        "file":"C:/Users/info/source/repos/WindowsProject1/Drivers/Resources/RES2BINCONFIG/resource_EFI.CPU_v2.2.2.ini"
+        "file":"D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/Ajuster/resource_EFI.CPU_v2.2.2.ini"
       },
 	  "DEVICES":"U1/",
 	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0040,0,/FLASH,0x2000,0x2042,10,/CD,0xC000,0xC039,10,/"
