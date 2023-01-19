@@ -27,7 +27,7 @@ int main(void) {
 
   TDisplayDriver::CleanScreen();
   TGrahics::init();
-  TGrahics::outText("Загрузка....", 0, 0, 1, "Verdana12");
+  TGrahics::outText("Загрузка...", 0, 0, 1, "Verdana12");
   TDisplayDriver::out();
   
   ModbusMasterInit(); //мастер  
