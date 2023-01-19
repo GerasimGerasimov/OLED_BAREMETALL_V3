@@ -6,7 +6,7 @@
 #include "ramdata.h"
 #include "bootloader.h"
                          
-const char * IDtext = "Bootloader v1.2.0 18.01.2023 www.intmash.ru";
+const char * IDtext = "Bootloader v1.2.0 19.01.2023 www.intmash.ru";
 
 int main(void) {
   
