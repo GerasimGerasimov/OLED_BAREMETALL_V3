@@ -8,7 +8,6 @@ std::vector<pItem> TInternalResources::ValidItems = std::vector<pItem>();
 pResources TInternalResources::Root = nullptr;
 
 bool TInternalResources::init() {
-  //TODO при неисправности ресурсов, сообщить на экране и не запускать Приложение
   Root = (pResources) RESOURCES_DATA;
   if (!isHeaderCrcValid()) return false;
   if (!isTotalCrcValid()) return false;
