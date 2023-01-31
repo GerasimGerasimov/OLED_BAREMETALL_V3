@@ -7,6 +7,7 @@ struct InternalDOUT {
   public:
     static void init();
     static void update();
+    static void setState(u16 state);
 };
 
 #endif
