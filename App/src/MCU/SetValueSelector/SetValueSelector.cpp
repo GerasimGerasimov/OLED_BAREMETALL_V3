@@ -26,6 +26,8 @@ bool SetValueSelector::setInternalValue(std::string& tag, std::string& value) {
 	//уже понятно что это SLF
 	if (Info.section == "FLASH") {
 		MemWrite::writeValueToFlash(Addr, ValueHex);
-	}
+	} else if (Info.section == "CD") {
+		MemWrite::writeValueToCD(Addr, ValueHex);
+        }
 	return false;
 }

@@ -17,10 +17,17 @@
 extern tU8 FlashTmpBuffer[FlashTmpBufferSize];
 extern tU8Union FlashStatus;
 
-void FlashSectorWrite(tU32* FlashSectorAddr, tU32* Buffer);
-void CopyFlashToTmpBuffer(tU32* Addr);
-void FlashDataProtectedWrite(tU32* FlashDataSector, tU32* BackupDataSector);
-void CheckFlashData(tU32* FlashDataSector, tU32* BackupDataSector);
+  #ifdef __cplusplus
+    extern "C" void FlashSectorWrite(tU32* FlashSectorAddr, tU32* Buffer);
+    extern "C" void CopyFlashToTmpBuffer(tU32* Addr);
+    extern "C" void FlashDataProtectedWrite(tU32* FlashDataSector, tU32* BackupDataSector);
+    extern "C" void CheckFlashData(tU32* FlashDataSector, tU32* BackupDataSector);
+  #else
+    extern void FlashSectorWrite(tU32* FlashSectorAddr, tU32* Buffer);
+    extern void CopyFlashToTmpBuffer(tU32* Addr);
+    extern void FlashDataProtectedWrite(tU32* FlashDataSector, tU32* BackupDataSector);
+    extern void CheckFlashData(tU32* FlashDataSector, tU32* BackupDataSector);
+  #endif
 
 
 #endif /*STM32F4xx_Intmash_USART_H */

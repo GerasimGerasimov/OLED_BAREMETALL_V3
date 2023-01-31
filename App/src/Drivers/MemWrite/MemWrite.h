@@ -8,6 +8,7 @@
 struct MemWrite {
   public:
       static void writeValueToFlash(TInternalMemAddress& Addr, std::string& value);
+      static void writeValueToCD(TInternalMemAddress& Addr, std::string& value);
 };
 
 #endif
