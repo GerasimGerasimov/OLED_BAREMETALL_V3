@@ -31,6 +31,7 @@ bool TPageSensors::ProcessMessage(TMessage* m) {
                     e = getSignalOfFocusedChild();
                     if (e) {
                         ISignal* p = IniResources::getSignalByTag(((TTagLine*)(e))->Tag);
+                        TRouter::PageValueEditEntryData.backPage = Name;
                         TRouter::setTask({ false, "Help", p });
                     }
                     break;
@@ -39,6 +40,7 @@ bool TPageSensors::ProcessMessage(TMessage* m) {
                     if (e) {
                         TRouter::PageValueEditEntryData.tag = ((TTagLine*)(e))->Tag;
                         TRouter::PageValueEditEntryData.value = ((TTagLine*)(e))->Value->getCaption();
+                        TRouter::PageValueEditEntryData.backPage = Name;
                         TRouter::setTask({ false, "EditValue", nullptr });
                     }
                     break;
@@ -94,7 +96,7 @@ void TPageSensors::fillPageContainer(void) {
         new TTagLine("SparkFrq", "U1/RAM/SparkFrq/", LabelInit),
         new TTagLine("UoutAve", "U1/RAM/UoutAve/", LabelInit),
         new TTagLine("IoutAve", "U1/RAM/IoutAve/", LabelInit),
-        new TTagLine("UinAve", "U1/RAM/UinAve/", LabelInit), 
+        new TTagLine("UinAve", "U1/RAM/UinAve/", LabelInit),
         new TTagLine("IinAve", "U1/RAM/IinAve/", LabelInit),
         new TTagLine("Fin", "U1/RAM/Fin/", LabelInit),
         new TTagLine("U24V", "U1/RAM/U24V/", LabelInit),

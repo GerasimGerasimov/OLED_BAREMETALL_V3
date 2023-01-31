@@ -71,7 +71,7 @@ const u8 CRC16Lo[] = {
 0x82, 0x42, 0x43, 0x83, 0x41, 0x81, 0x80, 0x40
 } ;
 
-u16 crc16(u8 *puchMsg, u32 DataLen)
+u16 crc16(u8 *puchMsg, u16 DataLen)
 {
   u8 CRCHi ; /* high byte of CRC initialized */
   u8 CRCLo ; /* low byte of CRC initialized */

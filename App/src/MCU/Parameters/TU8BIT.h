@@ -10,8 +10,13 @@ public:
 	~TU8BIT();
 	std::string getMSU();
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
-        std::string getValue(){return "";};
+    std::string getValue(){return "";};
+	const std::string getValueHex(std::string& src);
+	const std::string getRegHexAddr();
+	const std::string getWriteCmdType();
 	virtual void setValue();
+	const std::string& getSignalType();
+	TInternalMemAddress getInternalMemAddr();
 private:
 	char* MSU;
 	float Scale;
@@ -19,6 +24,7 @@ private:
 	const std::string value(const TSlotHandlerArsg& args, const char* format);
 	u8 getRawValue(const TSlotHandlerArsg& args);
 	const std::string validation(const TSlotHandlerArsg& args);
+	u16 string2raw(std::string& src);
 };
 
 #endif

@@ -17,19 +17,23 @@
     "info": "0x08008200",
     "infoSize": 8,
     "CheckFrom": "0x08008208",
-    "CheckTo":   "0x0804C300"
+    "CheckTo":   "0x08050200"
   },
   "resources": {
     "start": "0x08080000",
     "items": {
-	  "ID" : "12345678 OLED.CM4 v0.0.0 19.12.2022 www.intmash.ru",
+	  "ID" : "12345678 OLED.CM4 v1.0.0 29.01.2023 www.intmash.ru",
 	  "URL" : "www.intmash.ru",
-	  "SOURCES":"DEV1/",
+	  "SOURCES":"DEV1/SLF1/",
       "DEV1" : { 
         "file":"D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/Ajuster/resource_EFI.CPU_v2.2.2.ini"
       },
-	  "DEVICES":"U1/",
-	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0040,0,/FLASH,0x2000,0x2042,10,/CD,0xC000,0xC039,10,/"
+      "SLF1" : { 
+        "file":"D:/Project/EFi_Tomsk/FirmWare/OLED_BAREMETALL_V3/App/src/Ajuster/OLED_SETTINGS.ini"
+      },	  
+	  "DEVICES":"U1/SLF/",
+	  "U1":"DEV1/COM1/1/RAM,0x0000,0x0040,0,/FLASH,0x2000,0x2042,10,/CD,0xC000,0xC039,10,/",
+      "SLF":"SLF1//0/"
     }
   }
 }

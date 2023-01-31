@@ -29,6 +29,7 @@ bool TPageOperateStatus::ProcessMessage(TMessage* m) {
                 case (u32)KeyCodes::F1:
                     e = getSignalOfFocusedChild();
                     if (e) {
+                        TRouter::PageValueEditEntryData.backPage = Name;
                         ISignal* p = IniResources::getSignalByTag(((TTagLine*)(e))->Tag);
                         TRouter::setTask({ false, "Help", p });
                     }
@@ -73,19 +74,19 @@ void TPageOperateStatus::sendCmd(std::string& code) {
     std::string cmd = "U1/RAM/CMD/";
     TryCount = 3;
     cmdSendInProcess = true;
-    ModbusSlave::setValue(cmd, code, [this](Slot& slot, u8* reply) { SlotUpdate(slot, reply); });
+    ModbusSlave::setValue(cmd, code, [this](Slot* slot, u8* reply) { SlotUpdate(slot, reply); });
 }
 
-void TPageOperateStatus::SlotUpdate(Slot& slot, u8* reply) {
-    if (slot.RespondLenghtOrErrorCode) {
-        slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
+void TPageOperateStatus::SlotUpdate(Slot* slot, u8* reply) {
+    if (slot->RespondLenghtOrErrorCode) {
+        slot->Flags |= (u16)SlotStateFlags::SKIP_SLOT;
         cmdSendInProcess = false;
     }
     else {
         if (TryCount)
             TryCount--;
         else {
-            slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
+            slot->Flags |= (u16)SlotStateFlags::SKIP_SLOT;
             cmdSendInProcess = false;
         }
     }

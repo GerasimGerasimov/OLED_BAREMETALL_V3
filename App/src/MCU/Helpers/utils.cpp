@@ -47,6 +47,7 @@ const std::string Utils::UnSignedintToStr(u32 value) {
 }
 
 const char*& Utils::getFormat(float& value) {
+    //return getFloatFormat(value);
     static const char* _0_ = "%.0f";
     static const char* _1_ = "%.1f";
     static const char* _2_ = "%.2f";
@@ -62,4 +63,27 @@ const char*& Utils::getFormat(float& value) {
     if (d > 0.00090f) return _3_;
     if (d > 0.00009f) return _4_;
     return _0_;
+}
+
+const char*& Utils::getFloatFormat(float& value) {
+    static const char* _0_ = "%.0f";
+    static const char* _1_ = "%.1f";
+    static const char* _2_ = "%.2f";
+    static const char* _3_ = "%.3f";
+    static const char* _4_ = "%.4f";
+    static const char* _5_ = "%.5f";
+    float f = value;
+    f = (f < 0) ? -f : f;
+    if (f == 0) return _0_;
+
+    float d = (int)abs(value) - f;
+    d = (d < 0) ? -d : d;
+    if (d == 0) return _0_;
+
+    if (f > 1000.0f) return _0_;
+    if (f > 100.0f) return _1_;
+    if (f > 10.0f) return _2_;
+    if (f > 1.0f) return _3_;
+    if (f > 0.1f) return _3_;
+    return _4_;
 }

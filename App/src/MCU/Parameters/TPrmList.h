@@ -10,8 +10,16 @@ public:
 	~TPrmList();
 	std::string getMSU();
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
-        std::string getValue(){return "";};
+    std::string getValue(){return "";};
+	std::vector<std::string> getList(void);
+	std::vector<std::string> getList(const std::string& val, s16& ValueIndexInList);
+	std::string getKeyByValue(const std::string& val);
 	virtual void setValue();
+	const std::string getValueHex(std::string& src);
+	const std::string getRegHexAddr();
+	const std::string getWriteCmdType();
+	const std::string& getSignalType();
+	TInternalMemAddress getInternalMemAddr();
 private:
 	char* MSU;
 	float Scale;

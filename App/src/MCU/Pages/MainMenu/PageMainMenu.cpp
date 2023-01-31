@@ -40,13 +40,13 @@ TPageMainMenu::TPageMainMenu(std::string Name)
             new TLinkLabel("Очистка. Уставки", "CleanSettings", LabelInit),
             new TLinkLabel("Датчики", "Sensors", LabelInit),
             new TLinkLabel("Настройки связи EFi", "NetWorkSettings",LabelInit),
-            //new TLinkLabel("Уставки защит", "Home", LabelInit),
+            new TLinkLabel("Настройки панели", "PanelSettings", LabelInit),
+            new TLinkLabel("Калибровки", "CD", LabelInit),
             //new TLinkLabel("Уставки ручного режима", "Home", LabelInit),
             //new TLinkLabel("Уставки ВАХ", "Home", LabelInit),
             //new TLinkLabel("Данные прямой ВАХ", "Home", LabelInit),
             //new TLinkLabel("Данные обратной ВАХ", "Home", LabelInit),
             //new TLinkLabel("Данные драйвера", "Home", LabelInit),
-            //new TLinkLabel("Настройки панели", "Home", LabelInit)
            })
     });
 };

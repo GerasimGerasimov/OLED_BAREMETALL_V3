@@ -49,14 +49,14 @@ void HandlerSubscribers::remove(std::string source, int& ID) {
 	}
 }
 
-void HandlerSubscribers::send(Slot& slot /*TODO аргумент "U1/RAM/"*/) {
+void HandlerSubscribers::send(Slot* slot /*TODO аргумент "U1/RAM/"*/) {
 	//найти все обработчики соответсвующие аргументу "U1/RAM/" и последовательно вызвать их
-	if (Handlers.count(slot.Device)) {
-		std::map<std::string, std::list<TSubscriber>>& sections = Handlers.at(slot.Device);
-		if (sections.count(slot.Section)) {
-			std::list<TSubscriber>& subscribers = sections.at(slot.Section);
+	if (Handlers.count(slot->Device)) {
+		std::map<std::string, std::list<TSubscriber>>& sections = Handlers.at(slot->Device);
+		if (sections.count(slot->Section)) {
+			std::list<TSubscriber>& subscribers = sections.at(slot->Section);
 				for (auto& subscriber : subscribers) {
-					TSlotHandlerArsg args = { &slot.InputBuf[0], slot.InputBufValidBytes, slot.StartAddrOffset, slot.LastAddrOffset };
+					TSlotHandlerArsg args = { &slot->InputBuf[0], slot->InputBufValidBytes, slot->StartAddrOffset, slot->LastAddrOffset };
 					subscriber.handler(args);
 				}
 		}

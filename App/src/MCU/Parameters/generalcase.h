@@ -29,10 +29,12 @@ public:
 	~TGeneralCaseSignal();
 	std::string getMSU(); 
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
-        std::string getValue(){return "";};
+    std::string getValue(){return "";};
 	virtual void setValue();
+	const std::string getRegHexAddr();
+	const std::string getWriteCmdType();
 protected:
-	std::string value(const TSlotHandlerArsg& args, const char* format);
+	virtual std::string value(const TSlotHandlerArsg& args, const char* format);
 	virtual TGenaralCaseRawReturn getRawValue(const TSlotHandlerArsg& args);
 	std::string validation(const TSlotHandlerArsg& args);
 	char* MSU;

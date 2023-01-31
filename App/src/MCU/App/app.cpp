@@ -22,23 +22,22 @@
 #include "CmdSender.h"
 
 bool App::init(void) {
-  if (!TInternalResources::init()){
-      TGrahics::outText("Ресурсы повреждены!", 0, 12, 1, "Verdana12");
-      TDisplayDriver::out();
-      return false;
-  }
-  IniResources::init();
-  IniSlotsProps::init();
-  std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
-  slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
-  DevicePollManager::init(slots);
-  TRouter::Init();
-  Alarms::init();
-  Warnings::init();
-  Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
-  return true;
+    if (!TInternalResources::init()) {
+        TGrahics::outText("Ресурсы повреждены!", 0, 12, 1, "Verdana12");
+        TDisplayDriver::out();
+        return false;
+    }
+    IniResources::init();
+    IniSlotsProps::init();
+    std::vector <Slot> slots = CreateSlotsByStart::init(IniSlotsProps::Devices);
+    slots.push_back(*CreateCustomSlot::init("U1", "CmdWrite"));
+    DevicePollManager::init(slots);
+    TRouter::Init();
+    Alarms::init();
+    Warnings::init();
+    Msg::send_message((u32)EventSrc::REPAINT, 0, 0);
+    return true;
 }
-
 void App::run(void) {
     TMessage m;
     while (true) {
@@ -61,7 +60,7 @@ void App::run(void) {
 }
 
 void App::error(void) {
-  while (true) {
-    ctrlSysLive();
-  }
+    while (true) {
+        ctrlSysLive();
+    }
 }

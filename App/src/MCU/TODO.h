@@ -2,8 +2,6 @@
 /*TODO 2022.12.25 Проверить редактирование
 TBit, TU8BIT, TS16bit, TFloat, TPrmList*/
 
-/*TODO 2022.12.25 TPrmList окно редактирования с выбором из списка*/
-
 /*TODO 2022.12.24 должен писать unknown а не зависать
 new TTagLine("UinAve", "U1/RAM/inAve/", LabelInit),
 когда указан ошибочный тег*/

@@ -24,7 +24,7 @@ enum class SlotStateFlags {
 };
 
 class Slot {
-	using TSlotDataHandler = std::function<void(Slot& slot, u8* reply)>;
+	using TSlotDataHandler = std::function<void(Slot* slot, u8* reply)>;
 public:
 	u16 Flags;
 	u16 RespondLenghtOrErrorCode;

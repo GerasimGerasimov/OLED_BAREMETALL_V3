@@ -35,8 +35,9 @@ bool TPageHelp::ProcessMessage(TMessage* m) {
     switch (m->Event) {
         case (u32)EventSrc::KEYBOARD: {
             switch (m->p1) {
+            case (u32)KeyCodes::F1:
             case (u32)KeyCodes::ESC :
-                TRouter::setTask({ false, "Home", nullptr });
+                TRouter::setTask({ false, TRouter::getBackPage(), nullptr });
                 break;
             }
         }
@@ -49,7 +50,9 @@ bool TPageHelp::ProcessMessage(TMessage* m) {
 };
 
 TPageHelp::TPageHelp(std::string Name)
-    :TPage(Name) {
+    :TPage(Name)
+    , pHeader(nullptr)
+    , pText(nullptr){
     MainMenu = new TComponentListVertical();
     AddList({ MainMenu });
 };

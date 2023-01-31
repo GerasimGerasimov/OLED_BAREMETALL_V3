@@ -25,7 +25,7 @@ private:
     bool cmdSendInProcess;
     u16 TryCount;
     void sendCmd(std::string& code);
-    void SlotUpdate(Slot& slot, u8* reply);
+    void SlotUpdate(Slot* slot, u8* reply);
 };
 
 #endif

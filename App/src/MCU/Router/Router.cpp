@@ -11,6 +11,10 @@
 #include "PageCleanSettings.h"
 #include "PageSensors.h"
 #include "PageNetworkSettings.h"
+#include "PageParameterListEdit.h"
+#include "PagePanelSettings.h"
+#include "PageCalibration.h"
+#include <IniResources.h>
 
 /*TODO В роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
 TPage* TRouter::Page = nullptr;
@@ -33,6 +37,9 @@ void TRouter::Init(void) {
     Pages["CleanSettings"] = new TPageCleanSettings("CleanSettings");
     Pages["Sensors"] = new TPageSensors("Sensors");
     Pages["NetWorkSettings"] = new TPageNetworkSettings("NetWorkSettings");
+    Pages["PrmListEdit"] = new TPageParameterListEdit("PrmListEdit");
+    Pages["PanelSettings"] = new TPagePanelSettings("PanelSettings");
+    Pages["CD"] = new TPageCalibration("CD");
     setInitPage();
 }
 
@@ -84,6 +91,37 @@ void TRouter::setBackPage(std::string url) {
 TPage* TRouter::goBack(void) {
     Page = BackPage;
     return Page;
+}
+
+/* TU8BIT, TU16bit, TS16bit, TFloat  - "EditValue"
+   TPrmList - "PrmListEdit" */
+static const std::map<std::string, std::string> EditPageNameBySignalType = {
+    {"TU8BIT", "EditValue"},
+    {"TU16bit", "EditValue"},
+    {"TS16bit", "EditValue"},
+    {"TFloat", "EditValue"},
+    {"TPrmList", "PrmListEdit"},
+};
+
+const std::string TRouter::getEditPageNameBySignalType(const std::string& SignalType) {
+    std::string s = (EditPageNameBySignalType.count(SignalType))
+        ? EditPageNameBySignalType.at(SignalType)
+        : "EditValue";
+    return s;
+}
+
+const std::string TRouter::selectEditPage(std::string& tag) {
+    ISignal* p = IniResources::getSignalByTag(tag);
+    std::string SignalType = p->getSignalType();
+    std::string PageName = getEditPageNameBySignalType(SignalType);
+    return PageName;
+}
+
+const std::string TRouter::getBackPage() {
+    std::string s = (Pages.count(PageValueEditEntryData.backPage))
+        ? PageValueEditEntryData.backPage
+        : "Home";
+    return s;
 }
 
 TRouter::TRouter() {

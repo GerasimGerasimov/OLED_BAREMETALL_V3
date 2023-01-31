@@ -5,7 +5,7 @@
 
 class DevicesValuesHandler {
 public:
-	static void setValues(Slot& slot);
+	static void setValues(Slot* slot);
 private:
 
 };

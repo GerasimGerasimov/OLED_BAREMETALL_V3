@@ -100,19 +100,19 @@ void CmdSender::sendCmd(std::string& code) {
 	std::string cmd = "U1/RAM/CMD/";
 	TryCount = 3;
 	cmdSendInProcess = true;
-	ModbusSlave::setValue(cmd, code, SlotUpdate);
+	ModbusSlave::setValue(cmd, code, &SlotUpdate);
 }
 
-void CmdSender::SlotUpdate(Slot& slot, u8* reply) {
-	if (slot.RespondLenghtOrErrorCode) {
-		slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
+void CmdSender::SlotUpdate(Slot* slot, u8* reply) {
+	if (slot->RespondLenghtOrErrorCode) {
+		slot->Flags |= (u16)SlotStateFlags::SKIP_SLOT;
 		cmdSendInProcess = false;
 	}
 	else {
 		if (TryCount)
 			TryCount--;
 		else {
-			slot.Flags |= (u16)SlotStateFlags::SKIP_SLOT;
+			slot->Flags |= (u16)SlotStateFlags::SKIP_SLOT;
 			cmdSendInProcess = false;
 		}
 	}

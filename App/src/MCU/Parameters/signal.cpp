@@ -32,3 +32,8 @@ std::string ISignal::getMSU()
 {
 	return "";
 }
+
+static const std::string SignalType = "ISignal";
+const std::string& ISignal::getSignalType() {
+	return SignalType;
+}

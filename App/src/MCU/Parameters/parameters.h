@@ -4,6 +4,7 @@
 #include "stm32f4xx.h"
 #include <vector>
 #include <string>
+#include <InternalAdresation.h>
 #include "signal.h"
 
 typedef struct {
@@ -23,6 +24,7 @@ public:
 	virtual const std::string getValueHex(std::string& src);
 	virtual const std::string getRegHexAddr();
 	virtual const std::string getWriteCmdType();
+	virtual TInternalMemAddress getInternalMemAddr();
 protected:
 	char* Comment;
 	char* strAddr;

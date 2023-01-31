@@ -31,6 +31,7 @@ bool TPageBasicProtectionsSettings::ProcessMessage(TMessage* m) {
                     e = getSignalOfFocusedChild();
                     if (e) {
                         ISignal* p = IniResources::getSignalByTag(((TTagLine*)(e))->Tag);
+                        TRouter::PageValueEditEntryData.backPage = Name;
                         TRouter::setTask({ false, "Help", p });
                     }
                     break;
@@ -39,6 +40,7 @@ bool TPageBasicProtectionsSettings::ProcessMessage(TMessage* m) {
                     if (e) {
                         TRouter::PageValueEditEntryData.tag = ((TTagLine*)(e))->Tag;
                         TRouter::PageValueEditEntryData.value = ((TTagLine*)(e))->Value->getCaption();
+                        TRouter::PageValueEditEntryData.backPage = Name;
                         TRouter::setTask({ false, "EditValue", nullptr });
                     }
                     break;

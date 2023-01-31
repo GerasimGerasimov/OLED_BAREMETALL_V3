@@ -22,7 +22,7 @@ class HandlerSubscribers {
 public:
 	static int set(std::string source, std::function<void(TSlotHandlerArsg)> handler);
 	static void remove(std::string source, int& ID);
-	static void send(Slot& slot);
+	static void send(Slot* slot);
 
 private:
 	static std::map<std::string, std::map<std::string, std::list<TSubscriber>>> Handlers;

@@ -28,7 +28,7 @@ private:
     TParameter* p;
     std::string tag;
     bool isDataSent = false;
-    void SlotUpdate(Slot& slot, u8* reply);
+    void SlotUpdate(Slot* slot, u8* reply);
 };
 
 #endif

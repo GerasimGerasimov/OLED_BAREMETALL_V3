@@ -19,6 +19,7 @@ void TPageNetworkSettings::startToClose() {
     isOpen = false;
 }
 
+
 bool TPageNetworkSettings::ProcessMessage(TMessage* m) {
     TVisualObject* e = { nullptr };
     switch (m->Event) {
@@ -31,6 +32,7 @@ bool TPageNetworkSettings::ProcessMessage(TMessage* m) {
                     e = getSignalOfFocusedChild();
                     if (e) {
                         ISignal* p = IniResources::getSignalByTag(((TTagLine*)(e))->Tag);
+                        TRouter::PageValueEditEntryData.backPage = Name;
                         TRouter::setTask({ false, "Help", p });
                     }
                     break;
@@ -39,7 +41,9 @@ bool TPageNetworkSettings::ProcessMessage(TMessage* m) {
                     if (e) {
                         TRouter::PageValueEditEntryData.tag = ((TTagLine*)(e))->Tag;
                         TRouter::PageValueEditEntryData.value = ((TTagLine*)(e))->Value->getCaption();
-                        TRouter::setTask({ false, "EditValue", nullptr });
+                        TRouter::PageValueEditEntryData.backPage = Name;
+                        std::string EditPage = TRouter::selectEditPage(TRouter::PageValueEditEntryData.tag);
+                        TRouter::setTask({ false, EditPage, nullptr });
                     }
                     break;
             }
@@ -73,6 +77,7 @@ p506=RS485_2_DVA/Address/TByte/xF004/r2002.L/ /1/1//0/x01/
 p507=RS485_2_PRTY/Parity/TPrmList/xF007/r2003.H/ //x00#None/x01#Odd/x02#Even/x00/
 p508=RS485_2_STOP/Stop bits/TPrmList/xF006/r2003.L/ //x00#1bit/x01#0.5bit/x02#2bit/x03#1.5bit/x00/
 */
+
 void TPageNetworkSettings::fillPageContainer(void) {
     TagList->Clear();
     TLabelInitStructure LabelInit;

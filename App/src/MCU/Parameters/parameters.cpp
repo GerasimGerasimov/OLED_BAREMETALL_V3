@@ -48,6 +48,7 @@ std::string TParameter::getMSU()
 void TParameter::setValueNotValid() {
 }
 
+/*TODO проверить, вроде метод TParameter::setValue и его производных ни где не используется */
 void TParameter::setValue() {
 }
 
@@ -61,4 +62,9 @@ const std::string TParameter::getRegHexAddr() {
 
 const std::string TParameter::getWriteCmdType() {
 	return "No command";
+}
+
+
+TInternalMemAddress TParameter::getInternalMemAddr() {
+	return { -1,0,-1 };
 }

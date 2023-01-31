@@ -12,6 +12,7 @@ public:
 	static std::string getValueAsFormatStr(float& value, const char* format);
 	static const std::string UnSignedintToStr(u32 value);
 	static const char*& getFormat(float& value);
+	static const char*& getFloatFormat(float& value);
 };
 
 #endif

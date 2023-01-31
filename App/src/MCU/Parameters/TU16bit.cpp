@@ -31,17 +31,13 @@ const std::string TU16BIT::getValueHex(std::string& src) {
 	return res;
 }
 
-const std::string TU16BIT::getRegHexAddr() {
-	std::string res(strAddr+1, 4);
-	return res;
-}
-
-const std::string TU16BIT::getWriteCmdType() {
-	return "10";
-}
-
 u16 TU16BIT::string2raw(std::string& src) {
 	float f = std::stof(src);
 	f /= Scale;
 	return (u16)f;
+}
+
+TInternalMemAddress TU16BIT::getInternalMemAddr() {
+	s16 offset = Addr;
+	return { offset,2,-1 };
 }

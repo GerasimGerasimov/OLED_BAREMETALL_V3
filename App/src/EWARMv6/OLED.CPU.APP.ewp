@@ -372,6 +372,7 @@
                     <state>$PROJ_DIR$\..\Drivers\Resources</state>
                     <state>$PROJ_DIR$\..\Drivers\DIN</state>
                     <state>$PROJ_DIR$\..\Drivers\DOUT</state>
+                    <state>$PROJ_DIR$\..\Drivers\MemWrite</state>
                     <state>$PROJ_DIR$\..\MCU\IDrivers</state>
                     <state>$PROJ_DIR$\..\MCU\GraphicsFunctions</state>
                     <state>$PROJ_DIR$\..\MCU\Fonts</state>
@@ -401,11 +402,15 @@
                     <state>$PROJ_DIR$\..\MCU\Pages\CleanSettings</state>
                     <state>$PROJ_DIR$\..\MCU\Pages\Sensors</state>
                     <state>$PROJ_DIR$\..\MCU\Pages\NetworkSettings</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\ParameterListEdit</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\PanelSettings</state>
+                    <state>$PROJ_DIR$\..\MCU\Pages\Calibration</state>
                     <state>$PROJ_DIR$\..\MCU\Resources</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers\Alarms</state>
                     <state>$PROJ_DIR$\..\MCU\StateControllers\Warnings</state>
                     <state>$PROJ_DIR$\..\MCU\CmdSender</state>
+                    <state>$PROJ_DIR$\..\MCU\SetValueSelector</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1194,6 +1199,12 @@
             </file>
         </group>
         <group>
+            <name>MemWrite</name>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\MemWrite\MemWrite.cpp</name>
+            </file>
+        </group>
+        <group>
             <name>Resources</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\Resources\os_resources.cpp</name>
@@ -1382,6 +1393,9 @@
                 <name>$PROJ_DIR$\..\MCU\Pages\BasicSettings\PageBasicSettings.cpp</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\Calibration\PageCalibration.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\CleanSettings\PageCleanSettings.cpp</name>
             </file>
             <file>
@@ -1401,6 +1415,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\OperateStatus\PageOperateStatus.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\PanelSettings\PagePanelSettings.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\ParameterListEdit\PageParameterListEdit.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\Sensors\PageSensors.cpp</name>
@@ -1464,6 +1484,12 @@
             <name>Router</name>
             <file>
                 <name>$PROJ_DIR$\..\MCU\Router\Router.cpp</name>
+            </file>
+        </group>
+        <group>
+            <name>SetValueSelector</name>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\SetValueSelector\SetValueSelector.cpp</name>
             </file>
         </group>
         <group>

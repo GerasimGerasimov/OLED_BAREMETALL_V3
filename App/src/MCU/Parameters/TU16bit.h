@@ -10,8 +10,7 @@ public:
 	TU16BIT(TSignalPropsPointers props);
 	~TU16BIT();
 	const std::string getValueHex(std::string& src);
-	const std::string getRegHexAddr();
-	const std::string getWriteCmdType();
+	TInternalMemAddress getInternalMemAddr();
 private:
 	virtual TGenaralCaseRawReturn getRawValue(const TSlotHandlerArsg& args);
 	u16 string2raw(std::string& src);

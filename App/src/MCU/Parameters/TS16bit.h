@@ -8,6 +8,7 @@ class TS16BIT : public TGeneralCaseSignal {
 public:
 	TS16BIT(TSignalPropsPointers props);
 	~TS16BIT();
+	TInternalMemAddress getInternalMemAddr();
 private:
 	virtual TGenaralCaseRawReturn getRawValue(const TSlotHandlerArsg& args);
 };

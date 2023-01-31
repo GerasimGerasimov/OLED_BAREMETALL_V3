@@ -76,6 +76,7 @@ static inline float RawToFloat(TGenaralCaseRawReturn& input) {
 	return res;
 }
 
+//x3EC1B08A 0,3783
 std::string TGeneralCaseSignal::value(const TSlotHandlerArsg& args, const char* format) {
 	TGenaralCaseRawReturn input = getRawValue(args);
 	float res =  RawToFloat(input) * Scale;
@@ -91,4 +92,13 @@ std::string TGeneralCaseSignal::validation(const TSlotHandlerArsg& args) {
 	if (ParametersUtils::isAddrInvalid(Addr)) return "err.addr";
 	if ((Addr < args.StartAddrOffset) || (Addr > args.LastAddrOffset)) return "out.addr";
 	return "";
+}
+
+const std::string TGeneralCaseSignal::getWriteCmdType() {
+	return "10";
+}
+
+const std::string TGeneralCaseSignal::getRegHexAddr() {
+	std::string res(strAddr + 1, 4);
+	return res;
 }

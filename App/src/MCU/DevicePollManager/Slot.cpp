@@ -61,7 +61,7 @@ void Slot::validation(s16 result, u8* reply) {
 		: (Flags |=  (u16)SlotStateFlags::CRC_ERR);
 	RespondLenghtOrErrorCode = result;
 	if (onData)
-		onData(*this, reply);
+		onData(this, reply);
 }
 
 bool Slot::isIntervalDone() {

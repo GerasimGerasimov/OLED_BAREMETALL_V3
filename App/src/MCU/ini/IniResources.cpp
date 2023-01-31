@@ -51,7 +51,6 @@ TValueSearchStruct IniResources::TagToValueSearchStruct(const std::string& tag) 
 		(const char)'/',
 			(char*)tag.c_str(),
 				tag.size());
-	TValueSearchStruct res;
 	if (v.size() == 3) {
 		/*TODO тут явно плохое место! два взаимозависимых модуля
 		эти модули нельзя переставить местами при инициализации!
@@ -64,8 +63,7 @@ TValueSearchStruct IniResources::TagToValueSearchStruct(const std::string& tag) 
 			return { dev, v[1], v[2] };
 		}
 	}
-	else
-		return { "", "", "" };
+	return { "", "", "" };
 }
 
 TValueSearchStruct IniResources::spliceTagInfo(const std::string& tag) {
@@ -151,7 +149,7 @@ ISignal* IniResources::getSignalByTag(const std::string& tag) {
 			}
 		}
 	}
-	TSignalPropsPointers defaultprops = { NULL, NULL, NULL, NULL }; 
+	TSignalPropsPointers defaultprops = { nullptr, nullptr, nullptr, nullptr };
 	return new ISignal(defaultprops);
 }
 

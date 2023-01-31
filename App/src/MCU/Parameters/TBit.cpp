@@ -2,6 +2,7 @@
 #include "parser.h"
 #include "ParametersUtils.h"
 #include "bastypes.h"
+#include <array>
 //Special case Two
 //p13321 = P / C / TBit / xF042 / mask / r2021.1 / 1 / 1 / const / вообще нет MSU
 /*TODO Addr
@@ -34,6 +35,17 @@ const std::string TBit::value(const TSlotHandlerArsg& args) {
 	return (input)?"1":"0";
 }
 
+const std::string TBit::getValueHex(std::string& src) {
+	float f = std::stof(src);
+	std::string res = (f != 0) ? "1" : "0";
+	return res;
+}
+
+const std::string TBit::getRegHexAddr() {
+	std::string res(strAddr + 1, 6);
+	return res;
+}
+
 bool TBit::getRawValue(const TSlotHandlerArsg& args) {
 	s16 offset = Addr.Addr - args.StartAddrOffset;
 	u8* p = args.InputBuf + offset;//получил указатель на данные
@@ -49,4 +61,30 @@ const std::string TBit::validation(const TSlotHandlerArsg& args) {
 	if (ParametersUtils::isAddrInvalid(Addr.Addr)) return "err.addr";
 	if ((Addr.Addr < args.StartAddrOffset) || (Addr.Addr > args.LastAddrOffset)) return "out.addr";
 	return "";
+}
+
+const std::string TBit::getWriteCmdType() {
+	return "16";
+}
+
+static const std::string SignalType = "TBit";
+const std::string& TBit::getSignalType() {
+	return SignalType;
+}
+
+static const std::array<u16,16> Mask2BitNumber = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};
+TInternalMemAddress TBit::getInternalMemAddr() {
+	s16 offset = Addr.Addr;
+	s16 bitNumber = -1;
+	u16 index = 0;
+	for (auto& e : Mask2BitNumber) {
+		if (e == Addr.Option) {
+			bitNumber = index;
+			break;
+		}
+		index++;
+	}
+	offset += (bitNumber < 7) ? 0 : 1;
+	bitNumber -= (bitNumber < 7) ? 0 : 8;
+	return { offset, 1, bitNumber };
 }

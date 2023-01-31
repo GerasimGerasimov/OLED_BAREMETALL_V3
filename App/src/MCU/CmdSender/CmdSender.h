@@ -24,7 +24,7 @@ class CmdSender {
 		static void updateKeyStop(const u16 din);
 		static void updateKeyMode(const u16 din);
 		static void sendCmd(std::string& code);
-		static void SlotUpdate(Slot& slot, u8* reply);
+		static void SlotUpdate(Slot* slot, u8* reply);
 };
 
 #endif

@@ -19,3 +19,8 @@ TGenaralCaseRawReturn TS16BIT::getRawValue(const TSlotHandlerArsg& args) {
 	res.raw.s = raw.s;
 	return res;
 }
+
+TInternalMemAddress TS16BIT::getInternalMemAddr() {
+	s16 offset = Addr;
+	return { offset,2,-1 };
+}

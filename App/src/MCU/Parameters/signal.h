@@ -14,7 +14,6 @@ typedef struct {
 	char* pOptional;
 } TSignalPropsPointers;
 
-
 class ISignal {
 public:
 	ISignal(char* source, int scrLen);
@@ -22,8 +21,9 @@ public:
 	~ISignal();
 	virtual std::string getName();
 	virtual std::string getValue(const TSlotHandlerArsg& args, const char* format);
-        virtual std::string getValue(){return "";};
+    virtual std::string getValue(){return "";};
 	virtual std::string getMSU();
+	virtual const std::string& getSignalType();
 	std::string getDefaultValue();
 protected:
 	char* Name;
