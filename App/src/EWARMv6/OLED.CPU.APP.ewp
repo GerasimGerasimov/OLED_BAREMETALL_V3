@@ -1544,9 +1544,6 @@
             <name>$PROJ_DIR$\..\STM32F4xx_StdPeriph_Driver\src\misc.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</name>
         </file>
         <file>
@@ -1554,9 +1551,6 @@
         </file>
         <file>
             <name>$PROJ_DIR$\..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</name>
