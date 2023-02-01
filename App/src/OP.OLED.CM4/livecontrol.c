@@ -17,5 +17,4 @@ void ctrlSysLive(void) {
    IARHeapInfo = __iar_dlmallinfo();
    RAM_DATA.UsedMem = IARHeapInfo.uordblks;
    RAM_DATA.TotalMem = IARHeapInfo.usmblks;
-   //RAM_DATA.var2 ++;
 }

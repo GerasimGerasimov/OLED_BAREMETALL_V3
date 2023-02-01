@@ -14,20 +14,16 @@ void TDisplayDriver::setDC(void) {
 //вот, в байт с данными расположен вертикально! поэтому одна строка это 128 вертикально расположенных байт с точками
 //каждый бит это точка. И таких строк 8 штук
 
-/*TODO решить проблему артефактов с правой стороны дисплея при выводе изображений
-где проблема ещё предстоит выяснить, пока ясно что
-1) артефакты на длинных строках
-2) артефакт мограет при обновлении сизображения
-rotateFrame копирование - при норме 128, проверил 126, 127-искажения 129-повис (оно и понятно)
-TGrahics::setPixel(0,0,1); нулевые координаты - точка выводится в конце строки снизу 
-TGrahics::setPixel(1,0,1); точка выводится по нулевым координатам... значит где-то есть сдвиг! 
-*/
+//Тут идёт заполнение framebuffer`a (который потом будет передан на OLED по SPI)
+//одновременно изображение переворачивается и отзеркаливается из-за особенностей OLED
 void TDisplayDriver::prepareFrame(void){
   u8 a;
-  u8 m = 0;
-  u8* f = &framebuffer[0][0];
-  for (int i=0; i<8; i++) {
-    for (int j=0; j<128; j++) {
+  u16 m = 64;
+  u8* f = (u8*)&framebuffer[7][127];
+  while (m) {
+    m -=8;
+    int j = 0;
+    while (j<128) {
         a = 0;
         a |= (TGrahics::screen[j][0+m]) ? 1 << 0 : 0;
         a |= (TGrahics::screen[j][1+m]) ? 1 << 1 : 0;
@@ -37,64 +33,22 @@ void TDisplayDriver::prepareFrame(void){
         a |= (TGrahics::screen[j][5+m]) ? 1 << 5 : 0; 
         a |= (TGrahics::screen[j][6+m]) ? 1 << 6 : 0;
         a |= (TGrahics::screen[j][7+m]) ? 1 << 7 : 0; 
-        *f++ = a;
-    }
-    m +=8;
-  }
-}
-
-/*
-const static u8 Mask[] = {1, 2, 4, 8, 16, 32, 64, 128};
- 
-void TDisplayDriver::prepareFrame(void){
-  u8 p = 0;
-  u8* f = &framebuffer[0];
-  for (int x = 0; x < 128; x++) {
-    for (int y = 0; y < 64; y++) {
-      p = TGrahics::screen[x][y];
-      u16 PixNum = (y<<7)+x; //номер пиксела в одномерном массиве, что переводится как Y*128 + X
-      u16 ByteNum = PixNum >> 3;;//номер байта в двухмерном массиве  что переводится как PixNum/8
-      u8 BitMask = Mask[PixNum -  (ByteNum << 3)];//маска для бита
-      u8* a = f+ByteNum;
-      (p)
-        ?(*a |=  BitMask)
-        :(*a &= ~BitMask);
+        *--f = a;
+        j++;
     }
   }
 }
-*/
 
 /*функция очистки экрана*/
 void TDisplayDriver::CleanScreen(void) {
-  u8* f = &framebuffer[0][0];
+  u8* f = (u8*)&framebuffer;
   for (int i = 0; i<sizeof(framebuffer); i++){
     *f++=0;
   }
 }
 
-/*функция переворота экрана*/
-void TDisplayDriver::rotateFrame(void){
-  static u8 framebuffer_tmp[8][128];
-  
-  //копирование буфера во временный
-  u32* ft = (u32*)&framebuffer_tmp;
-  u32* fs = (u32*)&framebuffer;
-  for (int i=0; i<(2*128); i++){
-    *ft++ = *fs++;
-  }
-  
-  //отзеркаливание обратно в буфер
-  for (int i=0; i<8; i++) {
-    for (int j=0; j<(MAX_END_X+1); j++) {
-      framebuffer[i][j]=framebuffer_tmp[i][(MAX_END_X-1) - j];//MAX_END_X-1 (было MAX_END_X) нулевая координата подвинулась куда надо - очень хорошо
-                                                              //но теперь вроде как не до конца строка выводится
-    }
-  }
-}
-
 void TDisplayDriver::out(void) {
     prepareFrame();
-    rotateFrame();
     ssd1305_rst_first();
     DMA_Cmd(DMA2_Stream3, DISABLE);  //TX
     DMA2->LIFCR = (uint32_t) (DMA_FLAG_FEIF3 | DMA_FLAG_DMEIF3 | DMA_FLAG_TEIF3 | DMA_FLAG_HTIF3 | DMA_FLAG_TCIF3);

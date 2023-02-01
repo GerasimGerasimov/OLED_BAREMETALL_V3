@@ -112,19 +112,18 @@ static void write_cmd(unsigned char cmd)
 void ssd1305_rst_first()
 {
   LCD_NSS_LO; 
- for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
+ for(u8 i=0x080;i>0;i--){}//задержка для установления работы 0x010
   write_cmd(SSD1305_CMD_SETDISPSTART); 
   write_cmd(0x00); 
   write_cmd(SSD1305_CMD_SETPAGEADD_PGMODE + 0);
   write_cmd(SSD1305_CMD_SETLOWCOLADD + 0);
   LCD_DATA;
+ for(u8 i=0x080;i>0;i--){}//задержка для установления работы 0x010  
 }
 
 void ssd1305_rst_second()
 {
-  for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
-  for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
-  for(u8 i=0x070;i>0;i--){}//задержка для установления работы 0x010
+  for(u8 i=0x080;i>0;i--){}//задержка для установления работы 0x010
   LCD_NSS_HI;
 }
 

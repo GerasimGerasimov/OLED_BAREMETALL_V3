@@ -141,7 +141,7 @@ void KeyBoard::debouncing(u16 rawcode)
       else btn_last=0; //сохраняем в предыдущее значение = 0
     }
   }
-  RAM_DATA.var2 = ScanCode;
+  //RAM_DATA.var2 = ScanCode;
 }
 
 

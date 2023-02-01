@@ -220,12 +220,12 @@ void DMA_Configuration (void)
   DMA_InitStructure.DMA_Channel = DMA_Channel_3;                              // выбор канала ДМА
   DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&SPI1->DR;          // откуда берать данные
   DMA_InitStructure.DMA_Memory0BaseAddr = getFrameBufferAddr();//(uint32_t)&framebuffer[0][0];            // куда заталкивать данные
-  DMA_InitStructure.DMA_BufferSize = 0;                                      // выбор размера буфера (я так понял в нашем случае количество каналов АЦП)
+  DMA_InitStructure.DMA_BufferSize = 0;                                      // выбор размера буфера
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;            // запрещаем инкрементировать адрес периферии (откуда берём)
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;                     // разрешаем инкрементировать адрес памяти (куда пишем)
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte; // размер данных в периферии
   DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;         // размер данных в памяти
-  DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;                             // режим работы ДМА для непрерывных потоков данных (СканМод у АЦП)
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;                             // режим работы ДМА для непрерывных потоков данных
   DMA_InitStructure.DMA_Priority = DMA_Priority_High;                         // приоритет выбранного канала перед остальными
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;                      // передача данных напрямую (без накапливания)
   DMA_InitStructure.DMA_FIFOThreshold       = DMA_FIFOThreshold_Full;

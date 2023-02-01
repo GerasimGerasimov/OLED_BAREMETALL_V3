@@ -6,8 +6,8 @@
 #include "stm32f4xx.h"
 #include "TMCUText.h"
 
-#define VIEW_PORT_MAX_WIDTH  128 //ширина
-#define VIEW_PORT_MAX_HEIGHT 64  //высота
+#define VIEW_PORT_MAX_WIDTH  127 //ширина
+#define VIEW_PORT_MAX_HEIGHT 63  //высота
 
 #define PRIMARY_COLOR  1
 #define BACKGROUND_COLOR 0
