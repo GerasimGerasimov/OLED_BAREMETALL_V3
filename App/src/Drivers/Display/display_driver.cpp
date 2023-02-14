@@ -16,6 +16,28 @@ void TDisplayDriver::setDC(void) {
 
 //Тут идёт заполнение framebuffer`a (который потом будет передан на OLED по SPI)
 //одновременно изображение переворачивается и отзеркаливается из-за особенностей OLED
+
+//Вариан без переворота
+//write_cmd(SSD1305_CMD_SETSEGREMAP + 0x01); //Remap
+void TDisplayDriver::prepareFrame(void){
+  u8* f = (u8*)&framebuffer[0][0];
+  for (int m = 0; m < 64; m += 8) {
+    for (int j = 0; j < 128; j++) {
+        *f++ = ((TGrahics::screen[j][0+m]) ? 1 << 0 : 0)
+             | ((TGrahics::screen[j][1+m]) ? 1 << 1 : 0)
+             | ((TGrahics::screen[j][2+m]) ? 1 << 2 : 0)
+             | ((TGrahics::screen[j][3+m]) ? 1 << 3 : 0)
+             | ((TGrahics::screen[j][4+m]) ? 1 << 4 : 0)
+             | ((TGrahics::screen[j][5+m]) ? 1 << 5 : 0)
+             | ((TGrahics::screen[j][6+m]) ? 1 << 6 : 0)
+             | ((TGrahics::screen[j][7+m]) ? 1 << 7 : 0);
+    }
+  }
+}
+
+/*
+это вариант с переворотом и отзеркаливаением для 
+write_cmd(SSD1305_CMD_SETSEGREMAP + 0x00); //No Remap
 void TDisplayDriver::prepareFrame(void){
   u8 a;
   u16 m = 64;
@@ -37,7 +59,7 @@ void TDisplayDriver::prepareFrame(void){
         j++;
     }
   }
-}
+}*/
 
 /*функция очистки экрана*/
 void TDisplayDriver::CleanScreen(void) {

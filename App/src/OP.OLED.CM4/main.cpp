@@ -19,6 +19,9 @@
 #include "internal_din.h"
 #include "internal_dout.h"
 
+/*TODO поскольку ID сейчс задаётся через ресурсы, не забывать менять счётчик версий*/
+volatile const char FirmWareInfo[]="OLED.EFI2 14.02.2023 v3.0.0 www.intmash.ru";
+
 #include "STM32F4xx_Intmash_Flash.h"
 
 int main(void) {  
