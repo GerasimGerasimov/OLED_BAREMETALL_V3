@@ -22,7 +22,7 @@
   "resources": {
     "start": "0x08080000",
     "items": {
-	  "ID" : "12345678 OLED.CM4 v1.0.0 29.01.2023 www.intmash.ru",
+	  "ID" : "12345678 OLED.CM4 v3.0.1 22.04.2023 www.intmash.ru",
 	  "URL" : "www.intmash.ru",
 	  "SOURCES":"DEV1/SLF1/",
       "DEV1" : { 
