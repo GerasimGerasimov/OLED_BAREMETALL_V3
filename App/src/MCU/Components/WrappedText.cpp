@@ -22,7 +22,7 @@ bool TWrappedText::ProcessMessage(TMessage* m) {
 
 void  TWrappedText::view(void) {//вывести строку на экране
     if (List.size() == 0) return;//рисовать нечего
-    TGrahics::fillRect({ ElementRect.Left, ElementRect.Top , ElementRect.Width, ElementRect.Height, 0 });
+    TGraphics::fillRect({ ElementRect.Left, ElementRect.Top , ElementRect.Width, ElementRect.Height, 0 });
     //подсчитать, сколько объектов(строк) умещаются в высоту TMenu начиная с FirstPosition
     //при этом, FocusLine входит в множество между FirstPosition и LastPosition
     u16 c = GetViewObjectsCount();//кол-во объектов умещающихся в высоту меню от FirstPosition до нижнего края
@@ -34,7 +34,7 @@ void  TWrappedText::view(void) {//вывести строку на экране
     u16 hf = TMCUFonts::getFontHeight(Font);
     //первая выводимая строка, в качестве начальных координат имеет начальные координаты TMenu
     while (i != LastPosition) {//отображаю элеменыт если в списке что-то есть 
-        TGrahics::outText(List[i], Left, Top, 1, Font);
+        TGraphics::outText(List[i], Left, Top, 1, Font);
         Top += hf;
         i++;                    //перехожу к следующей строке
     }
@@ -53,7 +53,7 @@ void TWrappedText::outText() {
     s16 Left = ElementRect.Left;
     s16 Top = ElementRect.Top;
     for (auto const text : List) {
-        TGrahics::outText(text, Left, Top, 1, Font);
+        TGraphics::outText(text, Left, Top, 1, Font);
         Top+= TMCUFonts::getFontHeight(Font);
     }
 }

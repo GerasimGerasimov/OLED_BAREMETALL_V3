@@ -10,10 +10,10 @@ void  TFixedHeader::view(void) {//Header прижимается к верхнему краю контейнера
         selfRect.Width = ownerRect.Width;
     }
     TFillRect rect{ selfRect.Left, selfRect.Top, selfRect.Width, selfRect.Height, 1 };
-    TGrahics::fillRect(rect);
+    TGraphics::fillRect(rect);
     s16 Left = (selfRect.Width - TextSize.width) / 2;
     s16 Top = selfRect.Top;
-    TGrahics::outText(Caption, Left, Top, 0, Font);
+    TGraphics::outText(Caption, Left, Top, 0, Font);
 }
 
 TFixedHeader::TFixedHeader(TLabelInitStructure init)

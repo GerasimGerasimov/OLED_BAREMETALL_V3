@@ -20,7 +20,7 @@
 #include "internal_dout.h"
 
 /*TODO поскольку ID сейчс задаётся через ресурсы, не забывать менять счётчик версий*/
-volatile const char FirmWareInfo[]="OLED.EFI2 14.02.2023 v3.0.0 www.intmash.ru";
+volatile const char FirmWareInfo[]="OLED.EFI2 v3.0.1 22.04.2023 www.intmash.ru";
 
 #include "STM32F4xx_Intmash_Flash.h"
 
@@ -29,8 +29,8 @@ int main(void) {
   Init();
 
   TDisplayDriver::CleanScreen();
-  TGrahics::init();
-  TGrahics::outText("Загрузка...", 0, 0, 1, "Verdana12");
+  TGraphics::init();
+  TGraphics::outText("Загрузка...", 0, 0, 1, "Verdana12");
   TDisplayDriver::out();
   
   ModbusMasterInit(); //мастер  
@@ -38,7 +38,7 @@ int main(void) {
   __enable_irq();
   
   if(FlashStatus.Bits.FLASH_DATA_ERR){
-    TGrahics::outText("FLASH_DATA_ERR", 0, 24, 1, "Verdana12");
+    TGraphics::outText("FLASH_DATA_ERR", 0, 24, 1, "Verdana12");
     TDisplayDriver::out();  
   }
   

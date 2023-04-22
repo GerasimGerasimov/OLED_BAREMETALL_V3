@@ -23,7 +23,7 @@
 
 bool App::init(void) {
     if (!TInternalResources::init()) {
-        TGrahics::outText("Ресурсы повреждены!", 0, 12, 1, "Verdana12");
+        TGraphics::outText("Ресурсы повреждены!", 0, 12, 1, "Verdana12");
         TDisplayDriver::out();
         return false;
     }

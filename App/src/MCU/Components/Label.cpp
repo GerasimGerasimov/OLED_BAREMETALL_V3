@@ -19,7 +19,7 @@ void TLabel::outCaption(TColorScheme& ColorScheme) {
         /*посчитать середину зная ширину текста и ElementRect.Width*/
         Left = (ElementRect.Width - TextSize.width) / 2;
     }
-    TGrahics::outText(Caption, Left, Top, ColorScheme.Color, Font);
+    TGraphics::outText(Caption, Left, Top, ColorScheme.Color, Font);
     //TClipRect clip{ Left,Top,ElementRect.Width, ElementRect.Height };
     //TGrahics::outTextClipped(Caption, Left, Top, ColorScheme.Color, Font, clip);
 }
@@ -33,7 +33,7 @@ void TLabel::fillBackGround(TColorScheme& ColorScheme) {
     if (Style & (int)LabelsStyle::BGRND_TRANSPARENT) return;
     TTextSizes tsizes = getSize();
     TFillRect rect{ ElementRect.Left, ElementRect.Top, tsizes.width, tsizes.height, ColorScheme.BackGround };
-    TGrahics::fillRect(rect);
+    TGraphics::fillRect(rect);
 }
 
 void TLabel::setCaption(std::string caption) {//добавить/изменить текст в строке

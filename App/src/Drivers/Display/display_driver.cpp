@@ -23,14 +23,14 @@ void TDisplayDriver::prepareFrame(void){
   u8* f = (u8*)&framebuffer[0][0];
   for (int m = 0; m < 64; m += 8) {
     for (int j = 0; j < 128; j++) {
-        *f++ = ((TGrahics::screen[j][0+m]) ? 1 << 0 : 0)
-             | ((TGrahics::screen[j][1+m]) ? 1 << 1 : 0)
-             | ((TGrahics::screen[j][2+m]) ? 1 << 2 : 0)
-             | ((TGrahics::screen[j][3+m]) ? 1 << 3 : 0)
-             | ((TGrahics::screen[j][4+m]) ? 1 << 4 : 0)
-             | ((TGrahics::screen[j][5+m]) ? 1 << 5 : 0)
-             | ((TGrahics::screen[j][6+m]) ? 1 << 6 : 0)
-             | ((TGrahics::screen[j][7+m]) ? 1 << 7 : 0);
+        *f++ = ((TGraphics::screen[j][0+m]) ? 1 << 0 : 0)
+             | ((TGraphics::screen[j][1+m]) ? 1 << 1 : 0)
+             | ((TGraphics::screen[j][2+m]) ? 1 << 2 : 0)
+             | ((TGraphics::screen[j][3+m]) ? 1 << 3 : 0)
+             | ((TGraphics::screen[j][4+m]) ? 1 << 4 : 0)
+             | ((TGraphics::screen[j][5+m]) ? 1 << 5 : 0)
+             | ((TGraphics::screen[j][6+m]) ? 1 << 6 : 0)
+             | ((TGraphics::screen[j][7+m]) ? 1 << 7 : 0);
     }
   }
 }

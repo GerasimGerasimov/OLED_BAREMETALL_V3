@@ -279,8 +279,8 @@ void TNumericEdit::outCaption(TColorScheme& ColorScheme) {
                     : PrimaryColor;
             }
             CharSize = TMCUFonts::getCharSizes(e.c, Font);
-            TGrahics::fillRect({ cLeft, cTop , CharSize.width, CharSize.height, ColorScheme.BackGround });
-            TGrahics::putChar(e.c, (u16&) cLeft, cTop, ColorScheme.Color);
+            TGraphics::fillRect({ cLeft, cTop , CharSize.width, CharSize.height, ColorScheme.BackGround });
+            TGraphics::putChar(e.c, cLeft, cTop, ColorScheme.Color);
         }
     }
     /*тут выделится только запятая*/
@@ -290,8 +290,8 @@ void TNumericEdit::outCaption(TColorScheme& ColorScheme) {
             : PrimaryColor
         : PrimaryColor;
     CharSize = TMCUFonts::getCharSizes('.', Font);
-    TGrahics::fillRect({ cLeft, cTop , CharSize.width, CharSize.height, ColorScheme.BackGround });// (u16)((Position == 0) ? 1 : 0)});
-    TGrahics::putChar('.', (u16&)cLeft, cTop, ColorScheme.Color);// (Position == 0) ? 0 : 1);
+    TGraphics::fillRect({ cLeft, cTop , CharSize.width, CharSize.height, ColorScheme.BackGround });// (u16)((Position == 0) ? 1 : 0)});
+    TGraphics::putChar('.', cLeft, cTop, ColorScheme.Color);// (Position == 0) ? 0 : 1);
 
     /*тут выделятся числа после запятой*/
     Count = 0;
@@ -310,8 +310,8 @@ void TNumericEdit::outCaption(TColorScheme& ColorScheme) {
                 ColorScheme = PrimaryColor;
             }
             CharSize = TMCUFonts::getCharSizes(e.c, Font);
-            TGrahics::fillRect({ cLeft, cTop , CharSize.width, CharSize.height, ColorScheme.BackGround });
-            TGrahics::putChar(e.c, (u16&)cLeft, cTop, ColorScheme.Color);
+            TGraphics::fillRect({ cLeft, cTop , CharSize.width, CharSize.height, ColorScheme.BackGround });
+            TGraphics::putChar(e.c, cLeft, cTop, ColorScheme.Color);
         }
     }
 }

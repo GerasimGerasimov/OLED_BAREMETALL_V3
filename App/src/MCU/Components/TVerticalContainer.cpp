@@ -109,7 +109,7 @@ TVisualObject* TVerticalContainer::getFocusedElement() {
 
 void TVerticalContainer::view(void){//вывести объект на экране
     if (ItemsCount() == 0) return;//рисовать нечего
-    TGrahics::fillRect({ ElementRect.Left, ElementRect.Top , ElementRect.Width, ElementRect.Height, 0});
+    TGraphics::fillRect({ ElementRect.Left, ElementRect.Top , ElementRect.Width, ElementRect.Height, 0});
     //подсчитать, сколько объектов(строк) умещаются в высоту TMenu начиная с FirstPosition
     //при этом, FocusLine входит в множество между FirstPosition и LastPosition
     u16 c = GetViewObjectsCount();//кол-во объектов умещающихся в высоту меню от FirstPosition до нижнего края
@@ -143,7 +143,7 @@ void TVerticalContainer::drawScrollBar(void) {
     u16 Step = (items - 1) ? (((ElementRect.Height - ScrlBarHeight) * 1000) / (items - 1)) : 0;
     s16 ScrlBarTop = ElementRect.Top + (Step * (FocusedLine)) / 1000;
 
-    TGrahics::fillRect({ (s16)(ElementRect.Left + ElementRect.Width - 2),
+    TGraphics::fillRect({ (s16)(ElementRect.Left + ElementRect.Width - 2),
                            ScrlBarTop ,
                             ScrollBarWidth,
                              ScrlBarHeight, 1 });
