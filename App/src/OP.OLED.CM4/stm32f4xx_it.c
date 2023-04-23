@@ -4,6 +4,7 @@
 #include "flashdata.h"
 #include "timer_wrapper.h"
 #include "leds_timer_wrapper.h"
+#include "CmdSenderTimerWrapper.h"
 #include "buttons.h"
 
 u16 num = 0;
@@ -16,6 +17,7 @@ void TIM6_DAC_IRQHandler(void) {//таймер общего назначения 1 мс
     LedsTimerTick();
     sendTimerMessage();
     KeyBoardUpdate();
+    CmdSenderBusyControl();
 }
 
 /******************************************************************************/

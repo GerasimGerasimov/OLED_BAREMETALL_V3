@@ -12,6 +12,7 @@ void TPageHome::view() {
 void TPageHome::onOpen() {
     fillPageContainer();
     SubscriberID = HandlerSubscribers::set("U1/RAM/", [this](TSlotHandlerArsg args) { SlotUpdate(args); });
+    cmdSendInProcess = false;
 }
 
 void TPageHome::startToClose() {
@@ -28,6 +29,9 @@ static const float maxIref = 1000.0f;
 bool TPageHome::ProcessMessage(TMessage* m) {
     TVisualObject* e = { nullptr };
     switch (m->Event) {
+        case (u32)EventSrc::TIMER:
+            checkSlotHelth();
+          break;
         case (u32)EventSrc::KEYBOARD: {
             switch (m->p1) {
                 case (u32)KeyCodes::ESC:
@@ -67,6 +71,15 @@ bool TPageHome::ProcessMessage(TMessage* m) {
     return false;
 };
 
+void TPageHome::checkSlotHelth(void){
+  static const u16 maxBusyTime = 30;
+  static u16 slotBusyCount = maxBusyTime;
+  if (cmdSendInProcess) {
+    (slotBusyCount)
+      ? (--slotBusyCount)
+      : (slotBusyCount = maxBusyTime, cmdSendInProcess = false);
+  }
+}
 TTagLine* getIrefPlaceHolder(TComponentsContainer* Src) {
     const std::string tag = "U1/RAM/Iref/";
     TTagLine* res = nullptr;

@@ -9,6 +9,7 @@ class CmdSender {
 	public:
 		static void init(void);
 		static void update(const u16 din);
+                static void onTimer(void);
 	private:
 		static u16 keyStopReset;
 		static u16 keyRun;

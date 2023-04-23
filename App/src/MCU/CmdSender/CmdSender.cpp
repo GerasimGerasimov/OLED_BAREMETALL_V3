@@ -31,6 +31,16 @@ void CmdSender::init() {
 
 }
 
+void CmdSender::onTimer(void){
+  static const u16 maxBusyTime = 300;
+  static u16 slotBusyCount = maxBusyTime;
+  if (cmdSendInProcess) {
+    (slotBusyCount)
+      ? (--slotBusyCount)
+      : (slotBusyCount = maxBusyTime, cmdSendInProcess = false);
+  }
+}
+
 void CmdSender::update(const u16 din) {
 	updateKeyRun(din);
 	updateKeyStop(din);
@@ -116,5 +126,8 @@ void CmdSender::SlotUpdate(Slot* slot, u8* reply) {
 			cmdSendInProcess = false;
 		}
 	}
-	/*TODO разделить использование слота с PageEditValue*/
+	/*TODO разделить использование слота с PageEditValue
+          Вообще нужен список заданий для "CmdWrite" Слота, тогда
+          и с таймерами и сбросом cmdSendInProcess не придётся выкруживать
+        */
 }

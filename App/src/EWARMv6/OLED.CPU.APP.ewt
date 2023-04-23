@@ -1556,6 +1556,12 @@
             <file>
                 <name>$PROJ_DIR$\..\MCU\CmdSender\CmdSender.cpp</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\CmdSender\CmdSenderTimerWrapper.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\MCU\CmdSender\CmdSenderTimerWrapper_cpp.cpp</name>
+            </file>
         </group>
         <group>
             <name>Components</name>

@@ -27,6 +27,7 @@ private:
     u16 TryCount;
     void sendCmd(std::string& value);
     void SlotUpdate(Slot* slot, u8* reply);
+    void checkSlotHelth(void);
 };
 
 #endif
