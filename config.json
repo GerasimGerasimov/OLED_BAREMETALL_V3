@@ -17,7 +17,7 @@
     "info": "0x08008200",
     "infoSize": 8,
     "CheckFrom": "0x08008208",
-    "CheckTo":   "0x08050200"
+    "CheckTo":   "0x08050b00"
   },
   "resources": {
     "start": "0x08080000",

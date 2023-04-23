@@ -40,6 +40,11 @@ enum class KeyCodes : u32 {
         F3      = 4 //функциональная клавиша F3
 };
 
+enum class KeyPressFeature : u32 {
+  FirstPress,
+  AutoRepeat
+};
+
 typedef struct {//угу, вдруг мышь подключу ;-)
   u16 x;
   u16 y;

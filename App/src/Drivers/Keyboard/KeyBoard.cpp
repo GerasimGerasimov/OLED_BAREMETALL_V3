@@ -28,7 +28,7 @@ u16 KeyBoard::repeatDelay = 0;
 void KeyBoard::sendKeyboardMsg(void) {
   static u16 prevScanCode = 0;
     if (ScanCode != prevScanCode) {
-      Msg::send_message((u32)EventSrc::KEYBOARD, ScanCode, 0);
+      Msg::send_message((u32)EventSrc::KEYBOARD, ScanCode, (u32)KeyPressFeature::FirstPress);
       prevScanCode = ScanCode;
       prepareToRepeat();
     } else {
@@ -57,7 +57,7 @@ void KeyBoard::repeating(void){
         (repeatDelay)
           ? repeatDelay --
           : ( repeatDelay = NextDelay,
-                Msg::send_message((u32)EventSrc::KEYBOARD, ScanCode, 0),
+             Msg::send_message((u32)EventSrc::KEYBOARD, ScanCode, (u32)KeyPressFeature::AutoRepeat),
                  0);    
     break;
   }
