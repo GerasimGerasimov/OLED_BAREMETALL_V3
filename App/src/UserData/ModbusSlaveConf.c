@@ -8,6 +8,7 @@
 #include "RAMdata.h"
 #include "ModbusMasterConf.h"
 #include "crc16.h"
+#include "LEDs.h"
 
 //структуры драйверов UART и слейвов
 Intmash_Usart UART1toRS485; // св€зь по опциональному RS485
@@ -63,7 +64,7 @@ void USART1_IRQHandler(void)
   tU8 MsgSize = UsartTxRxFinish(&UART1toRS485);//определили что произошло: прием или прин€то MsgSize байт. ; 
         
   if(MsgSize){//если прин€тно  
-    //if (LED2_ST) LED2_OFF; else LED2_ON; //моргнули светиком 
+    if (LED2_ST) LED2_OFF; else LED2_ON; //моргнули светиком 
     /*
     if (FLASH_DATA.Retranslate != 0) {
       //если ретрансл€ци€ включена и прин€то валидное сообщение по нужному адресу
