@@ -5,6 +5,8 @@
 #include "TVerticalContainer.h"
 #include "HandleSubscribers.h"
 
+class TTagLine;
+
 class TPageHome : public TPage
 {
 public:
@@ -21,13 +23,15 @@ private:
     void SlotUpdate(TSlotHandlerArsg args);
     TVisualObject* getSignalOfFocusedChild();
     int SubscriberID = 0;
-    void decreaseIref(float step);
-    void increaseIref(float step);
+    void decrease(float step);
+    void increase(float step);
     bool cmdSendInProcess;
+    bool changeUref = false;
     u16 TryCount;
     void sendCmd(std::string& value);
     void SlotUpdate(Slot* slot, u8* reply);
     void checkSlotHelth(void);
+    TTagLine* getIrefPlaceHolder(TComponentsContainer* Src);
 };
 
 #endif

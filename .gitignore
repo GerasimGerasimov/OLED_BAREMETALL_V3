@@ -54,3 +54,4 @@ c_cpp_properties.json
 *.out
 *.app
 STM32F4xx_StdPeriph_Driver/Release_Notes.html
+App/src/EWARMv6/settings/

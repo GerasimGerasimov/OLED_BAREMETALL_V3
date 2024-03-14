@@ -25,6 +25,8 @@ static const float stepIrefFirst = 1.0f;
 static const float stepIrefAuto = 5.0f;
 static const float minIref = 20.0f;
 static const float maxIref = 1000.0f;
+static const float minUref = 5.0f;
+static const float maxUref = 100.0f;
 
 bool TPageHome::ProcessMessage(TMessage* m) {
     TVisualObject* e = { nullptr };
@@ -55,11 +57,23 @@ bool TPageHome::ProcessMessage(TMessage* m) {
                     }
                     break;
                 case (u32)KeyCodes::Left:
-                    //выбор шага в зависимости это однократное нажатие или автоматический повтор
-                    decreaseIref((m->p2 == (u32)KeyPressFeature::AutoRepeat)? stepIrefAuto : stepIrefFirst );
+                    //РІС‹Р±РѕСЂ С€Р°РіР° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё СЌС‚Рѕ РѕРґРЅРѕРєСЂР°С‚РЅРѕРµ РЅР°Р¶Р°С‚РёРµ РёР»Рё Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РїРѕРІС‚РѕСЂ
+                    changeUref = false;
+                    decrease((m->p2 == (u32)KeyPressFeature::AutoRepeat)? stepIrefAuto : stepIrefFirst );
                     break;
                 case (u32)KeyCodes::Right:
-                    increaseIref((m->p2 == (u32)KeyPressFeature::AutoRepeat)? stepIrefAuto : stepIrefFirst);
+                    changeUref = false;
+                    increase((m->p2 == (u32)KeyPressFeature::AutoRepeat)? stepIrefAuto : stepIrefFirst);
+                    break;
+                case static_cast<u32>(KeyCodes::F3_Left):
+                    changeUref = true;
+                    decrease((m->p2 == (u32)KeyPressFeature::AutoRepeat)? stepIrefAuto : stepIrefFirst );
+                    break;
+                case static_cast<u32>(KeyCodes::F3_Right):
+                    
+                    changeUref = true;
+                    increase((m->p2 == (u32)KeyPressFeature::AutoRepeat)? stepIrefAuto : stepIrefFirst);
+
                     break;
             }
         }
@@ -80,8 +94,9 @@ void TPageHome::checkSlotHelth(void){
       : (slotBusyCount = maxBusyTime, cmdSendInProcess = false);
   }
 }
-TTagLine* getIrefPlaceHolder(TComponentsContainer* Src) {
-    const std::string tag = "U1/RAM/Iref/";
+TTagLine* TPageHome::getIrefPlaceHolder(TComponentsContainer* Src) {
+    
+    const std::string tag = changeUref ? "U1/RAM/Uref/" : "U1/RAM/Iref/";
     TTagLine* res = nullptr;
     for (auto& e : Src->List) {
         if (e->ComponentName() == "TTagLine") {
@@ -95,33 +110,40 @@ TTagLine* getIrefPlaceHolder(TComponentsContainer* Src) {
     return res;
 }
 
-void TPageHome::decreaseIref(float step) {
+void TPageHome::decrease(float step) {
     if (cmdSendInProcess) return;
-    /*получить текущее значение Iref, вычесть из него 1A или 5А (в зависимости 
-     однократное это нажатие или автоматический повтор)и передать на EFi
-    значение может быть не числовое а "**.**" когда нет связи, значит
-    1) получить значение 2) убедится что числовое 3) произвести над ним вычисления
-    4) превратить  в строку 5) отправить */
+    /*РїРѕР»СѓС‡РёС‚СЊ С‚РµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ Iref, РІС‹С‡РµСЃС‚СЊ РёР· РЅРµРіРѕ 1A РёР»Рё 5Рђ (РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё 
+     РѕРґРЅРѕРєСЂР°С‚РЅРѕРµ СЌС‚Рѕ РЅР°Р¶Р°С‚РёРµ РёР»Рё Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РїРѕРІС‚РѕСЂ)Рё РїРµСЂРµРґР°С‚СЊ РЅР° EFi
+    Р·РЅР°С‡РµРЅРёРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµ С‡РёСЃР»РѕРІРѕРµ Р° "**.**" РєРѕРіРґР° РЅРµС‚ СЃРІСЏР·Рё, Р·РЅР°С‡РёС‚
+    1) РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ 2) СѓР±РµРґРёС‚СЃСЏ С‡С‚Рѕ С‡РёСЃР»РѕРІРѕРµ 3) РїСЂРѕРёР·РІРµСЃС‚Рё РЅР°Рґ РЅРёРј РІС‹С‡РёСЃР»РµРЅРёСЏ
+    4) РїСЂРµРІСЂР°С‚РёС‚СЊ  РІ СЃС‚СЂРѕРєСѓ 5) РѕС‚РїСЂР°РІРёС‚СЊ */
     TTagLine* TagLine = getIrefPlaceHolder(TagList);
     
     if (TagLine) {
         std::string value = TagLine->Value->getCaption();
         try {
             float f = std::stof(value);
+            if(changeUref){
+                f = ((f - step) < minUref)
+                ? minUref
+                : f -= step;
+            }
+            else{
             f = ((f - step) < minIref)
                 ? minIref
                 : f -= step;
+            }
             value = Utils::getValueAsFormatStr(f, "%f");
         }
         catch (...) {
-            //попал сюда, потому что строка не преобразовалась в float
+            //РїРѕРїР°Р» СЃСЋРґР°, РїРѕС‚РѕРјСѓ С‡С‚Рѕ СЃС‚СЂРѕРєР° РЅРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°Р»Р°СЃСЊ РІ float
             return;
         };
         sendCmd(value);
     }
 }
 
-void TPageHome::increaseIref(float step) {
+void TPageHome::increase(float step) {
     if (cmdSendInProcess) return;
     TTagLine* TagLine = getIrefPlaceHolder(TagList);
 
@@ -129,13 +151,20 @@ void TPageHome::increaseIref(float step) {
         std::string value = TagLine->Value->getCaption();
         try {
             float f = std::stof(value);
+            if(changeUref){
+                f = ((f + step) > maxUref)
+                ? maxUref
+                : f += step;
+            }
+            else{
             f = ((f + step) > maxIref)
                 ? maxIref
                 : f += step;
+            }
             value = Utils::getValueAsFormatStr(f, "%f");
         }
         catch (...) {
-            //попал сюда, потому что строка не преобразовалась в float
+            //РїРѕРїР°Р» СЃСЋРґР°, РїРѕС‚РѕРјСѓ С‡С‚Рѕ СЃС‚СЂРѕРєР° РЅРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°Р»Р°СЃСЊ РІ float
             return;
         };
         sendCmd(value);
@@ -143,12 +172,12 @@ void TPageHome::increaseIref(float step) {
 }
 
 void TPageHome::sendCmd(std::string& value) {
-    std::string tag = "U1/FLASH/Iref/";
-    /*TODO осталос решить куда записывать Iref
-      Если в RAM то надо переписывать прошивку Efi так как в NormalMode сейчас задание идёт из копии Уставок в RAM
-           и поэтому во время работы задание от кнопок меняться не будет
-      Если Flash - тогда задание меняется во время работы (записываются в Копию Уставок а от туда попадает в Регулятор и отображается в RAM)
-           но при остановке, то что Юзер на задавал, будет записано в реальный Flash
+    std::string tag = changeUref ? "U1/FLASH/Uref/" : "U1/FLASH/Iref/";
+    /*TODO РѕСЃС‚Р°Р»РѕСЃ СЂРµС€РёС‚СЊ РєСѓРґР° Р·Р°РїРёСЃС‹РІР°С‚СЊ Iref
+      Р•СЃР»Рё РІ RAM С‚Рѕ РЅР°РґРѕ РїРµСЂРµРїРёСЃС‹РІР°С‚СЊ РїСЂРѕС€РёРІРєСѓ Efi С‚Р°Рє РєР°Рє РІ NormalMode СЃРµР№С‡Р°СЃ Р·Р°РґР°РЅРёРµ РёРґС‘С‚ РёР· РєРѕРїРёРё РЈСЃС‚Р°РІРѕРє РІ RAM
+           Рё РїРѕСЌС‚РѕРјСѓ РІРѕ РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ Р·Р°РґР°РЅРёРµ РѕС‚ РєРЅРѕРїРѕРє РјРµРЅСЏС‚СЊСЃСЏ РЅРµ Р±СѓРґРµС‚
+      Р•СЃР»Рё Flash - С‚РѕРіРґР° Р·Р°РґР°РЅРёРµ РјРµРЅСЏРµС‚СЃСЏ РІРѕ РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ (Р·Р°РїРёСЃС‹РІР°СЋС‚СЃСЏ РІ РљРѕРїРёСЋ РЈСЃС‚Р°РІРѕРє Р° РѕС‚ С‚СѓРґР° РїРѕРїР°РґР°РµС‚ РІ Р РµРіСѓР»СЏС‚РѕСЂ Рё РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІ RAM)
+           РЅРѕ РїСЂРё РѕСЃС‚Р°РЅРѕРІРєРµ, С‚Рѕ С‡С‚Рѕ Р®Р·РµСЂ РЅР° Р·Р°РґР°РІР°Р», Р±СѓРґРµС‚ Р·Р°РїРёСЃР°РЅРѕ РІ СЂРµР°Р»СЊРЅС‹Р№ Flash
     */
     TryCount = 1;
     cmdSendInProcess = true;
