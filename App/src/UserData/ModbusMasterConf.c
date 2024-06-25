@@ -57,7 +57,7 @@ void ModbusMasterInit(void){
   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
   TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
   TIM_TimeBaseInit(TIM7, &TIM_TimeBaseStructure);
-  TIM_ARRPreloadConfig(TIM7, DISABLE);    
+  TIM_ARRPreloadConfig(TIM7, ENABLE);    
   TIM_ITConfig(TIM7, TIM_IT_Update, ENABLE);
   TIM_Cmd(TIM7, DISABLE);//таймер включается после отправки запроса линк менеджером
   TIM7->SR = 0;  

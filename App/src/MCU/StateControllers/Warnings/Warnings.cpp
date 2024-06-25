@@ -10,6 +10,7 @@ std::map < std::string, TTrackedBit > Warnings::Tags = {
 	{"UinLow", {"U1/RAM/UinLowWrn/", nullptr, false, false}},
 	{"Driver", {"U1/RAM/CheckDriver/", nullptr, false, false}},
 	{"ExtReady", {"U1/RAM/CheckExtReady/", nullptr, false, false}},
+	{"FreqSpark", {"U1/RAM/FreqSparkWrn/", nullptr, false, false}},
 };
 
 bool Warnings::State = true;

@@ -92,7 +92,7 @@ void TPageSensors::fillPageContainer(void) {
     LabelInit.Rect = { 10, 10, 10, 10 };
     LabelInit.focused = false;
     TagList->AddList({
-        new TTagLine("LastSparkLength", "U1/RAM/LastSparkLength/", LabelInit),
+        new TTagLine("LastSprLen", "U1/RAM/LastSparkLength/", LabelInit),
         new TTagLine("SparkFrq", "U1/RAM/SparkFrq/", LabelInit),
         new TTagLine("UoutAve", "U1/RAM/UoutAve/", LabelInit),
         new TTagLine("IoutAve", "U1/RAM/IoutAve/", LabelInit),
