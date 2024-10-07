@@ -13,7 +13,9 @@ Intmash_Usart UART1toRS485; // связь по опциональному RS485
 ModbusSlaveType RS485slave;
 
 //число используемых команд +1
-ModbusCommandHandlerType ModbusCommands[3]={
+ModbusCommandHandlerType ModbusCommands[5]={
+  {ModbusMemRead, 0x03},
+  {ModbusMemWrite, 0x10},
   {GetDeviceID, 0x11},
   {BootLoader, 0xB0},
   {0, 0},
