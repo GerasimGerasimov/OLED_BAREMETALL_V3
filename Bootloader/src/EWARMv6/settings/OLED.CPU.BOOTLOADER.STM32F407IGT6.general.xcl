@@ -2,7 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armsim2.dll" 
 
-"D:\Project\EFi_Tomsk\FirmWare\OLED_BAREMETALL_V3\Bootloader\out\Project.out" 
+"E:\ProjectGit\OLED_BAREMETALL_V3\Bootloader\out\Project.out" 
 
 --plugin="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armbat.dll" 
 

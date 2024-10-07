@@ -1731,7 +1731,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>STM32-BOOTLOADER.hex</state>
+                    <state>STM32-BOOTLOADER_OP.OLED.CM4.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>

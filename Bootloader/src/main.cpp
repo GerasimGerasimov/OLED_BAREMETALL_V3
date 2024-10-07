@@ -6,7 +6,7 @@
 #include "ramdata.h"
 #include "bootloader.h"
                          
-const char * IDtext = "Bootloader v1.2.0 19.01.2023 www.intmash.ru";
+const char * IDtext = "Bootloader v1.3.0 07.10.2024 www.intmash.ru";
 
 int main(void) {
   
@@ -15,9 +15,10 @@ int main(void) {
   if (INIT_IST != 0) {
     LED5_OFF;
     if (isBootLoaderMustBeStart() != true) {
-      
-      if ( isApplicationReadyToStart()) {
-        jumpToApplication();
+      if(isApplicationToBe()){
+        if ( isApplicationReadyToStart()) {
+          jumpToApplication();
+        }
       }
     }
   }
