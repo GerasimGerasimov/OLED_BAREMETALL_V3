@@ -87,6 +87,8 @@ void TPageBasicProtectionsSettings::fillPageContainer(void) {
         new TTagLine("Cyclicity", "U1/FLASH/Cyclicity/", LabelInit),
         new TTagLine("dDecrSprFq", "U1/FLASH/dDecrSparkFreq/", LabelInit),
         new TTagLine("tLentDec", "U1/FLASH/tLenghtDecr/", LabelInit),
+        new TTagLine("TIinMax", "U1/FLASH/TIinMax/", LabelInit),
+        new TTagLine("TIoutMax", "U1/FLASH/TIoutMax/", LabelInit),
     });
 }
 

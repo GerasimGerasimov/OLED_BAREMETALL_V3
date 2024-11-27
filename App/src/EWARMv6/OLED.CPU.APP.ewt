@@ -1731,6 +1731,9 @@
                 <name>$PROJ_DIR$\..\MCU\Pages\Sensors\PageSensors.cpp</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\MCU\Pages\ShakerSettings\PageShakerSettings.cpp</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\MCU\Pages\Warning\PageWarnings.cpp</name>
             </file>
         </group>

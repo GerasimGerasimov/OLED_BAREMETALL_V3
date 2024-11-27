@@ -14,6 +14,7 @@
 #include "PageParameterListEdit.h"
 #include "PagePanelSettings.h"
 #include "PageCalibration.h"
+#include "ShakerSettings/PageShakerSettings.h"
 #include <IniResources.h>
 
 /*TODO В роутере и страницах можно реализовать переходы на закрытие/открытие окна*/
@@ -40,6 +41,7 @@ void TRouter::Init(void) {
     Pages["PrmListEdit"] = new TPageParameterListEdit("PrmListEdit");
     Pages["PanelSettings"] = new TPagePanelSettings("PanelSettings");
     Pages["CD"] = new TPageCalibration("CD");
+    Pages["ShakerSettings"] = new TPageShakerSettings("ShakerSettings");
     setInitPage();
 }
 
